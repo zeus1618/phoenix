@@ -1,0 +1,99 @@
+---
+description: DSA problem-solving workflow and automation rules
+alwaysApply: true
+---
+
+# DSA Problem-Solving Workflow Rules
+
+## Rule 1: Problem Implementation from Links
+
+When a user shares a link to a DSA problem (LeetCode, HackerRank, etc.):
+
+**DO:**
+- Fetch and read the problem description from the link
+- Create a comprehensive `main` function with multiple test cases covering:
+  - All examples from the problem
+  - Edge cases (empty input, single element, minimum/maximum constraints)
+  - Normal cases
+  - Boundary cases
+- Add detailed JavaDoc documentation including:
+  - Problem number and title
+  - Problem description
+  - Constraints
+  - Approach explanation
+  - Time and space complexity
+
+**DO NOT:**
+- Never create the solution class or solution method
+- Never implement the actual algorithm/logic
+- The user will implement the solution themselves
+
+## Rule 2: Progress Tracking Updates
+
+When the user asks to "summarize" or "update progress tracker":
+
+1. Check the PROGRESS.md file for the last update date
+2. Search for all problem files implemented since that date
+3. Update PROGRESS.md with:
+   - New problems added to Daily Progress Log
+   - New row in Problems Overview Table
+   - Their approaches
+   - Complexity analysis
+   - Whether AI assistance was used
+   - Update Summary Statistics (total problems, categories, streak)
+
+## Rule 3: Auto-Update on Problem Transition
+
+When the user says phrases like:
+- "move to next problem"
+- "next question"
+- "going to solve [problem name]"
+- Shares a new problem link after completing one
+
+**Automatically:**
+1. Update PROGRESS.md with the completed problem details:
+   - Add new row to Problems Overview Table
+   - Add detailed entry in Daily Progress Log
+   - Update Summary Statistics
+2. Include: date, time, problem name, link, approach, complexity
+3. Mark AI assistance status (based on conversation context)
+
+## Progress Tracker Format
+
+### Problems Overview Table Format
+Each row should include:
+- Sequential number
+- Date (YYYY-MM-DD format)
+- Problem name with link and number
+- Difficulty (Easy/Medium/Hard)
+- Category
+- Time complexity (Big O notation)
+- Space complexity (Big O notation)
+- AI Help (✅ Yes / ❌ No) - **Only mark Yes if AI helped with solution/algorithm logic**
+- Status (✅ Done / 🔄 In Progress)
+
+### Daily Progress Log Format
+Each entry should include:
+- Date and time
+- Problem name and number
+- Problem link
+- Brief approach (1-2 sentences)
+- Time complexity
+- Space complexity
+- AI assistance: [Yes/No] with specific details
+
+### AI Assistance Definition
+**AI assistance = ✅ Yes** ONLY when:
+- AI helped write the solution class/method
+- AI provided the algorithm logic or approach
+- AI debugged or fixed the solution code
+
+**AI assistance = ❌ No** when:
+- AI only created main function and test cases (this is expected)
+- AI only added documentation/comments
+- User implemented the entire solution independently
+
+### Summary Statistics to Update
+- Total Problems Solved count
+- Categories Covered list
+- Current Streak
