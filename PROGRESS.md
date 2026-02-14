@@ -17,7 +17,7 @@
 
 ## 📊 Summary Statistics
 
-- **Total Problems Solved:** 2
+- **Total Problems Solved:** 3
 - **Problems In Progress:** 0
 - **Categories Covered:** Arrays & Hashing
 - **Current Streak:** 1 day
@@ -30,6 +30,7 @@
 |---|------|---------|------------|----------|------|-------|---------|--------|
 | 1 | 2026-02-13 | [Contains Duplicate (#217)](https://leetcode.com/problems/contains-duplicate/) | Easy | Arrays & Hashing | O(n) | O(n) | ❌ No | ✅ Done |
 | 2 | 2026-02-13 | [Valid Anagram (#242)](https://leetcode.com/problems/valid-anagram/) | Easy | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
+| 3 | 2026-02-13 | [Two Sum (#1)](https://leetcode.com/problems/two-sum/) | Easy | Arrays & Hashing | O(n) | O(n) | ❌ No | ✅ Done |
 
 ---
 
@@ -94,11 +95,67 @@ Discovered that method calls like `charAt()` have significant overhead compared 
 
 ---
 
+#### ✅ Problem 3: Two Sum
+- **Platform:** LeetCode
+- **Problem Number:** #1
+- **Difficulty:** Easy
+- **Link:** https://leetcode.com/problems/two-sum/description/
+- **Category:** Arrays & Hashing
+
+**Problem:**
+Given an array of integers and a target sum, return the indices of two numbers that add up to the target. Each input has exactly one solution, and you cannot use the same element twice.
+
+**Approach:**
+Used HashMap to store complement pairs. For each element, calculated its complement (target - current) and checked if it exists in the map. If found, returned the indices immediately. Otherwise, stored current element with its index for future lookups. Single pass solution.
+
+**Complexity Analysis:**
+- **Time Complexity:** O(n) - Single pass through array with O(1) HashMap operations
+- **Space Complexity:** O(n) - HashMap storage for up to n elements
+
+**Evolution of Understanding:**
+1. **Initial Attempt:** Two-pointer variation checking from both ends - O(n²) but creative
+2. **Realization:** Two-pointer only works on SORTED arrays, degrades to O(n²) on unsorted
+3. **Final Solution:** HashMap with complement pattern - Optimal O(n) solution
+4. **Deep Analysis:** Compared with gap-based O(n²) solution from LeetCode
+
+**Key Learnings:**
+- **HashMap Complement Pattern:** For "find pair with sum" → use `complement = target - current`
+- **Theory vs Practice:** O(n) HashMap can be slower than O(n²) for small arrays (n<100) due to:
+  - Hash computation overhead (~5 units vs 1 for array access)
+  - Memory allocation and garbage collection
+  - Cache misses (HashMap has poor locality vs sequential array access)
+  - Constant factor: ~21 units per HashMap operation vs ~3 for direct array access
+- **Two-Pointer Limitation:** Requires sorted data or sorted property. On unsorted arrays without sorting first, it's just disguised O(n²) brute force
+- **LeetCode Bias:** Test cases favor early answers and small arrays (n<100), making O(n²) solutions appear faster. Production needs worst-case guarantees
+- **Early Termination Power:** Gap-based solutions check nearby pairs first, finding [0,1] in 1 check vs HashMap's n iterations, but explodes to O(n²) on worst case
+- **Performance Reality:** For n=100 early answer: Gap=3 CPU units, HashMap=2,100 units (700x slower!). For n=10,000 worst case: Gap=50M checks, HashMap=10k ops (5000x faster!)
+- **Production Principle:** Always choose guaranteed O(n) over best-case-optimized O(n²)
+
+**Alternative Approaches Analyzed:**
+1. Brute Force - O(n²) time, O(1) space
+2. Two-Pointer on Sorted - O(n log n) time, O(n) space (must track original indices)
+3. Gap-Based - O(n²) time, O(1) space (fast on LeetCode, fails in production)
+
+**AI Assistance:**
+- ❌ No - Solution implemented independently
+- ℹ️ Note: AI provided extensive analysis AFTER implementation, explaining:
+  - Why O(n²) can beat O(n) on small inputs
+  - HashMap overhead breakdown
+  - Cache locality impact
+  - LeetCode test case bias
+  - Real-world performance considerations
+
+**Status:** ✅ Completed  
+**Implementation File:** `arraysAndHashing/TwoSum.java`
+
+---
+
 ## 📈 Progress by Category
 
 ### Arrays & Hashing
 - [x] Contains Duplicate (Easy) - #217
 - [x] Valid Anagram (Easy) - #242
+- [x] Two Sum (Easy) - #1
 
 ### Two Pointers
 - [ ] *No problems yet*
@@ -153,11 +210,20 @@ Discovered that method calls like `charAt()` have significant overhead compared 
 - **Method call overhead matters:** `charAt()` calls are significantly slower than direct array access
 - **Big-O doesn't tell the full story:** Two O(n) solutions can have vastly different performance due to constant factors
 - **Performance optimization insight:** Converting strings to char arrays first can provide ~2.5x speedup in tight loops
+- **HashMap complement pattern:** For "find pair" problems, store complements for O(1) lookup
+- **Theory vs Practice gap:** O(n) can be slower than O(n²) for small inputs (n<100) due to constant factors
+- **Two-pointer requires sorting:** On unsorted data, two-pointer degrades to O(n²)
+- **LeetCode metrics mislead:** Small test cases and early answers bias toward O(n²) solutions
+- **Cache locality impact:** Sequential array access (~3 CPU units) vs HashMap lookup (~21 units)
+- **Production over benchmarks:** Always choose worst-case guarantees over best-case optimizations
 
 ### Patterns Identified
 - **Duplicate Detection Pattern:** Use HashSet for O(n) time complexity vs O(n²) brute force
 - **Character Frequency Pattern:** Use fixed-size array (26) for lowercase English letters instead of HashMap for O(1) space
 - **String Processing Optimization:** For tight loops with heavy string access, consider converting to char array first to avoid method call overhead
+- **Complement/Pair Finding Pattern:** Use HashMap to store seen elements, check for complement in O(1) time
+- **Two-Pointer Pattern:** Only applicable on sorted data or when you can sort; requires monotonic property
+- **Early Termination Strategy:** Check likely candidates first (nearby pairs, common patterns) but ensure worst-case bounds
 
 ---
 

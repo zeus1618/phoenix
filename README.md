@@ -52,7 +52,7 @@ phoenix/
 
 | Category | Problems Solved | Status |
 |----------|----------------|--------|
-| Arrays & Hashing | 2 | 🔄 In Progress |
+| Arrays & Hashing | 3 | 🔄 In Progress |
 | Two Pointers | 0 | ⏳ Not Started |
 | Sliding Window | 0 | ⏳ Not Started |
 | Stack | 0 | ⏳ Not Started |
@@ -166,7 +166,7 @@ When moving to next problem:
 
 ## 📈 Statistics
 
-- **Total Problems Solved:** 2
+- **Total Problems Solved:** 3
 - **Current Streak:** 1 day
 - **Categories Covered:** 1
 - **Last Updated:** Friday, February 13, 2026
