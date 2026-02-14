@@ -31,58 +31,127 @@ alwaysApply: true
 
 ---
 
-## Rule 1: Problem Implementation from Links
+## Rule 1: Start - Problem Setup from Links
 
 When a user shares a link to a DSA problem (LeetCode, HackerRank, etc.):
 
 **DO:**
 - Fetch and read the problem description from the link
-- Create a comprehensive `main` function with multiple test cases covering:
+- Create an empty solution method stub (signature only, with `// TODO` inside)
+- Create reusable private helper methods for test execution to avoid repetitive code:
+  - A `runTest` helper that accepts test number, input, expected output, actual output, and description
+  - A `printSummary` helper that prints the final test results table and statistics
+- Create a `main` function that uses the helpers to run comprehensive test cases covering:
   - All examples from the problem
   - Edge cases (empty input, single element, minimum/maximum constraints)
-  - Normal cases
-  - Boundary cases
+  - Normal cases and boundary cases
 - Add detailed JavaDoc documentation including:
-  - Problem number and title
-  - Problem description
-  - Constraints
-  - Approach explanation
-  - Time and space complexity
+  - Problem number, title, and difficulty
+  - Problem description and constraints
+  - Placeholder for approach, time and space complexity
+- Add the new problem as 🔄 In Progress in PROGRESS.md (table + daily log + category)
+
+**Code Quality:**
+- Keep test code DRY - extract common patterns into helper methods
+- Each test case should be a single method call with clear parameters
+- Test summary should use stored results, not inline comparisons
 
 **DO NOT:**
-- Never create the solution class or solution method
-- Never implement the actual algorithm/logic
+- Never create the solution class or solution method logic
+- Never implement the actual algorithm
 - The user will implement the solution themselves
 
-## Rule 2: Progress Tracking Updates
+---
 
-When the user asks to "summarize" or "update progress tracker":
+## Rule 2: Analyse - Evaluate User's Solution
 
-1. Check the PROGRESS.md file for the last update date
-2. Search for all problem files implemented since that date
-3. Update PROGRESS.md with:
-   - New problems added to Daily Progress Log
-   - New row in Problems Overview Table
-   - Their approaches
-   - Complexity analysis
-   - Whether AI assistance was used
-   - Update Summary Statistics (total problems, categories, streak)
+When the user asks to analyse/evaluate their solution:
 
-## Rule 3: Auto-Update on Problem Transition
+**DO:**
+- Read the user's solution code carefully
+- List what was done RIGHT (correct patterns, good practices)
+- List what was done WRONG or could be improved
+- Analyse time and space complexity
+- Suggest better approaches with code examples and complexity comparison
+- Include a comparison table of all approaches
 
-When the user says phrases like:
-- "move to next problem"
-- "next question"
-- "going to solve [problem name]"
-- Shares a new problem link after completing one
+**DO NOT:**
+- NEVER modify the user's solution code (Rule #0)
+- Do not create files or update documentation at this step
 
-**Automatically:**
-1. Update PROGRESS.md with the completed problem details:
-   - Add new row to Problems Overview Table
-   - Add detailed entry in Daily Progress Log
-   - Update Summary Statistics
-2. Include: date, time, problem name, link, approach, complexity
-3. Mark AI assistance status (based on conversation context)
+---
+
+## Rule 3: Compare - Evaluate External Solutions
+
+When the user shares another solution (from LeetCode, interviews, etc.) for comparison:
+
+**DO:**
+- Trace through the external solution step-by-step using a test case if requested
+- Compare with user's solution on: correctness, complexity, readability, performance
+- Explain WHY one performs better than the other
+- Cover real-world factors: cache locality, constant factors, method overhead, JIT optimization
+- Highlight when LeetCode benchmarks can be misleading vs production reality
+
+**DO NOT:**
+- NEVER modify the user's solution code (Rule #0)
+- Do not create files or update documentation at this step
+
+---
+
+## Rule 4: Summarise - Consolidate Learnings
+
+When the user asks for a summary of the current problem:
+
+**DO:**
+- Compile all learnings from the conversation into a structured summary
+- Cover: problem understanding, approaches explored, evolution of solution, key insights
+- Include performance analysis, pattern recognition, and best practices learned
+- Highlight what to remember for future problems
+
+**DO NOT:**
+- NEVER modify the user's solution code (Rule #0)
+- Do not create or update any files at this step - this is a conversation-only step
+
+---
+
+## Rule 5: Update - Documentation & Progress Tracking
+
+When the user asks to update documentation and progress:
+
+**DO:**
+- Update JavaDoc in the problem file with:
+  - Final solution approach
+  - Time and space complexity
+  - Key learnings and alternative approaches
+  - Do NOT touch the solution code itself (Rule #0)
+- Update PROGRESS.md:
+  - Mark problem as ✅ Done in the Overview Table (fill in complexity, AI help)
+  - Complete the Daily Progress Log entry with approach, complexity, learnings, AI status
+  - Update category checklist
+  - Add new entries to Key Learnings and Patterns Identified sections
+  - Update Summary Statistics (total solved, in progress, streak)
+- Update README.md:
+  - Update category table count
+  - Update statistics section
+
+---
+
+## Rule 6: GitPush - Commit and Push
+
+When the user asks to commit and push:
+
+**DO:**
+1. Run `git status` and `git diff --stat` to review changes
+2. Stage all changes with `git add .`
+3. Create a descriptive commit message including:
+   - Problem number, name, and brief description
+   - Solution approach and complexity
+   - Key learnings (brief)
+   - List of files changed
+4. Push to remote with `git push origin main`
+5. Verify with `git status` to confirm clean state
+
+---
 
 ## Progress Tracker Format
 

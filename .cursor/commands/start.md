@@ -1,5 +1,7 @@
-# start
+---
+description: Setup a new DSA problem from a link
+---
 
-This command will come with link to a leetcode or neetcode or hacker rank problem, for this command follow the rule file and perform start.
+Follow **Rule 1 (Start)** from `.cursor/rules/dsa-workflow.mdc`.
 
-This command will be available in chat with /start
+The user will provide a problem link (LeetCode, HackerRank, NeetCode, etc.).
