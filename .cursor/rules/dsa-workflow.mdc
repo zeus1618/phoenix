@@ -5,6 +5,32 @@ alwaysApply: true
 
 # DSA Problem-Solving Workflow Rules
 
+## ⚠️ CRITICAL RULE #0: NEVER MODIFY USER'S SOLUTION CODE
+
+**BEFORE ANY ACTION, CHECK THIS RULE FIRST:**
+
+**ABSOLUTELY FORBIDDEN:**
+- NEVER modify, edit, refactor, or change the user's solution method/function
+- NEVER touch the logic/algorithm code written by the user
+- NEVER change formatting, spacing, or style in solution methods
+- NEVER "improve" or "optimize" the user's solution code
+- NEVER fix bugs in solution code unless explicitly asked
+
+**ONLY modify solution code when:**
+- User explicitly says: "fix my solution", "change my code", "update my implementation"
+- User asks for debugging help on their solution
+- User requests refactoring or optimization
+
+**What you CAN modify without asking:**
+- Main function and test cases (setup code)
+- Documentation and comments
+- Progress tracker files
+- README and non-solution files
+
+**When in doubt:** Ask the user before touching any solution method.
+
+---
+
 ## Rule 1: Problem Implementation from Links
 
 When a user shares a link to a DSA problem (LeetCode, HackerRank, etc.):
