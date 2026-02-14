@@ -114,7 +114,41 @@ When the user asks for a summary of the current problem:
 
 ---
 
-## Rule 5: Update - Documentation & Progress Tracking
+## Rule 5: Current - Session Resume & Status Overview
+
+When the user wants a status check or is resuming after a break:
+
+**DO:**
+1. Read PROGRESS.md to determine:
+   - Last update date
+   - Overall statistics (total solved, categories, streak)
+   - Any problem marked 🔄 In Progress in the Overview Table
+2. If a problem is In Progress:
+   - Read the problem file to check solution method status (empty TODO vs implemented)
+   - Determine which workflow step was last completed:
+     - **Start**: File exists, solution method is empty/TODO
+     - **Solving**: Solution method has code but tests may be failing
+     - **Analyse/Compare**: Solution works, user was exploring alternatives
+     - **Update pending**: Solution done but docs/tracker not yet updated
+     - **GitPush pending**: Everything updated but not committed
+3. Present a concise status report:
+   - 📊 Overall Stats (total solved, streak, categories)
+   - 📋 Last 3 problems from Overview Table
+   - 🔄 Current Problem (if any): name, link, status, last workflow step
+   - 📁 Uncommitted changes (run `git status`)
+   - 🎯 Suggested next action
+
+**Format the report clearly with sections, not walls of text.**
+
+**DO NOT:**
+- Do not modify any files
+- Do not start new problems
+- This is a read-only status check
+
+---
+
+## Rule 6: Update - Documentation & Progress Tracking
+
 
 When the user asks to update documentation and progress:
 
@@ -136,7 +170,7 @@ When the user asks to update documentation and progress:
 
 ---
 
-## Rule 6: GitPush - Commit and Push
+## Rule 7: GitPush - Commit and Push
 
 When the user asks to commit and push:
 
