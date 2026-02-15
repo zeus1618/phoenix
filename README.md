@@ -27,10 +27,23 @@ phoenix/
 ├── README.md                          # Project overview (this file)
 ├── PROGRESS.md                        # Detailed progress tracker
 ├── .cursor/
-│   └── rules/
-│       └── dsa-workflow.mdc          # Automated workflow rules
+│   ├── rules/
+│   │   └── dsa-workflow.mdc          # Automated workflow rules
+│   └── commands/                      # Workflow command definitions
+│       ├── start.md                   # Start new problem
+│       ├── analyse.md                 # Analyze solution
+│       ├── compare.md                 # Compare solutions
+│       ├── summarise.md               # Summarize learnings
+│       ├── current.md                 # View current status
+│       ├── update.md                  # Update documentation
+│       └── gitpush.md                 # Commit and push
 ├── arraysAndHashing/
-│   └── ContainsDuplicate.java        # Problem solutions organized by category
+│   ├── ContainsDuplicate.java        # Problem solutions
+│   ├── ValidAnagram.java
+│   ├── TwoSum.java
+│   ├── GroupAnagrams.java
+│   └── learnings/                     # Deep dive learnings for complex problems
+│       └── GroupAnagrams-Learning.md
 ├── twoPointers/                       # (Future problems)
 ├── slidingWindow/                     # (Future problems)
 ├── stack/                             # (Future problems)
@@ -52,7 +65,7 @@ phoenix/
 
 | Category | Problems Solved | Status |
 |----------|----------------|--------|
-| Arrays & Hashing | 3 | 🔄 In Progress |
+| Arrays & Hashing | 4 | 🔄 In Progress |
 | Two Pointers | 0 | ⏳ Not Started |
 | Sliding Window | 0 | ⏳ Not Started |
 | Stack | 0 | ⏳ Not Started |
@@ -141,34 +154,68 @@ Progress is tracked in [PROGRESS.md](PROGRESS.md) with:
 
 ## 🤖 Automated Workflow
 
-This project uses Cursor AI rules (`.cursor/rules/dsa-workflow.mdc`) for automated workflows:
+This project uses Cursor AI rules (`.cursor/rules/dsa-workflow.mdc`) for automated workflows with command-based execution:
 
-### Rule 1: Problem Setup
-When a problem link is shared:
+### Available Commands
+
+#### `/start <problem_link>`
+Generates boilerplate code for a new problem:
 - ✅ Fetches problem description
-- ✅ Creates main function with test cases
-- ✅ Adds documentation
+- ✅ Creates main function with comprehensive test cases
+- ✅ Adds detailed JavaDoc documentation
 - ❌ Does NOT create solution (you implement it)
 
-### Rule 2: Progress Updates
-On request to "update progress":
-- Checks last update date
-- Syncs all problems solved since then
-- Updates statistics and tables
+#### `/analyse`
+Analyzes your implemented solution:
+- Evaluates time and space complexity
+- Identifies strengths and weaknesses
+- Suggests alternative approaches
+- Compares with optimal solutions
 
-### Rule 3: Auto-Tracking
-When moving to next problem:
-- Automatically logs completed problem
-- Updates progress tracker
-- Maintains statistics
+#### `/compare <alternative_solution>`
+Compares two solutions in detail:
+- Performance analysis (runtime comparison)
+- Complexity breakdown
+- Constant factor analysis
+- Best practices and trade-offs
+
+#### `/summarise`
+Consolidates all learnings from current problem:
+- Problem evolution journey
+- Key insights and takeaways
+- Pattern recognition
+- Performance lessons
+
+#### `/current`
+Shows detailed status overview:
+- Current problem progress
+- Overall statistics
+- Session summary
+- Suggested next steps
+
+#### `/update [--detailed-learning]`
+Updates all documentation:
+- Syncs problem file JavaDoc
+- Updates PROGRESS.md
+- Updates README.md statistics
+- Optional: Creates detailed learning guide for complex problems
+
+#### `/gitpush`
+Commits and pushes all changes:
+- Generates descriptive commit message
+- Commits all tracked changes
+- Pushes to remote repository
 
 ---
 
 ## 📈 Statistics
 
-- **Total Problems Solved:** 3
+- **Total Problems Solved:** 4
 - **Current Streak:** 1 day
 - **Categories Covered:** 1
+- **Difficulty Breakdown:**
+  - Easy: 3 problems
+  - Medium: 1 problem
 - **Last Updated:** Friday, February 13, 2026
 
 ---

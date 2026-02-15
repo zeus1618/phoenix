@@ -17,7 +17,7 @@
 
 ## 📊 Summary Statistics
 
-- **Total Problems Solved:** 3
+- **Total Problems Solved:** 4
 - **Problems In Progress:** 0
 - **Categories Covered:** Arrays & Hashing
 - **Current Streak:** 1 day
@@ -31,6 +31,7 @@
 | 1 | 2026-02-13 | [Contains Duplicate (#217)](https://leetcode.com/problems/contains-duplicate/) | Easy | Arrays & Hashing | O(n) | O(n) | ❌ No | ✅ Done |
 | 2 | 2026-02-13 | [Valid Anagram (#242)](https://leetcode.com/problems/valid-anagram/) | Easy | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
 | 3 | 2026-02-13 | [Two Sum (#1)](https://leetcode.com/problems/two-sum/) | Easy | Arrays & Hashing | O(n) | O(n) | ❌ No | ✅ Done |
+| 4 | 2026-02-13 | [Group Anagrams (#49)](https://leetcode.com/problems/group-anagrams/) | Medium | Arrays & Hashing | O(nk log k) | O(nk) | ❌ No | ✅ Done |
 
 ---
 
@@ -150,12 +151,43 @@ Used HashMap to store complement pairs. For each element, calculated its complem
 
 ---
 
+#### 🔄 Problem 4: Group Anagrams (In Progress)
+- **Platform:** LeetCode
+- **Problem Number:** #49
+- **Difficulty:** Medium
+- **Link:** https://leetcode.com/problems/group-anagrams/
+- **Category:** Arrays & Hashing
+
+**Problem:**
+Given an array of strings, group the anagrams together. You can return the answer in any order. An anagram is a word formed by rearranging the letters of another word, using all original letters exactly once.
+
+**Constraints:**
+- 1 <= strs.length <= 10^4
+- 0 <= strs[i].length <= 100
+- strs[i] consists of lowercase English letters
+
+**Approach:**
+[To be documented after implementation]
+
+**Complexity Analysis:**
+- **Time Complexity:** [To be analyzed]
+- **Space Complexity:** [To be analyzed]
+
+**AI Assistance:**
+- TBD - Solution not yet implemented
+
+**Status:** 🔄 In Progress  
+**Implementation File:** `arraysAndHashing/GroupAnagrams.java`
+
+---
+
 ## 📈 Progress by Category
 
 ### Arrays & Hashing
 - [x] Contains Duplicate (Easy) - #217
 - [x] Valid Anagram (Easy) - #242
 - [x] Two Sum (Easy) - #1
+- [x] Group Anagrams (Medium) - #49
 
 ### Two Pointers
 - [ ] *No problems yet*
