@@ -158,6 +158,7 @@ When the user asks to update documentation and progress:
   - Time and space complexity
   - Key learnings and alternative approaches
   - Do NOT touch the solution code itself (Rule #0)
+  - **If problem is complex:** Reference to detailed learning file (e.g., `Detailed Learning Guide: See arraysAndHashing/learnings/ProblemName-Learning.md`)
 - Update PROGRESS.md:
   - Mark problem as ✅ Done in the Overview Table (fill in complexity, AI help)
   - Complete the Daily Progress Log entry with approach, complexity, learnings, AI status
@@ -167,23 +168,131 @@ When the user asks to update documentation and progress:
 - Update README.md:
   - Update category table count
   - Update statistics section
+  - Update project structure if new folders added
+
+**Optional: Create Detailed Learning File**
+
+When user requests additional text like "create detailed learning" or "generate learning file" OR when problem demonstrates significant complexity:
+
+**DO:**
+1. Create `<category>/learnings/` folder if it doesn't exist
+2. Create `<ProblemName>-Learning.md` with comprehensive analysis:
+   - **Problem Evolution Journey:** Document all attempts and iterations
+   - **Solution Comparison:** Compare user's solution with alternatives (theory vs practice)
+   - **Performance Deep Dive:** Explain why certain O() beats others (constant factors, JVM optimizations)
+   - **Key Insights:** Theory vs practice gaps, hidden costs, optimization paradoxes
+   - **Major Lessons:** Big-O limitations, constant factors, JVM intrinsics, data structure tradeoffs
+   - **Best Practices:** Production recommendations, interview strategies
+   - **Pattern Recognition:** Reusable patterns for similar problems
+   - **Mistakes to Avoid:** Common pitfalls and bugs
+3. Reference this file in the problem's JavaDoc
+4. Add reference in PROGRESS.md entry
+
+**When to create detailed learning files:**
+- Problem required multiple iterations/attempts (3+ solution approaches)
+- Deep performance analysis with counter-intuitive results
+- Comparison of 3+ alternative approaches
+- Theory vs practice paradoxes (e.g., O(n) slower than O(n log n))
+- Critical algorithmic insights or patterns
+- User explicitly requests it
+
+**DO NOT:**
+- Create detailed learning files for straightforward problems
+- Duplicate information already in PROGRESS.md
+- Create learning files unless specifically requested or complexity warrants it
 
 ---
 
-## Rule 7: GitPush - Commit and Push
+## Rule 7: GitPush - Logical Commits and Push
 
 When the user asks to commit and push:
 
 **DO:**
-1. Run `git status` and `git diff --stat` to review changes
-2. Stage all changes with `git add .`
-3. Create a descriptive commit message including:
-   - Problem number, name, and brief description
-   - Solution approach and complexity
-   - Key learnings (brief)
-   - List of files changed
-4. Push to remote with `git push origin main`
-5. Verify with `git status` to confirm clean state
+1. Run `git status` and `git diff --stat` to analyze all changes
+2. Group changes into logical, atomic commits based on their purpose:
+
+**Commit Group 1: Problem Implementation**
+- Stage problem-specific files:
+  - Solution file(s) (e.g., `arraysAndHashing/TwoSum.java`)
+  - Learning files (e.g., `arraysAndHashing/learnings/ProblemName-Learning.md`)
+  - PROGRESS.md (problem-specific sections)
+  - README.md (only statistics and category progress sections)
+- Create commit message format:
+  ```
+  Add [Problem Name] (#X) - [Difficulty]
+  
+  - Implemented [approach] solution with O(time)/O(space) complexity
+  - [Key learning or notable aspect]
+  - Updated progress tracking and documentation
+  
+  Files: [list main files]
+  ```
+
+**Commit Group 2: Workflow/Infrastructure Changes**
+- Stage workflow files:
+  - `.cursor/rules/dsa-workflow.mdc`
+  - `.cursor/commands/*.md`
+  - Other infrastructure files
+- Create commit message format:
+  ```
+  Update workflow: [brief description of changes]
+  
+  - [Change 1]
+  - [Change 2]
+  
+  Files: [list files]
+  ```
+
+**Commit Group 3: Documentation Updates (if separate from problem)**
+- Stage standalone documentation changes:
+  - README.md (structural changes, workflow updates)
+  - Other markdown files not related to specific problem
+- Create commit message format:
+  ```
+  Docs: [brief description]
+  
+  - [Change 1]
+  - [Change 2]
+  ```
+
+**Commit Group 4: Refactoring/Cleanup (if applicable)**
+- Stage refactoring changes that don't fit above categories
+- Use descriptive commit message
+
+3. For each commit group with changes:
+   - Stage files with `git add <specific files>`
+   - Commit with descriptive message
+   - Verify with `git status`
+
+4. Push all commits at once: `git push origin main`
+5. Final verification with `git status` to confirm clean state
+
+**Commit Grouping Strategy:**
+- **Atomic principle:** Each commit should represent one logical change
+- **Reviewability:** Changes in a commit should be related and easy to review together
+- **Revertability:** If needed, a commit can be reverted without affecting unrelated changes
+- **Clarity:** Commit message should clearly explain the "why" not just the "what"
+
+**Example Session:**
+```
+# Problem solved: Group Anagrams
+Commit 1: "Add Group Anagrams (#49) - Medium
+           - Implemented sorted key approach with O(nk log k) complexity
+           - Created detailed learning guide covering 5 alternative approaches
+           - Updated progress: 4 problems solved, 1st Medium problem"
+           Files: GroupAnagrams.java, GroupAnagrams-Learning.md, PROGRESS.md, README.md
+
+Commit 2: "Update workflow: Add detailed learning file generation
+           - Extended Rule 6 (Update) with optional learning file creation
+           - Updated update command with learning file documentation
+           - Added criteria for when to create detailed guides"
+           Files: dsa-workflow.mdc, update.md
+```
+
+**DO NOT:**
+- Create one giant commit with unrelated changes
+- Mix problem implementation with workflow changes in same commit
+- Push without reviewing `git status` between commits
 
 ---
 
