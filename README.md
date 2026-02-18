@@ -43,6 +43,7 @@ phoenix/
 │   ├── TwoSum.java
 │   ├── GroupAnagrams.java
 │   ├── MaximumSubarray.java
+│   ├── BestTimeToBuyAndSellStock.java
 │   └── learnings/                     # Deep dive learnings for complex problems
 │       └── GroupAnagrams-Learning.md
 ├── twoPointers/                       # (Future problems)
@@ -66,7 +67,7 @@ phoenix/
 
 | Category | Problems Solved | Status |
 |----------|----------------|--------|
-| Arrays & Hashing | 5 | 🔄 In Progress |
+| Arrays & Hashing | 6 | 🔄 In Progress |
 | Two Pointers | 0 | ⏳ Not Started |
 | Sliding Window | 0 | ⏳ Not Started |
 | Stack | 0 | ⏳ Not Started |
@@ -211,13 +212,13 @@ Commits and pushes all changes:
 
 ## 📈 Statistics
 
-- **Total Problems Solved:** 5
+- **Total Problems Solved:** 6
 - **Current Streak:** 3 days
 - **Categories Covered:** 1
 - **Difficulty Breakdown:**
-  - Easy: 3 problems
+  - Easy: 4 problems
   - Medium: 2 problems
-- **Last Updated:** Sunday, February 15, 2026
+- **Last Updated:** Wednesday, February 18, 2026
 
 ---
 
@@ -258,7 +259,7 @@ This is a personal learning repository. The focus is on consistent practice and 
 
 ---
 
-**Last Updated:** February 13, 2026  
+**Last Updated:** February 18, 2026  
 **Status:** 🔥 Active - Daily Practice
 
 ---

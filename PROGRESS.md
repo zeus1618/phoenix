@@ -1,6 +1,6 @@
 # DSA Learning Progress Tracker
 
-> **Last Updated:** Sunday, February 15, 2026
+> **Last Updated:** Wednesday, February 18, 2026
 
 ---
 
@@ -17,7 +17,7 @@
 
 ## 📊 Summary Statistics
 
-- **Total Problems Solved:** 5
+- **Total Problems Solved:** 6
 - **Problems In Progress:** 1
 - **Categories Covered:** Arrays & Hashing
 - **Current Streak:** 3 days
@@ -34,6 +34,7 @@
 | 4 | 2026-02-13 | [Group Anagrams (#49)](https://leetcode.com/problems/group-anagrams/) | Medium | Arrays & Hashing | O(nk log k) | O(nk) | ❌ No | ✅ Done |
 | 5 | 2026-02-15 | [Top K Frequent Elements (#347)](https://leetcode.com/problems/top-k-frequent-elements/) | Medium | Arrays & Hashing | TBD | TBD | TBD | 🔄 In Progress |
 | 6 | 2026-02-15 | [Maximum Subarray (#53)](https://leetcode.com/problems/maximum-subarray/) | Medium | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
+| 7 | 2026-02-18 | [Best Time to Buy and Sell Stock (#121)](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/) | Easy | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
 
 ---
 
@@ -263,6 +264,45 @@ Implemented Kadane's Algorithm - a greedy dynamic programming approach that find
 
 ---
 
+#### ✅ Problem 7: Best Time to Buy and Sell Stock
+- **Platform:** LeetCode
+- **Problem Number:** #121
+- **Difficulty:** Easy
+- **Link:** https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+- **Category:** Arrays & Hashing
+
+**Problem:**
+You are given an array prices where prices[i] is the price of a given stock on the ith day. You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock. Return the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return 0.
+
+**Constraints:**
+- 1 <= prices.length <= 10^5
+- 0 <= prices[i] <= 10^4
+- You must buy before you can sell
+
+**Approach:**
+Single pass: maintain the minimum price seen so far (best buy candidate) and the maximum profit so far. At each day, compute profit if we sold today (current price − min so far), update max profit, then update the minimum. Updating profit before updating the minimum ensures we never use "buy today" when evaluating "sell today."
+
+**Complexity Analysis:**
+- **Time Complexity:** O(n) — one pass through the array
+- **Space Complexity:** O(1) — two integer variables only
+
+**Key Learnings:**
+- "Minimum so far" plus "max profit so far" yields the optimal single-buy single-sell in one pass.
+- Pattern generalizes to other "best ordered pair" problems.
+
+**Alternative Approaches:**
+- Brute force: all pairs (i, j) with i < j — O(n²) time, O(1) space.
+- Suffix max array — O(n) time, O(n) space (unnecessary).
+
+**AI Assistance:**
+- ❌ No - Solution implemented independently
+- ℹ️ Note: AI provided analysis and documentation updates after implementation
+
+**Status:** ✅ Completed  
+**Implementation File:** `arraysAndHashing/BestTimeToBuyAndSellStock.java`
+
+---
+
 ## 📈 Progress by Category
 
 ### Arrays & Hashing
@@ -272,6 +312,7 @@ Implemented Kadane's Algorithm - a greedy dynamic programming approach that find
 - [x] Group Anagrams (Medium) - #49
 - [ ] Top K Frequent Elements (Medium) - #347
 - [x] Maximum Subarray (Medium) - #53
+- [x] Best Time to Buy and Sell Stock (Easy) - #121
 
 ### Two Pointers
 - [ ] *No problems yet*
@@ -336,6 +377,7 @@ Implemented Kadane's Algorithm - a greedy dynamic programming approach that find
 - **Order of operations matters:** In Kadane's, add → update → reset sequence ensures correctness for all cases
 - **Initialization importance:** Use Integer.MIN_VALUE for max tracking to handle all-negative arrays
 - **Asymptotic optimality:** Some problems have provable lower bounds (e.g., must examine all elements)
+- **Minimum-so-far pattern:** For "best buy then sell" (ordered pair), track minimum seen so far and max profit in one pass — O(n) time, O(1) space
 
 ### Patterns Identified
 - **Duplicate Detection Pattern:** Use HashSet for O(n) time complexity vs O(n²) brute force
@@ -347,6 +389,7 @@ Implemented Kadane's Algorithm - a greedy dynamic programming approach that find
 - **Kadane's Algorithm Pattern:** For maximum/minimum subarray problems, track running sum and reset when it hurts future elements
 - **Greedy + DP Hybrid:** Make locally optimal choices (extend or start fresh) while maintaining global optimum
 - **Subarray Optimization Template:** currentValue = max(element, currentValue + element) - decide extend vs restart
+- **Single-pass min/max profit:** Track minimum price so far; at each step, profit = price − minSoFar, then update minSoFar — optimal for one buy, one sell
 
 ---
 
@@ -358,4 +401,4 @@ Implemented Kadane's Algorithm - a greedy dynamic programming approach that find
 
 ---
 
-*This tracker is automatically maintained. Last entry added: Friday, February 13, 2026*
+*This tracker is automatically maintained. Last entry added: Wednesday, February 18, 2026*
