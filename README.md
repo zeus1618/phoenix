@@ -42,6 +42,7 @@ phoenix/
 │   ├── ValidAnagram.java
 │   ├── TwoSum.java
 │   ├── GroupAnagrams.java
+│   ├── MaximumSubarray.java
 │   └── learnings/                     # Deep dive learnings for complex problems
 │       └── GroupAnagrams-Learning.md
 ├── twoPointers/                       # (Future problems)
@@ -65,7 +66,7 @@ phoenix/
 
 | Category | Problems Solved | Status |
 |----------|----------------|--------|
-| Arrays & Hashing | 4 | 🔄 In Progress |
+| Arrays & Hashing | 5 | 🔄 In Progress |
 | Two Pointers | 0 | ⏳ Not Started |
 | Sliding Window | 0 | ⏳ Not Started |
 | Stack | 0 | ⏳ Not Started |
@@ -210,13 +211,13 @@ Commits and pushes all changes:
 
 ## 📈 Statistics
 
-- **Total Problems Solved:** 4
-- **Current Streak:** 1 day
+- **Total Problems Solved:** 5
+- **Current Streak:** 3 days
 - **Categories Covered:** 1
 - **Difficulty Breakdown:**
   - Easy: 3 problems
-  - Medium: 1 problem
-- **Last Updated:** Friday, February 13, 2026
+  - Medium: 2 problems
+- **Last Updated:** Sunday, February 15, 2026
 
 ---
 

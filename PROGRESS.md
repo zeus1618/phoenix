@@ -1,6 +1,6 @@
 # DSA Learning Progress Tracker
 
-> **Last Updated:** Friday, February 13, 2026
+> **Last Updated:** Sunday, February 15, 2026
 
 ---
 
@@ -17,10 +17,10 @@
 
 ## 📊 Summary Statistics
 
-- **Total Problems Solved:** 4
-- **Problems In Progress:** 0
+- **Total Problems Solved:** 5
+- **Problems In Progress:** 1
 - **Categories Covered:** Arrays & Hashing
-- **Current Streak:** 1 day
+- **Current Streak:** 3 days
 
 ---
 
@@ -32,6 +32,8 @@
 | 2 | 2026-02-13 | [Valid Anagram (#242)](https://leetcode.com/problems/valid-anagram/) | Easy | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
 | 3 | 2026-02-13 | [Two Sum (#1)](https://leetcode.com/problems/two-sum/) | Easy | Arrays & Hashing | O(n) | O(n) | ❌ No | ✅ Done |
 | 4 | 2026-02-13 | [Group Anagrams (#49)](https://leetcode.com/problems/group-anagrams/) | Medium | Arrays & Hashing | O(nk log k) | O(nk) | ❌ No | ✅ Done |
+| 5 | 2026-02-15 | [Top K Frequent Elements (#347)](https://leetcode.com/problems/top-k-frequent-elements/) | Medium | Arrays & Hashing | TBD | TBD | TBD | 🔄 In Progress |
+| 6 | 2026-02-15 | [Maximum Subarray (#53)](https://leetcode.com/problems/maximum-subarray/) | Medium | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
 
 ---
 
@@ -151,7 +153,7 @@ Used HashMap to store complement pairs. For each element, calculated its complem
 
 ---
 
-#### 🔄 Problem 4: Group Anagrams (In Progress)
+#### 🔄 Problem 4: Group Anagrams (Completed on Friday, February 13, 2026)
 - **Platform:** LeetCode
 - **Problem Number:** #49
 - **Difficulty:** Medium
@@ -181,6 +183,86 @@ Given an array of strings, group the anagrams together. You can return the answe
 
 ---
 
+#### 🔄 Problem 5: Top K Frequent Elements (In Progress)
+- **Platform:** LeetCode
+- **Problem Number:** #347
+- **Difficulty:** Medium
+- **Link:** https://leetcode.com/problems/top-k-frequent-elements/
+- **Category:** Arrays & Hashing
+
+**Problem:**
+Given an integer array nums and an integer k, return the k most frequent elements. You may return the answer in any order.
+
+**Constraints:**
+- 1 <= nums.length <= 10^5
+- -10^4 <= nums[i] <= 10^4
+- k is in the range [1, the number of unique elements in the array]
+- It is guaranteed that the answer is unique
+
+**Follow-up:**
+Your algorithm's time complexity must be better than O(n log n), where n is the array's size.
+
+**Approach:**
+[To be documented after implementation]
+
+**Complexity Analysis:**
+- **Time Complexity:** [To be analyzed]
+- **Space Complexity:** [To be analyzed]
+
+**AI Assistance:**
+- TBD - Solution not yet implemented
+
+**Status:** 🔄 In Progress  
+**Implementation File:** `arraysAndHashing/TopKFrequentElements.java`
+
+---
+
+#### 🔄 Problem 6: Maximum Subarray (Completed)
+- **Platform:** LeetCode
+- **Problem Number:** #53
+- **Difficulty:** Medium
+- **Link:** https://leetcode.com/problems/maximum-subarray/
+- **Category:** Arrays & Hashing
+
+**Problem:**
+Given an integer array nums, find the contiguous subarray with the largest sum, and return its sum. A subarray is a contiguous non-empty sequence of elements within an array.
+
+**Constraints:**
+- 1 <= nums.length <= 10^5
+- -10^4 <= nums[i] <= 10^4
+
+**Follow-up:**
+If you have figured out the O(n) solution, try coding another solution using the divide and conquer approach, which is more subtle.
+
+**Approach:**
+Implemented Kadane's Algorithm - a greedy dynamic programming approach that finds the maximum subarray sum in linear time. The algorithm maintains a running sum and a global maximum. At each position, we add the current element to the running sum, update the global maximum, and reset the running sum to 0 if it becomes negative (start fresh). The key insight: a negative sum will only reduce future positive numbers, so it's better to abandon it and start a new subarray.
+
+**Complexity Analysis:**
+- **Time Complexity:** O(n) - Single pass through the array, each element visited exactly once
+- **Space Complexity:** O(1) - Only two integer variables regardless of input size
+
+**Key Learnings:**
+- Kadane's Algorithm is the optimal solution combining greedy choice with dynamic programming
+- The "reset when negative" strategy is the critical insight
+- Order of operations matters: add → update max → reset (ensures correctness for all-negative arrays)
+- This is a foundational pattern that appears in many subarray optimization problems
+- Initialize maxSum to Integer.MIN_VALUE to handle all-negative arrays correctly
+- The algorithm is asymptotically optimal - can't do better than O(n) since we must examine each element
+
+**Alternative Approaches Considered:**
+1. Dynamic Programming with explicit array - O(n) time, O(n) space (Kadane's is space-optimized version)
+2. Divide and Conquer - O(n log n) time, O(log n) space (slower but demonstrates technique)
+3. Brute Force - O(n²) time, O(1) space (correct but 100x slower)
+
+**AI Assistance:**
+- ❌ No - Solution implemented independently
+- ℹ️ Note: AI provided analysis and alternative approaches AFTER implementation
+
+**Status:** ✅ Completed  
+**Implementation File:** `arraysAndHashing/MaximumSubarray.java`
+
+---
+
 ## 📈 Progress by Category
 
 ### Arrays & Hashing
@@ -188,6 +270,8 @@ Given an array of strings, group the anagrams together. You can return the answe
 - [x] Valid Anagram (Easy) - #242
 - [x] Two Sum (Easy) - #1
 - [x] Group Anagrams (Medium) - #49
+- [ ] Top K Frequent Elements (Medium) - #347
+- [x] Maximum Subarray (Medium) - #53
 
 ### Two Pointers
 - [ ] *No problems yet*
@@ -248,6 +332,10 @@ Given an array of strings, group the anagrams together. You can return the answe
 - **LeetCode metrics mislead:** Small test cases and early answers bias toward O(n²) solutions
 - **Cache locality impact:** Sequential array access (~3 CPU units) vs HashMap lookup (~21 units)
 - **Production over benchmarks:** Always choose worst-case guarantees over best-case optimizations
+- **Kadane's Algorithm:** Greedy + DP hybrid for subarray optimization - reset when sum goes negative
+- **Order of operations matters:** In Kadane's, add → update → reset sequence ensures correctness for all cases
+- **Initialization importance:** Use Integer.MIN_VALUE for max tracking to handle all-negative arrays
+- **Asymptotic optimality:** Some problems have provable lower bounds (e.g., must examine all elements)
 
 ### Patterns Identified
 - **Duplicate Detection Pattern:** Use HashSet for O(n) time complexity vs O(n²) brute force
@@ -256,6 +344,9 @@ Given an array of strings, group the anagrams together. You can return the answe
 - **Complement/Pair Finding Pattern:** Use HashMap to store seen elements, check for complement in O(1) time
 - **Two-Pointer Pattern:** Only applicable on sorted data or when you can sort; requires monotonic property
 - **Early Termination Strategy:** Check likely candidates first (nearby pairs, common patterns) but ensure worst-case bounds
+- **Kadane's Algorithm Pattern:** For maximum/minimum subarray problems, track running sum and reset when it hurts future elements
+- **Greedy + DP Hybrid:** Make locally optimal choices (extend or start fresh) while maintaining global optimum
+- **Subarray Optimization Template:** currentValue = max(element, currentValue + element) - decide extend vs restart
 
 ---
 
