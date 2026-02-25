@@ -44,8 +44,10 @@ phoenix/
 │   ├── GroupAnagrams.java
 │   ├── MaximumSubarray.java
 │   ├── BestTimeToBuyAndSellStock.java
+│   ├── MaximumProductSubarray.java
 │   └── learnings/                     # Deep dive learnings for complex problems
-│       └── GroupAnagrams-Learning.md
+│       ├── GroupAnagrams-Learning.md
+│       └── MaximumProductSubarray-Learning.md
 ├── twoPointers/                       # (Future problems)
 ├── slidingWindow/                     # (Future problems)
 ├── stack/                             # (Future problems)
@@ -67,7 +69,7 @@ phoenix/
 
 | Category | Problems Solved | Status |
 |----------|----------------|--------|
-| Arrays & Hashing | 6 | 🔄 In Progress |
+| Arrays & Hashing | 7 | 🔄 In Progress |
 | Two Pointers | 0 | ⏳ Not Started |
 | Sliding Window | 0 | ⏳ Not Started |
 | Stack | 0 | ⏳ Not Started |
@@ -212,12 +214,12 @@ Commits and pushes all changes:
 
 ## 📈 Statistics
 
-- **Total Problems Solved:** 6
+- **Total Problems Solved:** 7
 - **Current Streak:** 3 days
 - **Categories Covered:** 1
 - **Difficulty Breakdown:**
   - Easy: 4 problems
-  - Medium: 2 problems
+  - Medium: 3 problems
 - **Last Updated:** Wednesday, February 18, 2026
 
 ---

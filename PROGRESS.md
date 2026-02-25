@@ -17,7 +17,7 @@
 
 ## 📊 Summary Statistics
 
-- **Total Problems Solved:** 6
+- **Total Problems Solved:** 7
 - **Problems In Progress:** 1
 - **Categories Covered:** Arrays & Hashing
 - **Current Streak:** 3 days
@@ -35,6 +35,7 @@
 | 5 | 2026-02-15 | [Top K Frequent Elements (#347)](https://leetcode.com/problems/top-k-frequent-elements/) | Medium | Arrays & Hashing | TBD | TBD | TBD | 🔄 In Progress |
 | 6 | 2026-02-15 | [Maximum Subarray (#53)](https://leetcode.com/problems/maximum-subarray/) | Medium | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
 | 7 | 2026-02-18 | [Best Time to Buy and Sell Stock (#121)](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/) | Easy | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
+| 8 | 2026-02-18 | [Maximum Product Subarray (#152)](https://leetcode.com/problems/maximum-product-subarray/) | Medium | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
 
 ---
 
@@ -303,6 +304,57 @@ Single pass: maintain the minimum price seen so far (best buy candidate) and the
 
 ---
 
+#### ✅ Problem 8: Maximum Product Subarray
+- **Platform:** LeetCode
+- **Problem Number:** #152
+- **Difficulty:** Medium
+- **Link:** https://leetcode.com/problems/maximum-product-subarray/
+- **Category:** Arrays & Hashing
+
+**Problem:**
+Given an integer array nums, find a subarray that has the largest product, and return the product. Unlike maximum sum, products can flip signs (negative × negative = positive), and zeros act as boundaries breaking continuity.
+
+**Constraints:**
+- 1 <= nums.length <= 2 * 10^4
+- -10 <= nums[i] <= 10
+- The product of any subarray is guaranteed to fit in a 32-bit integer
+
+**Approach:**
+Dynamic programming with max/min tracking. At each position, track both the maximum and minimum products ending there. At each element, three choices: start fresh (use element alone), extend max (multiply by currMax), or flip sign (multiply by currMin). Zeros reset both to 1 (neutral identity). Pre-scan initializes answer with max single element to handle all-negative arrays.
+
+**Evolution of Solution:**
+1. **First Attempt:** Split-by-zero + explicit segment logic (O(n) time, O(n) space) — clear but verbose
+2. **Second Attempt:** DP max/min tracking (O(n) time, O(1) space) — optimal standard solution
+3. **Third Attempt:** Two-pass Kadane variant (O(n) time, O(1) space) — most intuitive
+
+**Complexity Analysis:**
+- **Time Complexity:** O(n) — one pre-scan + one main pass (DP approach)
+- **Space Complexity:** O(1) — only a few integer variables
+
+**Key Learnings:**
+- **Products ≠ Sums:** Unlike Kadane's for sums, products require tracking BOTH max and min due to sign flips
+- **Why track min:** Large negative min × negative number = large positive (min can become max)
+- **Zeros are boundaries:** No optimal subarray spans zero; reset state when encountered
+- **Three approaches, all O(n):** DP max/min (standard), two-pass (intuitive), segment logic (educational)
+- **Even/odd negative parity:** Even negatives → full product; odd negatives → exclude first or last
+- **Direction symmetry:** Left-to-right finds product excluding last neg; right-to-left excludes first neg
+
+**Alternative Approaches Analyzed:**
+1. **DP Max/Min Tracking** — O(n) time, O(1) space, single pass (optimal standard solution)
+2. **Two-Pass Kadane Variant** — O(n) time, O(1) space, two passes (most intuitive)
+3. **Split-by-Zero + Segment Logic** — O(n) time, O(n) space (clear explicit logic)
+4. **Brute Force** — O(n²) time, O(1) space (try all subarrays)
+
+**AI Assistance:**
+- ❌ No - All three solutions implemented independently
+- ℹ️ Note: AI provided analysis, explained why split-by-zero was correct (after user correction), added Kadane variant, and created detailed learning guide documenting all approaches
+
+**Status:** ✅ Completed  
+**Implementation File:** `arraysAndHashing/MaximumProductSubarray.java`  
+**Detailed Learning Guide:** `arraysAndHashing/learnings/MaximumProductSubarray-Learning.md`
+
+---
+
 ## 📈 Progress by Category
 
 ### Arrays & Hashing
@@ -313,6 +365,7 @@ Single pass: maintain the minimum price seen so far (best buy candidate) and the
 - [ ] Top K Frequent Elements (Medium) - #347
 - [x] Maximum Subarray (Medium) - #53
 - [x] Best Time to Buy and Sell Stock (Easy) - #121
+- [x] Maximum Product Subarray (Medium) - #152
 
 ### Two Pointers
 - [ ] *No problems yet*
@@ -378,6 +431,10 @@ Single pass: maintain the minimum price seen so far (best buy candidate) and the
 - **Initialization importance:** Use Integer.MIN_VALUE for max tracking to handle all-negative arrays
 - **Asymptotic optimality:** Some problems have provable lower bounds (e.g., must examine all elements)
 - **Minimum-so-far pattern:** For "best buy then sell" (ordered pair), track minimum seen so far and max profit in one pass — O(n) time, O(1) space
+- **Products vs sums:** Unlike Kadane's for maximum sum, maximum product requires tracking BOTH max and min due to sign flips (negative × negative = positive)
+- **Track extremes for sign flips:** When operations flip signs, must track both max AND min; min can become max when multiplied by negative
+- **Zeros as boundaries:** In product problems, zeros break continuity; no optimal subarray spans zero
+- **Even/odd negative parity:** Even negatives → full product positive; odd negatives → must exclude first or last negative
 
 ### Patterns Identified
 - **Duplicate Detection Pattern:** Use HashSet for O(n) time complexity vs O(n²) brute force
@@ -390,6 +447,9 @@ Single pass: maintain the minimum price seen so far (best buy candidate) and the
 - **Greedy + DP Hybrid:** Make locally optimal choices (extend or start fresh) while maintaining global optimum
 - **Subarray Optimization Template:** currentValue = max(element, currentValue + element) - decide extend vs restart
 - **Single-pass min/max profit:** Track minimum price so far; at each step, profit = price − minSoFar, then update minSoFar — optimal for one buy, one sell
+- **DP max/min tracking:** For problems with sign flips (products, alternating), track both maximum and minimum ending at each position
+- **Bidirectional scanning:** When direction matters (first vs last), scan both left-to-right and right-to-left; answer found in one direction
+- **Boundary reset pattern:** Elements that break continuity (zeros, delimiters) split problem into independent segments
 
 ---
 
@@ -401,4 +461,4 @@ Single pass: maintain the minimum price seen so far (best buy candidate) and the
 
 ---
 
-*This tracker is automatically maintained. Last entry added: Wednesday, February 18, 2026*
+*This tracker is automatically maintained. Last entry added: Wednesday, February 18, 2026 (Maximum Product Subarray #152 completed)*
