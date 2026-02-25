@@ -17,7 +17,7 @@
 
 ## 📊 Summary Statistics
 
-- **Total Problems Solved:** 7
+- **Total Problems Solved:** 8
 - **Problems In Progress:** 1
 - **Categories Covered:** Arrays & Hashing
 - **Current Streak:** 3 days
@@ -36,6 +36,7 @@
 | 6 | 2026-02-15 | [Maximum Subarray (#53)](https://leetcode.com/problems/maximum-subarray/) | Medium | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
 | 7 | 2026-02-18 | [Best Time to Buy and Sell Stock (#121)](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/) | Easy | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
 | 8 | 2026-02-18 | [Maximum Product Subarray (#152)](https://leetcode.com/problems/maximum-product-subarray/) | Medium | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
+| 9 | 2026-02-18 | [Product of Array Except Self (#238)](https://leetcode.com/problems/product-of-array-except-self/) | Medium | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
 
 ---
 
@@ -355,6 +356,61 @@ Dynamic programming with max/min tracking. At each position, track both the maxi
 
 ---
 
+#### ✅ Problem 9: Product of Array Except Self
+- **Platform:** LeetCode
+- **Problem Number:** #238
+- **Difficulty:** Medium
+- **Link:** https://leetcode.com/problems/product-of-array-except-self/
+- **Category:** Arrays & Hashing
+
+**Problem:**
+Given an integer array nums, return an array answer such that answer[i] is equal to the product of all elements of nums except nums[i]. Must run in O(n) time **without using division**. The product of any prefix or suffix is guaranteed to fit in a 32-bit integer.
+
+**Constraints:**
+- 2 <= nums.length <= 10^5
+- -30 <= nums[i] <= 30
+- **Cannot use division operation**
+- Must be O(n) time complexity
+
+**Follow-up:**
+Can you solve it in O(1) extra space? (Output array doesn't count toward space complexity)
+
+**Approach:**
+Prefix and suffix products using output array as workspace. Pass 1 (left-to-right): Build prefix products in output array where answer[i] = product of nums[0..i-1]. Pass 2 (right-to-left): Multiply suffix products on-the-fly using a single variable, where suffix tracks product of nums[i+1..n-1]. Initialize answer[0]=1 (no elements to left) and suffix=1 (multiplicative identity). Key insight: decompose "product except self" into left product × right product, avoiding division entirely.
+
+**Evolution of Solution:**
+1. **First Attempt:** Total product ÷ element with special zero handling — O(n) time, O(1) space, but **violates "no division" constraint**
+2. **Final Solution:** Prefix/suffix with output array reuse — O(n) time, O(1) space, meets all constraints including follow-up
+
+**Complexity Analysis:**
+- **Time Complexity:** O(n) — two passes (prefix left-to-right, suffix right-to-left)
+- **Space Complexity:** O(1) — only output array (doesn't count) + one suffix variable
+
+**Key Learnings:**
+- **Prefix/suffix decomposition:** Split "all except me" into "before me" × "after me" to avoid division
+- **Division forbidden for a reason:** Constraint guides toward prefix/suffix pattern discovery
+- **Space optimization:** Reuse output array for prefix, compute suffix on-the-fly
+- **Identity initialization:** answer[0]=1 and suffix=1 (multiplicative identity for clean edge handling)
+- **Order matters:** In Pass 2, multiply suffix into answer before updating suffix
+- **Constraint-driven design:** Unusual constraints aren't arbitrary; they hint at intended approach
+- **Zeros handled naturally:** No special logic needed; zeros propagate through products correctly
+
+**Alternative Approaches Analyzed:**
+1. **Total Product ÷ Element** — O(n) time, O(1) space — Violates "no division" constraint
+2. **Prefix/Suffix with Two Arrays** — O(n) time, O(n) space — Correct but not space-optimal
+3. **Prefix/Suffix with Output Array Reuse** — O(n) time, O(1) space — **Optimal solution**
+4. **Brute Force** — O(n²) time, O(1) space — Too slow
+
+**AI Assistance:**
+- ❌ No - Solution implemented independently
+- ℹ️ Note: AI identified the division constraint violation in first attempt, explained prefix/suffix pattern, and created detailed learning guide covering the evolution from division approach to optimal prefix/suffix solution
+
+**Status:** ✅ Completed  
+**Implementation File:** `arraysAndHashing/ProductOfArrayExceptSelf.java`  
+**Detailed Learning Guide:** `arraysAndHashing/learnings/ProductOfArrayExceptSelf-Learning.md`
+
+---
+
 ## 📈 Progress by Category
 
 ### Arrays & Hashing
@@ -366,6 +422,7 @@ Dynamic programming with max/min tracking. At each position, track both the maxi
 - [x] Maximum Subarray (Medium) - #53
 - [x] Best Time to Buy and Sell Stock (Easy) - #121
 - [x] Maximum Product Subarray (Medium) - #152
+- [x] Product of Array Except Self (Medium) - #238
 
 ### Two Pointers
 - [ ] *No problems yet*
@@ -435,6 +492,9 @@ Dynamic programming with max/min tracking. At each position, track both the maxi
 - **Track extremes for sign flips:** When operations flip signs, must track both max AND min; min can become max when multiplied by negative
 - **Zeros as boundaries:** In product problems, zeros break continuity; no optimal subarray spans zero
 - **Even/odd negative parity:** Even negatives → full product positive; odd negatives → must exclude first or last negative
+- **Prefix/suffix decomposition:** Split "all except current" into "before current" × "after current" to avoid division
+- **Constraint-driven design:** Unusual constraints (like "no division") guide toward intended solution approach
+- **Identity element initialization:** Use 1 for multiplication, 0 for addition, MIN/MAX for comparisons
 
 ### Patterns Identified
 - **Duplicate Detection Pattern:** Use HashSet for O(n) time complexity vs O(n²) brute force
@@ -450,6 +510,9 @@ Dynamic programming with max/min tracking. At each position, track both the maxi
 - **DP max/min tracking:** For problems with sign flips (products, alternating), track both maximum and minimum ending at each position
 - **Bidirectional scanning:** When direction matters (first vs last), scan both left-to-right and right-to-left; answer found in one direction
 - **Boundary reset pattern:** Elements that break continuity (zeros, delimiters) split problem into independent segments
+- **Prefix/suffix product pattern:** For "all except current", build prefix (left products) and suffix (right products), then combine
+- **Output array as workspace:** Reuse output array for intermediate results to achieve O(1) extra space
+- **Two-pass accumulation:** Pass 1 builds one component, Pass 2 refines/combines with second component
 
 ---
 
@@ -461,4 +524,4 @@ Dynamic programming with max/min tracking. At each position, track both the maxi
 
 ---
 
-*This tracker is automatically maintained. Last entry added: Wednesday, February 18, 2026 (Maximum Product Subarray #152 completed)*
+*This tracker is automatically maintained. Last entry added: Wednesday, February 18, 2026 (Product of Array Except Self #238 completed)*
