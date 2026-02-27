@@ -1,6 +1,6 @@
 # DSA Learning Progress Tracker
 
-> **Last Updated:** Wednesday, February 18, 2026
+> **Last Updated:** Wednesday, February 26, 2026
 
 ---
 
@@ -17,10 +17,10 @@
 
 ## 📊 Summary Statistics
 
-- **Total Problems Solved:** 8
+- **Total Problems Solved:** 9
 - **Problems In Progress:** 1
 - **Categories Covered:** Arrays & Hashing
-- **Current Streak:** 3 days
+- **Current Streak:** 4 days
 
 ---
 
@@ -37,6 +37,7 @@
 | 7 | 2026-02-18 | [Best Time to Buy and Sell Stock (#121)](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/) | Easy | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
 | 8 | 2026-02-18 | [Maximum Product Subarray (#152)](https://leetcode.com/problems/maximum-product-subarray/) | Medium | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
 | 9 | 2026-02-18 | [Product of Array Except Self (#238)](https://leetcode.com/problems/product-of-array-except-self/) | Medium | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
+| 10 | 2026-02-26 | [Rotate Array (#189)](https://leetcode.com/problems/rotate-array/) | Medium | Arrays & Hashing | O(n) | O(n) | ❌ No | ✅ Done |
 
 ---
 
@@ -411,6 +412,59 @@ Prefix and suffix products using output array as workspace. Pass 1 (left-to-righ
 
 ---
 
+#### ✅ Problem 10: Rotate Array
+- **Platform:** LeetCode
+- **Problem Number:** #189
+- **Difficulty:** Medium
+- **Link:** https://leetcode.com/problems/rotate-array/
+- **Category:** Arrays & Hashing
+
+**Problem:**
+Given an integer array nums, rotate the array to the right by k steps, where k is non-negative.
+
+**Constraints:**
+- 1 <= nums.length <= 10^5
+- -2^31 <= nums[i] <= 2^31 - 1
+- 0 <= k <= 10^5
+- Must modify the array in-place
+
+**Follow-up:**
+- Try to come up with at least three different ways to solve this problem
+- Could you do it in-place with O(1) extra space?
+
+**Approach:**
+Extra array approach. Normalize k with modulo operation (k % n) to handle k > array length. Convert right rotation by k to left rotation by (n-k). Copy elements to temporary array starting from calculated position with manual wrap-around. Copy back to original array. Two-pass solution.
+
+**Complexity Analysis:**
+- **Time Complexity:** O(n) — Two passes through array (copy to temp, copy back)
+- **Space Complexity:** O(n) — Extra array of same size as input
+
+**Key Learnings:**
+- **Current solution works but doesn't meet O(1) space follow-up requirement**
+- **Reversal algorithm is optimal:** Three reversals achieve O(n) time, O(1) space:
+  1. Reverse entire array
+  2. Reverse first k elements
+  3. Reverse remaining n-k elements
+- **Array reversal pattern:** Powerful technique for in-place array transformations and rotations
+- **Modulo normalization:** Essential for rotation problems when k > array length
+- **Follow-up importance:** Space constraints often indicate the intended optimal approach
+- **Mathematical elegance:** Clever array manipulation can eliminate auxiliary space needs
+
+**Alternative Approaches Analyzed:**
+1. **Reversal Algorithm** — O(n) time, O(1) space — **OPTIMAL, meets follow-up**
+2. **Cyclic Replacements** — O(n) time, O(1) space — Complex but space-efficient
+3. **Extra Array (implemented)** — O(n) time, O(n) space — Correct but not space-optimal
+4. **Brute Force (rotate one by one)** — O(n×k) time, O(1) space — Too slow for large k
+
+**AI Assistance:**
+- ❌ No - Solution implemented independently
+- ℹ️ Note: AI analyzed solution after implementation, identified space constraint issue, explained optimal reversal algorithm approach
+
+**Status:** ✅ Completed  
+**Implementation File:** `arraysAndHashing/RotateArray.java`
+
+---
+
 ## 📈 Progress by Category
 
 ### Arrays & Hashing
@@ -423,6 +477,7 @@ Prefix and suffix products using output array as workspace. Pass 1 (left-to-righ
 - [x] Best Time to Buy and Sell Stock (Easy) - #121
 - [x] Maximum Product Subarray (Medium) - #152
 - [x] Product of Array Except Self (Medium) - #238
+- [x] Rotate Array (Medium) - #189
 
 ### Two Pointers
 - [ ] *No problems yet*
@@ -495,6 +550,8 @@ Prefix and suffix products using output array as workspace. Pass 1 (left-to-righ
 - **Prefix/suffix decomposition:** Split "all except current" into "before current" × "after current" to avoid division
 - **Constraint-driven design:** Unusual constraints (like "no division") guide toward intended solution approach
 - **Identity element initialization:** Use 1 for multiplication, 0 for addition, MIN/MAX for comparisons
+- **Array reversal for rotation:** Three reversals achieve in-place rotation: reverse all → reverse first k → reverse last n-k
+- **Space follow-ups matter:** O(1) space constraints indicate intended optimal approach; auxiliary space solution often insufficient
 
 ### Patterns Identified
 - **Duplicate Detection Pattern:** Use HashSet for O(n) time complexity vs O(n²) brute force
@@ -513,6 +570,8 @@ Prefix and suffix products using output array as workspace. Pass 1 (left-to-righ
 - **Prefix/suffix product pattern:** For "all except current", build prefix (left products) and suffix (right products), then combine
 - **Output array as workspace:** Reuse output array for intermediate results to achieve O(1) extra space
 - **Two-pass accumulation:** Pass 1 builds one component, Pass 2 refines/combines with second component
+- **Array reversal pattern:** For in-place array rotation/transformation, use reversal techniques to eliminate auxiliary space
+- **Modulo for circular operations:** Normalize rotation amounts with modulo to handle values exceeding array length
 
 ---
 
@@ -524,4 +583,4 @@ Prefix and suffix products using output array as workspace. Pass 1 (left-to-righ
 
 ---
 
-*This tracker is automatically maintained. Last entry added: Wednesday, February 18, 2026 (Product of Array Except Self #238 completed)*
+*This tracker is automatically maintained. Last entry added: Wednesday, February 26, 2026 (Rotate Array #189)*
