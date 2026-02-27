@@ -67,17 +67,31 @@ When a user shares a link to a DSA problem (LeetCode, HackerRank, etc.):
 
 When the user asks to analyse/evaluate their solution:
 
+**FOCUS ONLY ON:**
+- The user's solution method/algorithm implementation
+- The approach and logic used to solve the problem
+- Time and space complexity of the solution
+- Algorithmic improvements and optimizations
+
 **DO:**
-- Read the user's solution code carefully
-- List what was done RIGHT (correct patterns, good practices)
-- List what was done WRONG or could be improved
+- Read the user's solution method carefully (ignore AI-generated parts)
+- List what was done RIGHT in the algorithm (correct patterns, good practices)
+- List what was done WRONG or could be improved in the approach
 - Analyse time and space complexity
-- Suggest better approaches with code examples and complexity comparison
-- Include a comparison table of all approaches
+- Suggest better algorithmic approaches with code examples and complexity comparison
+- Include a comparison table of all solution approaches
+
+**EXPLICITLY IGNORE:**
+- Test cases and test infrastructure (AI-generated)
+- Documentation and JavaDoc comments (AI-generated)
+- Helper methods like `runTest`, `printSummary` (AI-generated)
+- Main function and test setup code (AI-generated)
+- Debug print statements in solution (mention to remove, but don't analyze deeply)
 
 **DO NOT:**
 - NEVER modify the user's solution code (Rule #0)
 - Do not create files or update documentation at this step
+- Do not spend time analyzing AI-generated test coverage or infrastructure
 
 ---
 
