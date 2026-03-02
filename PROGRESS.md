@@ -1,6 +1,6 @@
 # DSA Learning Progress Tracker
 
-> **Last Updated:** Thursday, February 27, 2026
+> **Last Updated:** Monday, March 2, 2026
 
 ---
 
@@ -17,7 +17,7 @@
 
 ## 📊 Summary Statistics
 
-- **Total Problems Solved:** 10
+- **Total Problems Solved:** 11
 - **Problems In Progress:** 1
 - **Categories Covered:** Arrays & Hashing
 - **Current Streak:** 5 days
@@ -39,6 +39,7 @@
 | 9 | 2026-02-18 | [Product of Array Except Self (#238)](https://leetcode.com/problems/product-of-array-except-self/) | Medium | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
 | 10 | 2026-02-26 | [Rotate Array (#189)](https://leetcode.com/problems/rotate-array/) | Medium | Arrays & Hashing | O(n) | O(n) | ❌ No | ✅ Done |
 | 11 | 2026-02-27 | [Valid Sudoku (#36)](https://leetcode.com/problems/valid-sudoku/) | Medium | Arrays & Hashing | O(1) | O(1) | ❌ No | ✅ Done |
+| 12 | 2026-03-02 | [Encode and Decode Strings (#271)](https://neetcode.io/problems/string-encode-and-decode) | Medium | Arrays & Hashing | O(m) | O(m) | ❌ No | ✅ Done |
 
 ---
 
@@ -466,7 +467,7 @@ Extra array approach. Normalize k with modulo operation (k % n) to handle k > ar
 
 ---
 
-#### 🔄 Problem 11: Valid Sudoku (Completed)
+#### ✅ Problem 11: Valid Sudoku (Completed)
 - **Platform:** LeetCode
 - **Problem Number:** #36
 - **Difficulty:** Medium
@@ -531,6 +532,70 @@ Single-pass validation using HashSet arrays. Created three arrays of HashSets (9
 
 ---
 
+#### 🔄 Problem 12: Encode and Decode Strings (Completed)
+- **Platform:** NeetCode
+- **Problem Number:** #271
+- **Difficulty:** Medium
+- **Link:** https://neetcode.io/problems/string-encode-and-decode
+- **Category:** Arrays & Hashing
+
+**Problem:**
+Design an algorithm to encode a list of strings to a single string, and decode it back to the original list. The encoded string is sent over the network. The algorithm must handle any possible ASCII characters (256 valid characters).
+
+**Constraints:**
+- 0 <= strs.length < 100
+- 0 <= strs[i].length < 200
+- strs[i] contains any possible characters out of 256 valid ASCII characters
+
+**Follow-up:**
+Could you write a generalized algorithm to work on any possible set of characters?
+
+**Approach:**
+Fixed-width length encoding. Format: `[listSize][len1][str1][len2][str2]...` where each length is a 3-digit zero-padded integer. Used `String.format("%03d")` for clean padding. Decode parses lengths at fixed positions (0, 3, len1+3, ...) and extracts strings of specified lengths. This eliminates delimiter conflicts since any ASCII character can appear in strings - the length prefix tells decoder exactly how many bytes to read.
+
+**Evolution of Solution:**
+1. **Fixed-Width Encoding (Primary):** 3-digit length prefix with predictable parsing - O(1) position calculation
+2. **Length + Delimiter (Alternative):** Variable-width length with '#' delimiter - more space-efficient but requires scanning
+
+**Complexity Analysis:**
+- **Time Complexity:** O(m) where m = sum of all string lengths - optimal since we must process every character
+- **Space Complexity:** O(m) for encoded string output - optimal for storing the data
+
+**Key Learnings:**
+- **Length-prefixed encoding is fundamental:** Used in HTTP (Content-Length), TCP, file formats (PNG, ZIP), serialization protocols
+- **Why delimiters fail:** Any delimiter could appear in input strings; escaping is complex and error-prone
+- **Fixed vs variable-width trade-off:**
+  - Fixed-Width: Faster parsing (O(1) positions), predictable, easier debugging, always 3 bytes overhead
+  - Length+Delim: More space-efficient (2-3 bytes), human-readable, requires delimiter scanning
+- **Space efficiency comparison:** Length+Delim saves 0-50% space for short strings, negligible for long strings
+- **Protocol design pattern:** Telling decoder exact byte count eliminates ambiguity without escaping
+- **StringBuilder efficiency:** O(n) amortized append vs O(n²) String concatenation
+- **String.format("%03d"):** Clean zero-padding vs manual if-else chains
+- **Input validation matters:** Check null/empty to prevent exceptions
+
+**Alternative Approaches Analyzed:**
+1. **Fixed-Width Length (implemented)** — O(m) time, O(m) space — Predictable parsing, slight space overhead
+2. **Length + Delimiter (implemented as V2)** — O(m) time, O(m) space — Space-efficient, requires scanning
+3. **Simple Delimiter** — Fails: delimiter could appear in data
+4. **Escape Sequences** — Complex: recursive escaping needed, error-prone
+
+**Real-World Applications:**
+- HTTP Content-Length header
+- TCP packet framing
+- Protocol Buffers (Protobuf)
+- Binary file formats (PNG, ZIP)
+- Database variable-length fields
+
+**AI Assistance:**
+- ❌ No - Both solutions (fixed-width and length+delimiter) implemented independently
+- ℹ️ Note: AI provided analysis after implementation, explained trade-offs, created comprehensive learning guide covering protocol design patterns and real-world applications
+
+**Status:** ✅ Completed  
+**Implementation File:** `arraysAndHashing/EncodeAndDecodeStrings.java`  
+**Detailed Learning Guide:** `arraysAndHashing/learnings/EncodeAndDecodeStrings-Learning.md`
+
+---
+
 ## 📈 Progress by Category
 
 ### Arrays & Hashing
@@ -545,6 +610,7 @@ Single-pass validation using HashSet arrays. Created three arrays of HashSets (9
 - [x] Product of Array Except Self (Medium) - #238
 - [x] Rotate Array (Medium) - #189
 - [x] Valid Sudoku (Medium) - #36
+- [x] Encode and Decode Strings (Medium) - #271
 
 ### Two Pointers
 - [ ] *No problems yet*
@@ -647,6 +713,9 @@ Single-pass validation using HashSet arrays. Created three arrays of HashSets (9
 - **Multi-dimensional validation pattern:** Use array of HashSets to track multiple dimensions (rows, columns, boxes) with O(1) lookup per dimension
 - **Box/Grid index mapping:** For 2D grids divided into sub-boxes, use formula `(row/boxSize)*numBoxesPerRow + (col/boxSize)` to map coordinates to box index
 - **Single-pass multi-check:** When validating multiple independent constraints, combine checks in one pass to reduce redundant iterations
+- **Length-prefixed encoding:** When no character can be reserved, store length before data to tell decoder exact byte count (fundamental protocol pattern)
+- **Fixed vs variable-width encoding:** Fixed = predictable parsing, variable = space efficient (choose based on requirements)
+- **Delimiter-free communication:** Length-prefix eliminates need for delimiters that could conflict with data content
 
 ---
 
@@ -658,4 +727,4 @@ Single-pass validation using HashSet arrays. Created three arrays of HashSets (9
 
 ---
 
-*This tracker is automatically maintained. Last entry added: Thursday, February 27, 2026 (Valid Sudoku #36)*
+*This tracker is automatically maintained. Last entry added: Monday, March 2, 2026 (Encode and Decode Strings #271)*
