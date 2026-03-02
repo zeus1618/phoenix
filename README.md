@@ -49,6 +49,7 @@ phoenix/
 │   ├── RotateArray.java
 │   ├── ValidSudoku.java
 │   ├── EncodeAndDecodeStrings.java
+│   ├── MaxConsecutiveOnes.java
 │   └── learnings/                     # Deep dive learnings for complex problems
 │       ├── GroupAnagrams-Learning.md
 │       ├── MaximumProductSubarray-Learning.md
@@ -76,7 +77,7 @@ phoenix/
 
 | Category | Problems Solved | Status |
 |----------|----------------|--------|
-| Arrays & Hashing | 11 | 🔄 In Progress |
+| Arrays & Hashing | 12 | 🔄 In Progress |
 | Two Pointers | 0 | ⏳ Not Started |
 | Sliding Window | 0 | ⏳ Not Started |
 | Stack | 0 | ⏳ Not Started |
@@ -221,11 +222,11 @@ Commits and pushes all changes:
 
 ## 📈 Statistics
 
-- **Total Problems Solved:** 11
+- **Total Problems Solved:** 12
 - **Current Streak:** 5 days
 - **Categories Covered:** 1
 - **Difficulty Breakdown:**
-  - Easy: 4 problems
+  - Easy: 5 problems
   - Medium: 7 problems
 - **Last Updated:** Monday, March 2, 2026
 

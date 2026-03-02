@@ -17,7 +17,7 @@
 
 ## 📊 Summary Statistics
 
-- **Total Problems Solved:** 11
+- **Total Problems Solved:** 12
 - **Problems In Progress:** 1
 - **Categories Covered:** Arrays & Hashing
 - **Current Streak:** 5 days
@@ -40,6 +40,7 @@
 | 10 | 2026-02-26 | [Rotate Array (#189)](https://leetcode.com/problems/rotate-array/) | Medium | Arrays & Hashing | O(n) | O(n) | ❌ No | ✅ Done |
 | 11 | 2026-02-27 | [Valid Sudoku (#36)](https://leetcode.com/problems/valid-sudoku/) | Medium | Arrays & Hashing | O(1) | O(1) | ❌ No | ✅ Done |
 | 12 | 2026-03-02 | [Encode and Decode Strings (#271)](https://neetcode.io/problems/string-encode-and-decode) | Medium | Arrays & Hashing | O(m) | O(m) | ❌ No | ✅ Done |
+| 13 | 2026-03-02 | [Max Consecutive Ones (#485)](https://leetcode.com/problems/max-consecutive-ones/) | Easy | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
 
 ---
 
@@ -532,7 +533,7 @@ Single-pass validation using HashSet arrays. Created three arrays of HashSets (9
 
 ---
 
-#### 🔄 Problem 12: Encode and Decode Strings (Completed)
+#### ✅ Problem 12: Encode and Decode Strings (Completed)
 - **Platform:** NeetCode
 - **Problem Number:** #271
 - **Difficulty:** Medium
@@ -596,6 +597,51 @@ Fixed-width length encoding. Format: `[listSize][len1][str1][len2][str2]...` whe
 
 ---
 
+#### ✅ Problem 13: Max Consecutive Ones (Completed)
+- **Platform:** LeetCode
+- **Problem Number:** #485
+- **Difficulty:** Easy
+- **Link:** https://leetcode.com/problems/max-consecutive-ones/description/
+- **Category:** Arrays & Hashing
+
+**Problem:**
+Given a binary array nums containing only 0s and 1s, find the maximum number of consecutive 1s in the array.
+
+**Constraints:**
+- 1 <= nums.length <= 10^5
+- nums[i] is either 0 or 1
+
+**Approach:**
+Single-pass streaming algorithm with two variables: max (global maximum) and currMax (current streak). Iterate through array: when encountering 0, reset currMax to 0 (zeros act as boundaries); when encountering 1, increment currMax and update max. This treats zeros as natural delimiters that break consecutive sequences.
+
+**Complexity Analysis:**
+- **Time Complexity:** O(n) — Single pass through array, each element visited exactly once
+- **Space Complexity:** O(1) — Only two integer variables (max, currMax)
+
+**Key Learnings:**
+- **Zeros as boundaries:** Similar to Maximum Product Subarray, zeros segment the problem into independent sections
+- **Single-pass sufficiency:** Unlike prefix/suffix problems, one forward pass captures all information needed
+- **Enhanced for-loop appropriateness:** When indices aren't needed, `for(element : array)` produces cleaner code
+- **Continuous max update:** Updating max after each increment ensures you capture maximum anywhere in array
+- **Asymptotic optimality:** O(n) is provably optimal since you must examine every element at least once
+- **"Count until boundary" pattern:** Track current streak counter, reset on boundary element, maintain global maximum
+- **Simplicity wins:** Not every problem needs complex data structures or multiple passes - simple solutions for simple problems
+
+**Alternative Approaches Analyzed:**
+1. **Reset on Zero (implemented)** — O(n) time, O(1) space — Uses `continue` statement to skip increment after reset
+2. **Conditional Increment** — O(n) time, O(1) space — Slightly cleaner, explicit `if (n == 1)` handling without `continue`
+3. **Ternary Operator** — O(n) time, O(1) space — Most concise with `currMax = (n == 1) ? currMax + 1 : 0`
+4. **Kadane's Pattern** — O(n) time, O(1) space — Demonstrates pattern generalization but overkill for this problem
+
+**AI Assistance:**
+- ❌ No - Solution implemented independently by user on first attempt
+- ℹ️ Note: AI provided analysis AFTER implementation, comparing alternative approaches and identifying the "count until boundary" pattern
+
+**Status:** ✅ Completed  
+**Implementation File:** `arraysAndHashing/MaxConsecutiveOnes.java`
+
+---
+
 ## 📈 Progress by Category
 
 ### Arrays & Hashing
@@ -611,6 +657,7 @@ Fixed-width length encoding. Format: `[listSize][len1][str1][len2][str2]...` whe
 - [x] Rotate Array (Medium) - #189
 - [x] Valid Sudoku (Medium) - #36
 - [x] Encode and Decode Strings (Medium) - #271
+- [x] Max Consecutive Ones (Easy) - #485
 
 ### Two Pointers
 - [ ] *No problems yet*
@@ -690,6 +737,11 @@ Fixed-width length encoding. Format: `[listSize][len1][str1][len2][str2]...` whe
 - **Box index formula:** `(row/3)*3 + (col/3)` elegantly maps 2D grid coordinates to linear box index without complex conditionals
 - **HashSet arrays pattern:** Array of HashSets provides O(1) lookups per category while keeping code clear and organized
 - **Fixed-size simplification:** Problems with fixed dimensions (9×9 board) have O(1) complexity but constant factors still matter
+- **Zeros as natural boundaries:** In consecutive element problems, zeros often segment the problem into independent sections
+- **Single-pass streaming:** For simple counting/tracking problems, one forward pass with state variables is often optimal
+- **Enhanced for-loop appropriateness:** Use `for(element : array)` when indices aren't needed for cleaner code
+- **Continuous max update:** In streaming algorithms, update global max after each local change to capture maximum anywhere
+- **Simplicity principle:** Simple problems deserve simple solutions - avoid over-engineering with complex data structures
 
 ### Patterns Identified
 - **Duplicate Detection Pattern:** Use HashSet for O(n) time complexity vs O(n²) brute force
@@ -716,6 +768,7 @@ Fixed-width length encoding. Format: `[listSize][len1][str1][len2][str2]...` whe
 - **Length-prefixed encoding:** When no character can be reserved, store length before data to tell decoder exact byte count (fundamental protocol pattern)
 - **Fixed vs variable-width encoding:** Fixed = predictable parsing, variable = space efficient (choose based on requirements)
 - **Delimiter-free communication:** Length-prefix eliminates need for delimiters that could conflict with data content
+- **Count until boundary pattern:** Track current streak counter, reset on boundary element (0, delimiter), maintain global maximum - applies to consecutive element counting problems
 
 ---
 
@@ -727,4 +780,4 @@ Fixed-width length encoding. Format: `[listSize][len1][str1][len2][str2]...` whe
 
 ---
 
-*This tracker is automatically maintained. Last entry added: Monday, March 2, 2026 (Encode and Decode Strings #271)*
+*This tracker is automatically maintained. Last entry added: Monday, March 2, 2026 (Max Consecutive Ones #485)*
