@@ -526,7 +526,8 @@ Single-pass validation using HashSet arrays. Created three arrays of HashSets (9
 - ℹ️ Note: AI analyzed solution after implementation, explained performance differences, and suggested optimization from ArrayList to HashSet arrays
 
 **Status:** ✅ Completed  
-**Implementation File:** `arraysAndHashing/ValidSudoku.java`
+**Implementation File:** `arraysAndHashing/ValidSudoku.java`  
+**Detailed Learning Guide:** `arraysAndHashing/learnings/ValidSudoku-Learning.md`
 
 ---
 

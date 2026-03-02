@@ -2,10 +2,8 @@ package arraysAndHashing;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Map;
 
 /**
  * LeetCode Problem #36: Valid Sudoku
@@ -52,6 +50,8 @@ import java.util.Map;
  * - Box index formula (i/3)*3 + (j/3) elegantly maps row/col to box number without complex logic
  * - HashSet arrays provide optimal balance: O(1) lookups, clear code, reasonable memory
  * - Fixed-size problems (9x9) simplify to O(1) complexity but constant factors still matter
+ * 
+ * Detailed Learning Guide: See arraysAndHashing/learnings/ValidSudoku-Learning.md
  * 
  * Alternative Approaches:
  * - Boolean arrays: Fastest (direct indexing) but fixed to 9 digits
