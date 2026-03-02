@@ -46,6 +46,8 @@ phoenix/
 │   ├── BestTimeToBuyAndSellStock.java
 │   ├── MaximumProductSubarray.java
 │   ├── ProductOfArrayExceptSelf.java
+│   ├── RotateArray.java
+│   ├── ValidSudoku.java
 │   └── learnings/                     # Deep dive learnings for complex problems
 │       ├── GroupAnagrams-Learning.md
 │       ├── MaximumProductSubarray-Learning.md
@@ -71,7 +73,7 @@ phoenix/
 
 | Category | Problems Solved | Status |
 |----------|----------------|--------|
-| Arrays & Hashing | 8 | 🔄 In Progress |
+| Arrays & Hashing | 10 | 🔄 In Progress |
 | Two Pointers | 0 | ⏳ Not Started |
 | Sliding Window | 0 | ⏳ Not Started |
 | Stack | 0 | ⏳ Not Started |
@@ -216,13 +218,13 @@ Commits and pushes all changes:
 
 ## 📈 Statistics
 
-- **Total Problems Solved:** 8
-- **Current Streak:** 3 days
+- **Total Problems Solved:** 10
+- **Current Streak:** 5 days
 - **Categories Covered:** 1
 - **Difficulty Breakdown:**
   - Easy: 4 problems
-  - Medium: 4 problems
-- **Last Updated:** Wednesday, February 18, 2026
+  - Medium: 6 problems
+- **Last Updated:** Thursday, February 27, 2026
 
 ---
 
@@ -263,7 +265,7 @@ This is a personal learning repository. The focus is on consistent practice and 
 
 ---
 
-**Last Updated:** February 18, 2026  
+**Last Updated:** February 27, 2026  
 **Status:** 🔥 Active - Daily Practice
 
 ---

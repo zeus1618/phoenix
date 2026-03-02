@@ -1,6 +1,6 @@
 # DSA Learning Progress Tracker
 
-> **Last Updated:** Wednesday, February 26, 2026
+> **Last Updated:** Thursday, February 27, 2026
 
 ---
 
@@ -17,10 +17,10 @@
 
 ## 📊 Summary Statistics
 
-- **Total Problems Solved:** 9
+- **Total Problems Solved:** 10
 - **Problems In Progress:** 1
 - **Categories Covered:** Arrays & Hashing
-- **Current Streak:** 4 days
+- **Current Streak:** 5 days
 
 ---
 
@@ -38,6 +38,7 @@
 | 8 | 2026-02-18 | [Maximum Product Subarray (#152)](https://leetcode.com/problems/maximum-product-subarray/) | Medium | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
 | 9 | 2026-02-18 | [Product of Array Except Self (#238)](https://leetcode.com/problems/product-of-array-except-self/) | Medium | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
 | 10 | 2026-02-26 | [Rotate Array (#189)](https://leetcode.com/problems/rotate-array/) | Medium | Arrays & Hashing | O(n) | O(n) | ❌ No | ✅ Done |
+| 11 | 2026-02-27 | [Valid Sudoku (#36)](https://leetcode.com/problems/valid-sudoku/) | Medium | Arrays & Hashing | O(1) | O(1) | ❌ No | ✅ Done |
 
 ---
 
@@ -465,6 +466,70 @@ Extra array approach. Normalize k with modulo operation (k % n) to handle k > ar
 
 ---
 
+#### 🔄 Problem 11: Valid Sudoku (Completed)
+- **Platform:** LeetCode
+- **Problem Number:** #36
+- **Difficulty:** Medium
+- **Link:** https://leetcode.com/problems/valid-sudoku/
+- **Category:** Arrays & Hashing
+
+**Problem:**
+Determine if a 9x9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
+1. Each row must contain the digits 1-9 without repetition.
+2. Each column must contain the digits 1-9 without repetition.
+3. Each of the nine 3x3 sub-boxes must contain the digits 1-9 without repetition.
+
+**Constraints:**
+- board.length == 9
+- board[i].length == 9
+- board[i][j] is a digit '1'-'9' or '.'
+- A Sudoku board could be valid but not necessarily solvable
+- Only filled cells need to be validated
+
+**Approach:**
+Single-pass validation using HashSet arrays. Created three arrays of HashSets (9 sets each) to track digits seen in each row, column, and 3x3 box. In one pass through the board, each non-empty cell is checked against all three corresponding sets simultaneously. Box index calculated with formula: `(row/3)*3 + (col/3)`. Early return on first duplicate found.
+
+**Evolution of Solution:**
+1. **First Attempt:** ArrayList with three separate passes (rows, columns, boxes) — correct logic but inefficient
+   - Used `ArrayList.contains()` for O(n) linear search
+   - Made 243 cell visits (81×3)
+   - Manual x/y tracking for box iteration
+2. **Final Solution:** HashSet arrays with single pass — optimal approach
+   - HashSet O(1) lookups
+   - Single pass through 81 cells
+   - Elegant box index formula
+
+**Complexity Analysis:**
+- **Time Complexity:** O(1) — Board is fixed 9×9 = 81 cells, each cell checked once with O(1) HashSet operations
+- **Space Complexity:** O(1) — 27 HashSets (9 rows + 9 cols + 9 boxes) with max 9 elements each = constant space
+
+**Key Learnings:**
+- **Data structure choice matters:** ArrayList.contains() O(n) vs HashSet.contains() O(1) — even for small n=9
+- **Single pass vs multiple passes:** One pass (81 cells) vs three passes (243 cells) reduces redundant work
+- **Box index formula magic:** `(i/3)*3 + (j/3)` elegantly maps 2D coordinates to box numbers 0-8
+  - Row 0-2, Col 0-2 → (0/3)*3 + (0/3) = 0 (top-left)
+  - Row 0-2, Col 3-5 → (0/3)*3 + (3/3) = 1 (top-middle)
+  - Row 3-5, Col 0-2 → (3/3)*3 + (0/3) = 3 (middle-left)
+- **HashSet arrays optimal:** Best balance of O(1) lookups, clear code, reasonable memory
+- **Fixed-size problems:** 9×9 board simplifies to O(1) complexity, but constant factors still impact performance
+- **Early termination:** Return false immediately on first duplicate found
+
+**Alternative Approaches Analyzed:**
+1. **HashSet Arrays (implemented)** — O(1) time, O(1) space, single pass — **Optimal for clarity and performance**
+2. **Boolean Arrays** — O(1) time, O(1) space, single pass — Fastest (no hashing) but fixed to 9 digits
+3. **String Encoding** — O(1) time, O(1) space, single pass — Elegant single HashSet but string overhead
+4. **Three-Pass HashSet** — O(1) time, O(1) space, three passes — Clear separation but redundant traversals
+5. **ArrayList Three-Pass** — O(1) time, O(1) space, three passes — Correct but slowest due to linear search
+
+**AI Assistance:**
+- ❌ No - Both solutions (first attempt and final) implemented independently
+- ℹ️ Note: AI analyzed solution after implementation, explained performance differences, and suggested optimization from ArrayList to HashSet arrays
+
+**Status:** ✅ Completed  
+**Implementation File:** `arraysAndHashing/ValidSudoku.java`
+
+---
+
 ## 📈 Progress by Category
 
 ### Arrays & Hashing
@@ -478,6 +543,7 @@ Extra array approach. Normalize k with modulo operation (k % n) to handle k > ar
 - [x] Maximum Product Subarray (Medium) - #152
 - [x] Product of Array Except Self (Medium) - #238
 - [x] Rotate Array (Medium) - #189
+- [x] Valid Sudoku (Medium) - #36
 
 ### Two Pointers
 - [ ] *No problems yet*
@@ -552,6 +618,11 @@ Extra array approach. Normalize k with modulo operation (k % n) to handle k > ar
 - **Identity element initialization:** Use 1 for multiplication, 0 for addition, MIN/MAX for comparisons
 - **Array reversal for rotation:** Three reversals achieve in-place rotation: reverse all → reverse first k → reverse last n-k
 - **Space follow-ups matter:** O(1) space constraints indicate intended optimal approach; auxiliary space solution often insufficient
+- **Data structure choice for lookups:** ArrayList.contains() is O(n) vs HashSet.contains() is O(1) — matters even for small datasets
+- **Single-pass optimization:** Combining multiple validation checks in one pass reduces redundant work (81 cells vs 243)
+- **Box index formula:** `(row/3)*3 + (col/3)` elegantly maps 2D grid coordinates to linear box index without complex conditionals
+- **HashSet arrays pattern:** Array of HashSets provides O(1) lookups per category while keeping code clear and organized
+- **Fixed-size simplification:** Problems with fixed dimensions (9×9 board) have O(1) complexity but constant factors still matter
 
 ### Patterns Identified
 - **Duplicate Detection Pattern:** Use HashSet for O(n) time complexity vs O(n²) brute force
@@ -572,6 +643,9 @@ Extra array approach. Normalize k with modulo operation (k % n) to handle k > ar
 - **Two-pass accumulation:** Pass 1 builds one component, Pass 2 refines/combines with second component
 - **Array reversal pattern:** For in-place array rotation/transformation, use reversal techniques to eliminate auxiliary space
 - **Modulo for circular operations:** Normalize rotation amounts with modulo to handle values exceeding array length
+- **Multi-dimensional validation pattern:** Use array of HashSets to track multiple dimensions (rows, columns, boxes) with O(1) lookup per dimension
+- **Box/Grid index mapping:** For 2D grids divided into sub-boxes, use formula `(row/boxSize)*numBoxesPerRow + (col/boxSize)` to map coordinates to box index
+- **Single-pass multi-check:** When validating multiple independent constraints, combine checks in one pass to reduce redundant iterations
 
 ---
 
@@ -583,4 +657,4 @@ Extra array approach. Normalize k with modulo operation (k % n) to handle k > ar
 
 ---
 
-*This tracker is automatically maintained. Last entry added: Wednesday, February 26, 2026 (Rotate Array #189)*
+*This tracker is automatically maintained. Last entry added: Thursday, February 27, 2026 (Valid Sudoku #36)*
