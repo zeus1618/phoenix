@@ -8,6 +8,7 @@ A comprehensive collection of sorting algorithm implementations with detailed do
 algorithms/sorting/
 ├── SortingTestSuite.java    # Common test infrastructure for all sorting algorithms
 ├── BubbleSort.java           # Bubble Sort implementation
+├── SelectionSort.java        # Selection Sort implementation
 └── README.md                 # This file
 ```
 
@@ -50,7 +51,7 @@ SortingTestSuite.testSingleCase("Custom Test", input, expected, YourClass::sortM
 
 ### 1. Bubble Sort (`BubbleSort.java`)
 
-**Status**: 🔄 Ready for implementation
+**Status**: ✅ Implemented
 
 **Variations**:
 - `sort()`: Basic implementation
@@ -65,6 +66,30 @@ SortingTestSuite.testSingleCase("Custom Test", input, expected, YourClass::sortM
 - Small datasets (< 20 elements)
 - Educational purposes
 - When stability and simplicity are priorities
+
+### 2. Selection Sort (`SelectionSort.java`)
+
+**Status**: 🔄 Ready for implementation
+
+**Variations**:
+- `sort()`: Basic implementation
+- `sortBidirectional()`: Finds both min/max in each pass
+- `sortWithVisualization()`: Step-by-step display with sorted region markers
+
+**Complexity**:
+- Time: O(n²) always (best/average/worst)
+- Space: O(1)
+- Swaps: O(n) - minimum number of swaps
+
+**Best For**:
+- Small datasets (< 20 elements)
+- When memory write operations are expensive
+- Systems with costly swaps (flash memory, EEPROM)
+
+**Comparison with Bubble Sort**:
+- Same O(n²) time but Selection Sort makes fewer swaps
+- Selection Sort is NOT stable, Bubble Sort is stable
+- Selection Sort always O(n²), Bubble Sort can be O(n) when optimized
 
 ## 🚀 Getting Started
 
@@ -103,7 +128,6 @@ Look for the test summary showing all green ✅ passes.
 ## 📋 Planned Algorithms
 
 Future implementations to add:
-- **Selection Sort**: O(n²) - finds minimum and places it
 - **Insertion Sort**: O(n²) - builds sorted array one element at a time
 - **Merge Sort**: O(n log n) - divide and conquer approach
 - **Quick Sort**: O(n log n) average - partition-based sorting
@@ -130,8 +154,9 @@ Recommended order to learn sorting algorithms:
 1. **Bubble Sort** ⭐ Start Here
    - Simplest algorithm, understand the basics of comparison and swapping
    
-2. **Selection Sort**
+2. **Selection Sort** ⭐ Next
    - Introduces the concept of finding minimum/maximum
+   - Learn about minimizing swap operations
    
 3. **Insertion Sort**
    - Learn about building sorted portions incrementally
@@ -165,8 +190,9 @@ Recommended order to learn sorting algorithms:
 ---
 
 **Next Steps**: 
-1. Implement `BubbleSort.sort()` method
-2. Run tests and ensure all pass
-3. Try the optimized version
-4. Compare performance on different input sizes
-5. Move on to the next sorting algorithm!
+1. ✅ Bubble Sort implemented - all tests passing
+2. 🔄 Implement `SelectionSort.sort()` method
+3. Run tests and ensure all pass
+4. Try the bidirectional version
+5. Compare with Bubble Sort performance
+6. Move on to Insertion Sort!
