@@ -55,33 +55,33 @@ public class TopKFrequentElements {
 
         return new int[]{};
     }
-    public int[] topKFrequentFromLeetCode(int[] nums, int k) {
-        Map<Integer, Integer> mp = new HashMap<>();
-        for(int num : nums) {
-            mp.put(num, mp.getOrDefault(num, 0)+1);
-        } 
+    // public int[] topKFrequentFromLeetCode(int[] nums, int k) {
+    //     Map<Integer, Integer> mp = new HashMap<>();
+    //     for(int num : nums) {
+    //         mp.put(num, mp.getOrDefault(num, 0)+1);
+    //     } 
 
-        PriorityQueue<Pair> pq = new PriorityQueue<>((x, y) -> y.v - x.v);
+    //     PriorityQueue<Pair> pq = new PriorityQueue<>((x, y) -> y.v - x.v);
 
-        for(Map.Entry<Integer, Integer> ent : mp.entrySet()) {
-            pq.add(new Pair(ent.getKey(), ent.getValue()));
-        }
+    //     for(Map.Entry<Integer, Integer> ent : mp.entrySet()) {
+    //         pq.add(new Pair(ent.getKey(), ent.getValue()));
+    //     }
 
-        int[] ans = new int[k];
-        for(int i = 0; i < k; i++) {
-            ans[i] = pq.poll().k;
-        }
-        return ans;
-    }
+    //     int[] ans = new int[k];
+    //     for(int i = 0; i < k; i++) {
+    //         ans[i] = pq.poll().k;
+    //     }
+    //     return ans;
+    // }
 
-    class Pair {
-        int k;
-        int v;
-        Pair(int k, int v) {
-            this.k = k;
-            this.v = v;
-        }
-    }
+    // class Pair {
+    //     int k;
+    //     int v;
+    //     Pair(int k, int v) {
+    //         this.k = k;
+    //         this.v = v;
+    //     }
+    // }
 
     // ======================== Test Helper Methods ========================
 
