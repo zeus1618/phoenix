@@ -17,7 +17,7 @@
 
 ## 📊 Summary Statistics
 
-- **Total Problems Solved:** 12
+- **Total Problems Solved:** 13
 - **Problems In Progress:** 1
 - **Categories Covered:** Arrays & Hashing
 - **Current Streak:** 5 days
@@ -41,6 +41,7 @@
 | 11 | 2026-02-27 | [Valid Sudoku (#36)](https://leetcode.com/problems/valid-sudoku/) | Medium | Arrays & Hashing | O(1) | O(1) | ❌ No | ✅ Done |
 | 12 | 2026-03-02 | [Encode and Decode Strings (#271)](https://neetcode.io/problems/string-encode-and-decode) | Medium | Arrays & Hashing | O(m) | O(m) | ❌ No | ✅ Done |
 | 13 | 2026-03-02 | [Max Consecutive Ones (#485)](https://leetcode.com/problems/max-consecutive-ones/) | Easy | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
+| 14 | 2026-03-02 | [K Closest Points to Origin (#973)](https://leetcode.com/problems/k-closest-points-to-origin/) | Medium | Arrays & Hashing | O(n log n) | O(n) | ❌ No | ✅ Done |
 
 ---
 
@@ -642,6 +643,57 @@ Single-pass streaming algorithm with two variables: max (global maximum) and cur
 
 ---
 
+#### ✅ Problem 14: K Closest Points to Origin (Completed)
+- **Platform:** LeetCode
+- **Problem Number:** #973
+- **Difficulty:** Medium
+- **Link:** https://leetcode.com/problems/k-closest-points-to-origin/
+- **Category:** Arrays & Hashing
+
+**Problem:**
+Given an array of points where points[i] = [xi, yi] represents a point on the X-Y plane and an integer k, return the k closest points to the origin (0, 0). The distance between two points is the Euclidean distance (√(x² + y²)). You may return the answer in any order.
+
+**Constraints:**
+- -10^4 <= xi, yi <= 10^4
+- 1 <= k <= points.length <= 10^4
+- Answer is guaranteed to be unique (except for order)
+
+**Approach:**
+Full sort with custom comparator. Created Pair class to encapsulate each point with its squared distance (x² + y²). Sorted all n points by distance using `Integer.compare()` to prevent overflow. Extracted first k points from sorted list. Traded extra O(n) memory for code clarity and OOP design.
+
+**Complexity Analysis:**
+- **Time Complexity:** O(n log n) — Creating Pair objects O(n) + sorting n points O(n log n) + extracting k points O(k) = O(n log n) dominates
+- **Space Complexity:** O(n) — ArrayList and n Pair objects
+
+**Key Learnings:**
+- **Sqrt optimization is critical:** Used x² + y² instead of √(x² + y²) for distance comparisons. Since √a < √b ⟺ a < b for non-negative numbers, this saves ~30-50 CPU cycles per comparison (~300,000 cycles total for 10,000 comparisons during sort)
+- **Integer.compare() prevents overflow:** Subtraction-based comparators (a-b) can overflow when values differ by > 2³¹. Always use `Integer.compare(a, b)` for safe comparisons. With max distance² = 2×10⁸, subtraction could overflow
+- **Full sort is acceptable:** O(n log n) is perfectly fine when k ≈ n or simplicity is priority. Modern sorting (TimSort) is highly optimized
+- **Theory vs Practice:** Don't over-optimize prematurely. Simple code often runs faster due to better compiler optimization and cache friendliness
+- **OOP tradeoff:** Pair class makes code readable at cost of extra memory. Could sort points array directly for O(1) space but less clear
+- **Alternative exists for small k:** When k << n (e.g., k=10, n=10,000), Max Heap approach is O(n log k) which is 4x faster than O(n log n). But for k ≈ n, full sort is optimal
+
+**Alternative Approaches Analyzed:**
+1. **Full Sort (implemented)** — O(n log n) time, O(n) space — Simple, clean, optimal when k ≈ n
+2. **Max Heap (Priority Queue)** — O(n log k) time, O(k) space — Better when k << n (e.g., k=10, n=10,000)
+3. **Quickselect** — O(n) average time, O(1) space — Optimal average but O(n²) worst case, complex
+4. **In-place Sort** — O(n log n) time, O(1) space — Sort points array directly with lambda
+
+**TODOs Created:**
+Added 3 TODOs to revisit this problem with alternative approaches once patterns are learned:
+- TODO #1: Implement with Max Heap (needs: Heap/Priority Queue pattern)
+- TODO #2: Implement with Quickselect (needs: Quickselect algorithm)
+- TODO #3: Implement with Min Heap Extract (needs: Heap/Priority Queue pattern)
+
+**AI Assistance:**
+- ❌ No - Solution implemented independently by user
+- ℹ️ Note: AI provided analysis AFTER implementation, identified sqrt optimization insight, warned about overflow risk in comparator, suggested Integer.compare() fix, explained alternative approaches with complexity tradeoffs
+
+**Status:** ✅ Completed  
+**Implementation File:** `arraysAndHashing/KClosestPointsToOrigin.java`
+
+---
+
 ## 📈 Progress by Category
 
 ### Arrays & Hashing
@@ -658,6 +710,7 @@ Single-pass streaming algorithm with two variables: max (global maximum) and cur
 - [x] Valid Sudoku (Medium) - #36
 - [x] Encode and Decode Strings (Medium) - #271
 - [x] Max Consecutive Ones (Easy) - #485
+- [x] K Closest Points to Origin (Medium) - #973
 
 ### Two Pointers
 - [ ] *No problems yet*
@@ -742,6 +795,10 @@ Single-pass streaming algorithm with two variables: max (global maximum) and cur
 - **Enhanced for-loop appropriateness:** Use `for(element : array)` when indices aren't needed for cleaner code
 - **Continuous max update:** In streaming algorithms, update global max after each local change to capture maximum anywhere
 - **Simplicity principle:** Simple problems deserve simple solutions - avoid over-engineering with complex data structures
+- **Sqrt optimization for distance:** Use x² + y² instead of √(x² + y²) for distance comparisons (saves ~30-50 CPU cycles per comparison)
+- **Integer.compare() for safety:** Never use subtraction (a-b) in comparators - can overflow. Always use Integer.compare(a, b)
+- **Full sort is acceptable:** O(n log n) sorting is perfectly fine when k ≈ n or simplicity is priority - don't over-optimize prematurely
+- **Know when heap beats sort:** When k << n (e.g., k=10, n=10,000), Max Heap O(n log k) is 4x faster than full sort O(n log n)
 
 ### Patterns Identified
 - **Duplicate Detection Pattern:** Use HashSet for O(n) time complexity vs O(n²) brute force
@@ -769,6 +826,8 @@ Single-pass streaming algorithm with two variables: max (global maximum) and cur
 - **Fixed vs variable-width encoding:** Fixed = predictable parsing, variable = space efficient (choose based on requirements)
 - **Delimiter-free communication:** Length-prefix eliminates need for delimiters that could conflict with data content
 - **Count until boundary pattern:** Track current streak counter, reset on boundary element (0, delimiter), maintain global maximum - applies to consecutive element counting problems
+- **Distance comparison pattern:** For problems involving Euclidean distance, avoid sqrt by comparing squared distances (√a < √b ⟺ a < b for non-negative)
+- **K-selection pattern:** Three approaches based on requirements: Full sort O(n log n) for simplicity, Max Heap O(n log k) when k << n, Quickselect O(n) for optimal average
 
 ---
 
@@ -780,4 +839,4 @@ Single-pass streaming algorithm with two variables: max (global maximum) and cur
 
 ---
 
-*This tracker is automatically maintained. Last entry added: Monday, March 2, 2026 (Max Consecutive Ones #485)*
+*This tracker is automatically maintained. Last entry added: Monday, March 2, 2026 (K Closest Points to Origin #973)*

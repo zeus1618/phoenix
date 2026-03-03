@@ -26,6 +26,8 @@ This repository tracks my journey learning Data Structures and Algorithms (DSA).
 phoenix/
 ├── README.md                          # Project overview (this file)
 ├── PROGRESS.md                        # Detailed progress tracker
+├── SKILLS.md                          # Skills & concepts mastery tracker
+├── TODOS.md                           # Alternative approaches to learn
 ├── .cursor/
 │   ├── rules/
 │   │   └── dsa-workflow.mdc          # Automated workflow rules
@@ -36,6 +38,7 @@ phoenix/
 │       ├── summarise.md               # Summarize learnings
 │       ├── current.md                 # View current status
 │       ├── update.md                  # Update documentation
+│       ├── todos.md                   # Manage learning TODOs
 │       └── gitpush.md                 # Commit and push
 ├── arraysAndHashing/
 │   ├── ContainsDuplicate.java        # Problem solutions
@@ -50,6 +53,7 @@ phoenix/
 │   ├── ValidSudoku.java
 │   ├── EncodeAndDecodeStrings.java
 │   ├── MaxConsecutiveOnes.java
+│   ├── KClosestPointsToOrigin.java
 │   └── learnings/                     # Deep dive learnings for complex problems
 │       ├── GroupAnagrams-Learning.md
 │       ├── MaximumProductSubarray-Learning.md
@@ -77,7 +81,7 @@ phoenix/
 
 | Category | Problems Solved | Status |
 |----------|----------------|--------|
-| Arrays & Hashing | 12 | 🔄 In Progress |
+| Arrays & Hashing | 13 | 🔄 In Progress |
 | Two Pointers | 0 | ⏳ Not Started |
 | Sliding Window | 0 | ⏳ Not Started |
 | Stack | 0 | ⏳ Not Started |
@@ -154,13 +158,26 @@ Status: PASS ✓
 
 ## 📊 Progress Tracking
 
-Progress is tracked in [PROGRESS.md](PROGRESS.md) with:
+Progress is tracked across multiple files:
 
+### [PROGRESS.md](PROGRESS.md)
 - **📋 Problems Overview Table** - Quick high-level view
 - **📅 Daily Progress Log** - Detailed entries with approaches
 - **📈 Category Breakdown** - Progress organized by DSA topics
 - **📝 Notes & Insights** - Key learnings and patterns
 - **🎯 Goals & Milestones** - Track learning objectives
+
+### [SKILLS.md](SKILLS.md) - **NEW!**
+- **🎯 Concepts Mastered** - Track all skills you've learned
+- **📊 Usage Patterns** - See which concepts you use most
+- **🔥 Mastery Levels** - Track progress from Beginner → Master
+- **📈 Reuse Tracking** - Every problem you apply each concept to
+- **Automatic Updates** - Skills tracked during `/analyse` and `/update`
+
+### [TODOS.md](TODOS.md)
+- **Alternative Approaches** - Track solutions you want to revisit
+- **Pattern Prerequisites** - Learn patterns before attempting approaches
+- **Auto-Unlock System** - TODOs become ready when you learn required patterns
 
 ---
 
@@ -183,6 +200,7 @@ Analyzes your implemented solution:
 - Identifies strengths and weaknesses
 - Suggests alternative approaches
 - Compares with optimal solutions
+- **Detects and tracks concepts/skills used**
 
 #### `/compare <alternative_solution>`
 Compares two solutions in detail:
@@ -197,12 +215,14 @@ Consolidates all learnings from current problem:
 - Key insights and takeaways
 - Pattern recognition
 - Performance lessons
+- **Skills recap from problem**
 
 #### `/current`
 Shows detailed status overview:
 - Current problem progress
 - Overall statistics
 - Session summary
+- **Skills tracker summary (top concepts, mastery levels)**
 - Suggested next steps
 
 #### `/update [--detailed-learning]`
@@ -210,7 +230,15 @@ Updates all documentation:
 - Syncs problem file JavaDoc
 - Updates PROGRESS.md
 - Updates README.md statistics
+- **Updates SKILLS.md with concepts used**
 - Optional: Creates detailed learning guide for complex problems
+
+#### `/todos`
+Manages learning TODOs for alternative approaches:
+- View pending and ready TODOs
+- Add new TODOs for approaches to learn later
+- Mark TODOs as completed
+- Automatically unlocks TODOs when prerequisites learned
 
 #### `/gitpush`
 Commits and pushes all changes:
@@ -220,14 +248,80 @@ Commits and pushes all changes:
 
 ---
 
+## 🎯 Skills Tracking System
+
+### What Gets Tracked
+
+The Skills Tracker automatically identifies and logs concepts you use in your solutions:
+
+**Data Structures:**
+- HashMap, HashSet, ArrayList, LinkedList, Stack, Queue, PriorityQueue, TreeMap, TreeSet, etc.
+
+**Algorithms:**
+- Sorting (Arrays.sort, Collections.sort), Binary Search, DFS, BFS, Recursion, etc.
+
+**Patterns & Techniques:**
+- Two Pointers, Sliding Window, Kadane's Algorithm, Prefix Sum, Fast-Slow Pointers, Monotonic Stack, etc.
+
+**Optimizations:**
+- In-place operations, Constant space, Memoization, Tabulation, etc.
+
+### How It Works
+
+1. **During `/analyse`:** AI scans your solution code and detects concepts used
+2. **During `/update`:** Concepts are recorded in SKILLS.md:
+   - **First time:** Creates new entry with first-use date and problem
+   - **Reuse:** Appends problem to usage history, updates count and mastery level
+
+### Mastery Progression
+
+As you reuse concepts across problems, you progress through mastery levels:
+- 🌱 **Beginner** (1-2 uses) → Just learned
+- 🌿 **Intermediate** (3-5 uses) → Getting comfortable
+- 🌳 **Proficient** (6-10 uses) → Solid understanding
+- 🏆 **Master** (11+ uses) → Expert level
+
+### Example: HashMap Journey
+
+```
+First Use: Two Sum (#1) - 2026-02-13
+Status: 🌱 Beginner (1 use)
+
+After Group Anagrams (#49):
+Status: 🌱 Beginner (2 uses)
+
+After Top K Frequent (#347):
+Status: 🌿 Intermediate (3 uses) ← Level up!
+
+Usage History:
+Two Sum (#1) (2026-02-13), Group Anagrams (#49) (2026-02-13),
+Top K Frequent Elements (#347) (2026-02-15), Valid Sudoku (#36) (2026-02-27),
+Encode and Decode Strings (#271) (2026-03-02)
+
+Current: 🌿 Intermediate (5 uses)
+```
+
+### View Your Skills
+
+Run `/current` to see:
+- Top 5 most used concepts
+- Recent concepts learned
+- Mastery distribution (how many at each level)
+
+Or open [SKILLS.md](SKILLS.md) for full details with complete usage history.
+
+---
+
 ## 📈 Statistics
 
-- **Total Problems Solved:** 12
+- **Total Problems Solved:** 13
+- **Concepts Mastered:** 9
+- **Most Used Skill:** HashMap (5 times)
 - **Current Streak:** 5 days
 - **Categories Covered:** 1
 - **Difficulty Breakdown:**
   - Easy: 5 problems
-  - Medium: 7 problems
+  - Medium: 8 problems
 - **Last Updated:** Monday, March 2, 2026
 
 ---
