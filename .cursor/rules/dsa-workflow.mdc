@@ -81,6 +81,92 @@ When the user asks to analyse/evaluate their solution:
 - Suggest better algorithmic approaches with code examples and complexity comparison
 - Include a comparison table of all solution approaches
 
+**TODO MANAGEMENT (Automatic Pattern Detection):**
+
+After completing the analysis, perform automatic TODO management:
+
+1. **Detect Pattern Used in Current Solution:**
+   - Analyze which approach/pattern the user implemented
+   - Map to standard patterns (see Pattern Detection Table below)
+   - Example: User used `PriorityQueue` → Pattern is "Heap/Priority Queue"
+
+2. **Check for Matching Pending TODOs:**
+   - Read TODOS.md
+   - Find all TODOs in "Pending" section
+   - Check if any TODO's "Prerequisites" field matches the detected pattern
+   - Example: TODO says "Need to learn: Heap/Priority Queue" and user just used Heap
+
+3. **Offer to Mark TODOs as Ready:**
+   - If matches found, use AskQuestion tool with format:
+   ```
+   "🎉 Pattern Unlocked: [Pattern Name]
+   
+   You've learned [pattern] in this problem! The following TODOs are now ready:
+   
+   - TODO #X: [Problem Name] - [Approach]
+   - TODO #Y: [Problem Name] - [Approach]
+   
+   Would you like to mark these TODOs as ready to approach?"
+   
+   Options: [Yes, mark as ready] [No, keep pending]
+   ```
+
+4. **Update TODOS.md if User Confirms:**
+   - Move matching TODOs from "Pending" section to "Ready to Approach" section
+   - For each moved TODO, add:
+     - "Learned From": Current problem name and number
+     - "Date Ready": Current date
+     - Status: Change from 🔄 Pending to ✅ Ready
+   - Update "Pattern → Problems Mapping" section:
+     - Change pattern status from ❌ Not learned to ✅ Learned
+     - Add current problem to "Learned from" list
+   - Update Quick Stats at top (decrement Pending, increment Ready)
+
+**Pattern Detection Table:**
+
+Map user's code to patterns:
+
+| Code Indicators | Pattern Name | Matches TODO Prerequisites |
+|-----------------|--------------|---------------------------|
+| `PriorityQueue`, `new PriorityQueue<>()`, heap operations | Heap/Priority Queue | "Heap", "Priority Queue", "Max Heap", "Min Heap" |
+| Partition logic, kth smallest/largest with recursion | Quickselect | "Quickselect", "Selection Algorithm" |
+| Two variables scanning from both ends, `left`/`right` pointers | Two Pointers | "Two Pointers" |
+| `while (left <= right)`, binary search pattern | Binary Search | "Binary Search" |
+| `dp[]` array, memoization, recursive + cache | Dynamic Programming | "DP", "Dynamic Programming", "Memoization" |
+| DFS recursive, `visited` set, graph traversal | DFS | "DFS", "Depth First Search" |
+| Queue for level-order, `queue.offer()` pattern | BFS | "BFS", "Breadth First Search" |
+| Window start/end pointers, sliding range | Sliding Window | "Sliding Window" |
+| Backtracking with choose/explore/unchoose | Backtracking | "Backtracking" |
+| Trie node structure, prefix tree | Trie | "Trie", "Prefix Tree" |
+| `Arrays.sort()`, `Collections.sort()`, custom comparator | Sorting | "Sorting", "Sort" |
+
+**Example Flow:**
+
+```
+User solves "Top K Frequent Elements" using PriorityQueue
+
+1. Analysis completes (what's right, wrong, complexity, alternatives)
+
+2. Pattern Detection:
+   - Code contains: PriorityQueue<int[]> maxHeap = new PriorityQueue<>()
+   - Detected pattern: "Heap/Priority Queue"
+
+3. Check TODOS.md:
+   - TODO #1: K Closest Points - Max Heap (Prerequisites: "Heap/Priority Queue")
+   - TODO #3: K Closest Points - Min Heap (Prerequisites: "Heap/Priority Queue")
+   - Both match!
+
+4. Ask user:
+   "🎉 You've learned Heap/Priority Queue! TODOs #1, #3 are now ready.
+   Mark them as ready?"
+
+5. If Yes:
+   - Move TODOs to Ready section
+   - Add "Learned From: Top K Frequent Elements (#347)"
+   - Add "Date Ready: 2026-03-02"
+   - Update stats: Pending: 3→1, Ready: 0→2
+```
+
 **EXPLICITLY IGNORE:**
 - Test cases and test infrastructure (AI-generated)
 - Documentation and JavaDoc comments (AI-generated)
@@ -88,9 +174,47 @@ When the user asks to analyse/evaluate their solution:
 - Main function and test setup code (AI-generated)
 - Debug print statements in solution (mention to remove, but don't analyze deeply)
 
+**SKILLS TRACKER UPDATE:**
+
+After completing the analysis, detect and track concepts/skills used in the solution:
+
+1. **Concept Detection:** Analyze the user's solution code and identify:
+   - **Data Structures:** Arrays, HashMap, HashSet, Stack, Queue, PriorityQueue, LinkedList, TreeMap, TreeSet, Deque, etc.
+   - **Algorithms:** Sorting (Arrays.sort, Collections.sort), Binary Search, Recursion, DFS, BFS, Dijkstra, Union-Find, etc.
+   - **Patterns/Techniques:** Two Pointers, Sliding Window, Prefix Sum, Kadane's Algorithm, Fast-Slow Pointers, Monotonic Stack/Queue, Divide & Conquer, Greedy, Dynamic Programming, Backtracking, etc.
+   - **Optimizations:** In-place operations, Constant space optimization, Memoization, Tabulation, etc.
+
+2. **Store Detected Concepts:** Keep a list of detected concepts for later use in `/update` command. Format:
+   ```
+   Detected Concepts:
+   - [Concept Name] (Category: Data Structure/Algorithm/Pattern/Optimization)
+   - [Concept Name] (Category: ...)
+   ```
+
+3. **Mention Skills in Analysis:** At the end of analysis, briefly mention:
+   - "🎯 Skills Applied: [list detected concepts]"
+   - "These will be tracked in your Skills Tracker when you run `/update`"
+
+**Concept Detection Examples:**
+
+| Code Pattern | Detected Concept | Category |
+|--------------|------------------|----------|
+| `new HashMap<>()`, `map.put()`, `map.get()` | HashMap | Data Structure |
+| `new HashSet<>()`, `set.add()`, `set.contains()` | HashSet | Data Structure |
+| `new PriorityQueue<>()`, heap operations | Priority Queue (Heap) | Data Structure |
+| `Arrays.sort()`, `Collections.sort()` | Sorting | Algorithm |
+| Two pointers scanning from ends (`left`, `right`) | Two Pointers | Pattern |
+| Window start/end with expanding/shrinking | Sliding Window | Pattern |
+| Running sum/product tracking | Prefix Sum/Product | Pattern |
+| Track min/max while iterating | Kadane's Algorithm | Pattern |
+| Operations modify input array directly | In-place Operation | Optimization |
+| No extra data structures (O(1) space) | Constant Space | Optimization |
+| Recursive with memoization cache | Memoization | Optimization |
+
 **DO NOT:**
 - NEVER modify the user's solution code (Rule #0)
-- Do not create files or update documentation at this step
+- Do not update PROGRESS.md or SKILLS.md at this step (that's Rule 6)
+- Only update TODOS.md if user confirms via AskQuestion
 - Do not spend time analyzing AI-generated test coverage or infrastructure
 
 ---
@@ -121,6 +245,8 @@ When the user asks for a summary of the current problem:
 - Cover: problem understanding, approaches explored, evolution of solution, key insights
 - Include performance analysis, pattern recognition, and best practices learned
 - Highlight what to remember for future problems
+- **TODO Management:** Mention any pending TODOs that can now be approached based on patterns learned in current problem
+- **SKILLS RECAP:** List all concepts/skills used in this problem (detected during `/analyse`)
 
 **DO NOT:**
 - NEVER modify the user's solution code (Rule #0)
@@ -145,12 +271,39 @@ When the user wants a status check or is resuming after a break:
      - **Analyse/Compare**: Solution works, user was exploring alternatives
      - **Update pending**: Solution done but docs/tracker not yet updated
      - **GitPush pending**: Everything updated but not committed
-3. Present a concise status report:
+3. Read TODOS.md to check TODO status:
+   - Total TODOs pending
+   - Number of TODOs ready to approach
+   - Recently unlocked TODOs (if any)
+4. Read SKILLS.md to check skills overview:
+   - Total concepts mastered
+   - Most frequently used concept
+   - Recent skill additions
+   - Mastery level distribution
+5. Present a concise status report:
    - 📊 Overall Stats (total solved, streak, categories)
    - 📋 Last 3 problems from Overview Table
    - 🔄 Current Problem (if any): name, link, status, last workflow step
+   - 📝 TODO Summary: X pending, Y ready to approach
+   - 🎯 Skills Summary: Display table with:
+     - Top 5 most used concepts with usage count
+     - Recent concepts learned (last 3)
+     - Mastery distribution (Beginner/Intermediate/Proficient/Master counts)
    - 📁 Uncommitted changes (run `git status`)
    - 🎯 Suggested next action
+
+**Skills Summary Table Format:**
+```
+🎯 Skills Tracker Summary
+
+Top Concepts:
+| Concept | Category | Times Used | Mastery |
+|---------|----------|------------|---------|
+| [Name]  | [Cat]    | X          | 🌱/🌿/🌳/🏆 |
+
+Recent Additions: [Concept1], [Concept2], [Concept3]
+Mastery: 🏆 X | 🌳 Y | 🌿 Z | 🌱 W concepts
+```
 
 **Format the report clearly with sections, not walls of text.**
 
@@ -183,6 +336,45 @@ When the user asks to update documentation and progress:
   - Update category table count
   - Update statistics section
   - Update project structure if new folders added
+- **Update SKILLS.md:**
+  - For each concept detected in `/analyse` (or detect now if not run):
+    - **If concept is NEW (first time):**
+      - Add new row to main Skills Tracking Table
+      - Set "First Used" to current date
+      - Set "First Problem" to current problem name and number
+      - Set "Times Used" to 1
+      - Set "Usage History" to: `Problem Name (#Number) (YYYY-MM-DD)`
+      - Add to appropriate category breakdown table (Data Structures/Algorithms/Patterns/Optimization)
+      - Add to "Recently Learned (Last 5)" list at top
+      - Assign mastery level: 🌱 Beginner (1-2 uses)
+    - **If concept EXISTS (reusing):**
+      - Update "Times Used" count (+1)
+      - Append to "Usage History": `, Problem Name (#Number) (YYYY-MM-DD)` (comma-separated, chronological)
+      - Update "Latest Use" in category breakdown table
+      - Update mastery level if threshold crossed:
+        - 🌱 Beginner (1-2 uses)
+        - 🌿 Intermediate (3-5 uses)
+        - 🌳 Proficient (6-10 uses)
+        - 🏆 Master (11+ uses)
+      - Update "Top 5 Most Used Concepts" if ranking changes
+  - Update Quick Stats section:
+    - Total Concepts Mastered
+    - Most Used Concept (name and count)
+    - Recently Learned (last concept added)
+    - Average Reuse Rate (total uses / total concepts)
+  - Update Mastery Levels section with counts per level
+  - Update "Last tracking update" timestamp at bottom
+
+**Concept Detection (if /analyse not run yet):**
+Run the same concept detection logic from Rule 2:
+- Scan user's solution code for data structures, algorithms, patterns, optimizations
+- Ignore AI-generated test/infrastructure code
+- Focus only on what USER implemented in solution method
+
+**Format for Usage History:**
+- Single line, comma-separated
+- Example: `Two Sum (#1) (2026-02-13), Group Anagrams (#49) (2026-02-13), Product Array (#238) (2026-02-18)`
+- Keep chronological order (oldest first, newest last)
 
 **Optional: Create Detailed Learning File**
 
@@ -349,3 +541,131 @@ Each entry should include:
 - Total Problems Solved count
 - Categories Covered list
 - Current Streak
+
+---
+
+## Rule 8: Todos - Learning TODO Management
+
+When the user wants to manage learning TODOs for alternative approaches:
+
+### Overview
+TODOs track alternative approaches/patterns you want to revisit once you learn the required concepts. The system automatically detects when you've learned patterns and marks related TODOs as "ready to approach."
+
+### Command Usage
+
+**`/todos` or `/todos status`** - Show current TODO status with stats
+
+**DO:**
+- Read TODOS.md
+- Display quick stats: Total, Pending (not ready), Ready, Completed
+- Show summary of pending vs ready TODOs
+- Suggest next action (learn patterns OR approach ready TODOs)
+
+**`/todos ready`** - Show which TODOs are ready to approach now
+
+**DO:**
+- Read TODOS.md
+- Filter and display only TODOs in "Ready to Approach" section
+- Show which patterns were learned that unlocked these
+- Encourage user to implement these alternative approaches
+
+**`/todos add <problem-name> <approach> <pattern>`** - Add new TODO manually
+
+**Example:** `/todos add "Two Sum" "Sorting" "Two Pointers"`
+
+**DO:**
+- Append to TODOS.md in "Pending" section
+- Auto-increment TODO ID
+- Add to pattern mapping section
+- Set status as 🔄 Pending
+- Add current date
+- Format: problem link, approach to learn, prerequisites
+
+**`/todos complete <id>`** - Mark TODO as completed
+
+**DO:**
+- Move TODO from current section to "Completed" section
+- Add completion date
+- Update stats at top of TODOS.md
+- Ask user for notes about what they learned
+
+### Automatic Pattern Detection
+
+When user solves a problem (during `/analyse` or `/update` commands):
+
+**DO:**
+1. Read TODOS.md to check pending TODOs
+2. Analyze the current problem's approach/patterns used:
+   - Heap/Priority Queue → unlocks Max Heap, Min Heap TODOs
+   - Quickselect → unlocks Quickselect TODOs
+   - Two Pointers → unlocks Two Pointers TODOs
+   - Dynamic Programming → unlocks DP TODOs
+   - Binary Search → unlocks Binary Search TODOs
+   - DFS/BFS → unlocks Graph traversal TODOs
+3. If current problem uses a pattern that matches pending TODO prerequisites:
+   - Move matching TODOs to "Ready to Approach" section
+   - Update "Pattern → Problems Mapping" to show pattern is learned
+   - Add "Learned From" reference (current problem)
+   - Add "Date Ready" timestamp
+4. During `/analyse` command: At the end, mention:
+   - "📝 TODOs unlocked: You can now approach TODO #X, #Y using the [pattern] you just learned!"
+5. During `/summarise` command: Include section:
+   - "🎯 Next Steps: You've mastered [pattern], consider revisiting TODO #X, #Y"
+
+### Pattern Matching Rules
+
+Map problem approaches to TODO prerequisites:
+
+| Problem Pattern Used | Unlocks TODOs With Prerequisites |
+|---------------------|-----------------------------------|
+| Heap/Priority Queue (PriorityQueue, MaxHeap, MinHeap) | "Heap/Priority Queue", "Max Heap", "Min Heap" |
+| Quickselect | "Quickselect", "Selection Algorithm" |
+| Two Pointers | "Two Pointers" |
+| Binary Search | "Binary Search" |
+| Dynamic Programming (DP array, memoization) | "Dynamic Programming", "DP", "Memoization" |
+| DFS/BFS | "DFS", "BFS", "Graph Traversal" |
+| Sliding Window | "Sliding Window" |
+| Backtracking | "Backtracking" |
+| Trie | "Trie", "Prefix Tree" |
+
+### TODOS.md Structure
+
+**File sections:**
+1. Quick Stats (auto-updated)
+2. Pending TODOs table (not ready yet - missing prerequisites)
+3. Ready to Approach table (learned required patterns)
+4. Completed table (finished alternative implementations)
+5. Pattern → Problems Mapping (tracks what's learned)
+6. Next Steps guidance
+7. Usage instructions
+
+**Table columns:**
+- Pending: #, Problem, Approach to Learn, Status, Prerequisites, Date Added
+- Ready: #, Problem, Approach to Apply, Status, Learned From, Date Ready
+- Completed: #, Problem, Approach, Completed Date, Notes
+
+### Integration with Other Commands
+
+**`/analyse` command:** After analyzing user's solution and suggesting alternatives, automatically suggest adding TODOs for approaches they haven't learned yet.
+
+**`/update` command:** When updating PROGRESS.md, also update TODOS.md if patterns were learned.
+
+**`/current` command:** Include TODO stats in status report (X pending, Y ready).
+
+### Example Workflow
+
+1. User solves "K Closest Points to Origin" with sorting
+2. During `/analyse`, AI suggests Max Heap (O(n log k)) and Quickselect (O(n))
+3. User runs: `/todos add "K Closest Points to Origin" "Max Heap" "Heap/Priority Queue"`
+4. TODO added to TODOS.md as Pending (needs to learn Heap pattern)
+5. Later, user solves "Top K Frequent Elements" using Priority Queue
+6. During `/update`, system detects Heap pattern was used
+7. System automatically moves "K Closest Points - Max Heap" TODO to "Ready to Approach"
+8. User runs `/todos ready` and sees it's ready to implement
+9. User implements Max Heap approach for K Closest Points
+10. User runs `/todos complete 1` to mark it done
+
+**DO NOT:**
+- Do not modify user's solution code
+- Do not automatically implement alternative approaches
+- Do not remove TODOs without user confirmation
