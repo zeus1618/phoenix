@@ -9,6 +9,7 @@ algorithms/sorting/
 ├── SortingTestSuite.java    # Common test infrastructure for all sorting algorithms
 ├── BubbleSort.java           # Bubble Sort implementation
 ├── SelectionSort.java        # Selection Sort implementation
+├── InsertionSort.java        # Insertion Sort implementation
 └── README.md                 # This file
 ```
 
@@ -69,7 +70,7 @@ SortingTestSuite.testSingleCase("Custom Test", input, expected, YourClass::sortM
 
 ### 2. Selection Sort (`SelectionSort.java`)
 
-**Status**: 🔄 Ready for implementation
+**Status**: ✅ Implemented
 
 **Variations**:
 - `sort()`: Basic implementation
@@ -90,6 +91,34 @@ SortingTestSuite.testSingleCase("Custom Test", input, expected, YourClass::sortM
 - Same O(n²) time but Selection Sort makes fewer swaps
 - Selection Sort is NOT stable, Bubble Sort is stable
 - Selection Sort always O(n²), Bubble Sort can be O(n) when optimized
+
+### 3. Insertion Sort (`InsertionSort.java`)
+
+**Status**: 🔄 Ready for implementation
+
+**Variations**:
+- `sort()`: Basic implementation
+- `sortBinaryInsertion()`: Uses binary search to find insertion position
+- `sortWithVisualization()`: Step-by-step display showing insertion process
+- `sortAndCountComparisons()`: Analysis method for performance tracking
+- `sortAndCountShifts()`: Analysis method for shift operations
+
+**Complexity**:
+- Time: O(n²) average/worst, **O(n) best** (already sorted)
+- Space: O(1)
+- Shifts: O(n²) worst case
+
+**Best For**:
+- Nearly sorted data ⭐ (BEST among O(n²) algorithms)
+- Small datasets (< 50 elements)
+- Online sorting (can sort as data arrives)
+- Used as base case in advanced algorithms (Quick Sort, Merge Sort)
+
+**Comparison with Other O(n²) Sorts**:
+- **Best for nearly sorted data** - approaches O(n) performance
+- Stable (unlike Selection Sort)
+- Better than Bubble/Selection for partially sorted arrays
+- Used in production: Java's Arrays.sort() for small subarrays
 
 ## 🚀 Getting Started
 
@@ -128,7 +157,6 @@ Look for the test summary showing all green ✅ passes.
 ## 📋 Planned Algorithms
 
 Future implementations to add:
-- **Insertion Sort**: O(n²) - builds sorted array one element at a time
 - **Merge Sort**: O(n log n) - divide and conquer approach
 - **Quick Sort**: O(n log n) average - partition-based sorting
 - **Heap Sort**: O(n log n) - uses binary heap data structure
@@ -154,12 +182,14 @@ Recommended order to learn sorting algorithms:
 1. **Bubble Sort** ⭐ Start Here
    - Simplest algorithm, understand the basics of comparison and swapping
    
-2. **Selection Sort** ⭐ Next
+2. **Selection Sort** ✅ Done
    - Introduces the concept of finding minimum/maximum
    - Learn about minimizing swap operations
    
-3. **Insertion Sort**
+3. **Insertion Sort** ⭐ Current
    - Learn about building sorted portions incrementally
+   - **Best for nearly sorted data** - understand adaptive algorithms
+   - Used in real production code (Java, Python)
    
 4. **Merge Sort**
    - First O(n log n) algorithm, introduces divide-and-conquer
@@ -190,9 +220,9 @@ Recommended order to learn sorting algorithms:
 ---
 
 **Next Steps**: 
-1. ✅ Bubble Sort implemented - all tests passing
-2. 🔄 Implement `SelectionSort.sort()` method
-3. Run tests and ensure all pass
-4. Try the bidirectional version
-5. Compare with Bubble Sort performance
-6. Move on to Insertion Sort!
+1. ✅ Bubble Sort implemented - stable, simple
+2. ✅ Selection Sort implemented - minimal swaps, bidirectional optimization
+3. 🔄 Implement `InsertionSort.sort()` method
+4. Test on nearly sorted data to see O(n) performance
+5. Try the binary insertion version
+6. Move on to O(n log n) algorithms (Merge Sort)!
