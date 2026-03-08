@@ -10,6 +10,7 @@ algorithms/sorting/
 ├── BubbleSort.java           # Bubble Sort implementation
 ├── SelectionSort.java        # Selection Sort implementation
 ├── InsertionSort.java        # Insertion Sort implementation
+├── MergeSort.java            # Merge Sort implementation
 └── README.md                 # This file
 ```
 
@@ -94,7 +95,7 @@ SortingTestSuite.testSingleCase("Custom Test", input, expected, YourClass::sortM
 
 ### 3. Insertion Sort (`InsertionSort.java`)
 
-**Status**: 🔄 Ready for implementation
+**Status**: ✅ Implemented
 
 **Variations**:
 - `sort()`: Basic implementation
@@ -119,6 +120,40 @@ SortingTestSuite.testSingleCase("Custom Test", input, expected, YourClass::sortM
 - Stable (unlike Selection Sort)
 - Better than Bubble/Selection for partially sorted arrays
 - Used in production: Java's Arrays.sort() for small subarrays
+
+### 4. Merge Sort (`MergeSort.java`)
+
+**Status**: 🔄 Ready for implementation
+
+**Variations**:
+- `sort()`: Basic recursive top-down implementation
+- `sortOptimized()`: Hybrid with Insertion Sort for small subarrays
+- `sortWithVisualization()`: Shows divide-and-conquer process with recursion tree
+- `sortAndCountMerges()`: Analysis method for tracking merge operations
+
+**Complexity**:
+- Time: **O(n log n)** always (best/average/worst) - guaranteed performance!
+- Space: O(n) - requires auxiliary arrays for merging
+- Recursion depth: O(log n)
+
+**Best For**:
+- Large datasets requiring guaranteed O(n log n) performance ⭐
+- When stability is important (preserving order of equal elements)
+- Sorting linked lists (better than Quick Sort)
+- External sorting (data larger than memory)
+- Parallel processing (divide-and-conquer is parallelizable)
+
+**Comparison with Other O(n log n) Sorts**:
+- **Guaranteed O(n log n)** - no worst-case degradation (unlike Quick Sort)
+- Stable (unlike Quick Sort and Heap Sort)
+- Requires O(n) extra space (Heap Sort is O(1), Quick Sort is O(log n))
+- Used in production: Java's Arrays.sort() for objects, Python's Timsort
+
+**Key Concepts**:
+- First O(n log n) algorithm - introduces divide-and-conquer paradigm
+- Recursion tree has height log n, each level does O(n) work
+- Master Theorem: T(n) = 2T(n/2) + O(n) = O(n log n)
+- Foundation for understanding Quick Sort and other advanced algorithms
 
 ## 🚀 Getting Started
 
@@ -157,7 +192,6 @@ Look for the test summary showing all green ✅ passes.
 ## 📋 Planned Algorithms
 
 Future implementations to add:
-- **Merge Sort**: O(n log n) - divide and conquer approach
 - **Quick Sort**: O(n log n) average - partition-based sorting
 - **Heap Sort**: O(n log n) - uses binary heap data structure
 - **Counting Sort**: O(n+k) - non-comparison based (integers only)
@@ -186,13 +220,16 @@ Recommended order to learn sorting algorithms:
    - Introduces the concept of finding minimum/maximum
    - Learn about minimizing swap operations
    
-3. **Insertion Sort** ⭐ Current
+3. **Insertion Sort** ✅ Done
    - Learn about building sorted portions incrementally
    - **Best for nearly sorted data** - understand adaptive algorithms
    - Used in real production code (Java, Python)
    
-4. **Merge Sort**
+4. **Merge Sort** ⭐ Current
    - First O(n log n) algorithm, introduces divide-and-conquer
+   - **Guaranteed performance** - always O(n log n), no worst case
+   - Understand recursion trees and Master Theorem
+   - Foundation for Quick Sort and advanced sorting
    
 5. **Quick Sort**
    - Most used in practice, understand partitioning
@@ -220,9 +257,11 @@ Recommended order to learn sorting algorithms:
 ---
 
 **Next Steps**: 
-1. ✅ Bubble Sort implemented - stable, simple
-2. ✅ Selection Sort implemented - minimal swaps, bidirectional optimization
-3. 🔄 Implement `InsertionSort.sort()` method
-4. Test on nearly sorted data to see O(n) performance
-5. Try the binary insertion version
-6. Move on to O(n log n) algorithms (Merge Sort)!
+1. ✅ Bubble Sort - O(n²), stable, simple
+2. ✅ Selection Sort - O(n²), minimal swaps
+3. ✅ Insertion Sort - O(n²) avg, O(n) best for nearly sorted
+4. 🔄 Implement `MergeSort.sort()`, `mergeSort()`, and `merge()` methods
+5. Understand divide-and-conquer and recursion trees
+6. Test visualization to see how merge sort divides and conquers
+7. Learn why O(n log n) is optimal for comparison-based sorting
+8. Move on to Quick Sort (faster average case)!
