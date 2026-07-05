@@ -1,6 +1,6 @@
 # DSA Learning Progress Tracker
 
-> **Last Updated:** Monday, March 2, 2026
+> **Last Updated:** Sunday, July 5, 2026
 
 ---
 
@@ -17,8 +17,8 @@
 
 ## 📊 Summary Statistics
 
-- **Total Problems Solved:** 13
-- **Problems In Progress:** 1
+- **Total Problems Solved:** 14
+- **Problems In Progress:** 0
 - **Categories Covered:** Arrays & Hashing
 - **Current Streak:** 5 days
 
@@ -32,7 +32,7 @@
 | 2 | 2026-02-13 | [Valid Anagram (#242)](https://leetcode.com/problems/valid-anagram/) | Easy | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
 | 3 | 2026-02-13 | [Two Sum (#1)](https://leetcode.com/problems/two-sum/) | Easy | Arrays & Hashing | O(n) | O(n) | ❌ No | ✅ Done |
 | 4 | 2026-02-13 | [Group Anagrams (#49)](https://leetcode.com/problems/group-anagrams/) | Medium | Arrays & Hashing | O(nk log k) | O(nk) | ❌ No | ✅ Done |
-| 5 | 2026-02-15 | [Top K Frequent Elements (#347)](https://leetcode.com/problems/top-k-frequent-elements/) | Medium | Arrays & Hashing | TBD | TBD | TBD | 🔄 In Progress |
+| 5 | 2026-02-15 | [Top K Frequent Elements (#347)](https://leetcode.com/problems/top-k-frequent-elements/) | Medium | Arrays & Hashing | O(n log n) | O(n) | ❌ No | ✅ Done |
 | 6 | 2026-02-15 | [Maximum Subarray (#53)](https://leetcode.com/problems/maximum-subarray/) | Medium | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
 | 7 | 2026-02-18 | [Best Time to Buy and Sell Stock (#121)](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/) | Easy | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
 | 8 | 2026-02-18 | [Maximum Product Subarray (#152)](https://leetcode.com/problems/maximum-product-subarray/) | Medium | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
@@ -191,7 +191,7 @@ Given an array of strings, group the anagrams together. You can return the answe
 
 ---
 
-#### 🔄 Problem 5: Top K Frequent Elements (In Progress)
+#### ✅ Problem 5: Top K Frequent Elements (Completed)
 - **Platform:** LeetCode
 - **Problem Number:** #347
 - **Difficulty:** Medium
@@ -211,16 +211,28 @@ Given an integer array nums and an integer k, return the k most frequent element
 Your algorithm's time complexity must be better than O(n log n), where n is the array's size.
 
 **Approach:**
-[To be documented after implementation]
+Built a frequency map with a HashMap, then pushed every (value, frequency) pair into a max-heap (PriorityQueue ordered by frequency descending), and polled the top k entries.
 
 **Complexity Analysis:**
-- **Time Complexity:** [To be analyzed]
-- **Space Complexity:** [To be analyzed]
+- **Time Complexity:** O(n + u log u), worst case O(n log n) where u = number of unique elements (u can equal n). Does not meet the follow-up's "better than O(n log n)" requirement, since the heap is built from every unique element rather than being bounded to size k.
+- **Space Complexity:** O(n) — HashMap plus a heap holding all unique elements.
+
+**Key Learnings:**
+- **Heap size matters more than heap choice:** A max-heap over ALL unique elements costs O(u log u) to build — no better than sorting in the worst case. Bounding the heap to size k (evicting the smallest whenever it grows past k) is what actually earns the O(n log k) improvement.
+- **Follow-up constraints reveal the intended structure:** The "better than O(n log n)" hint points specifically at a *bounded* heap or bucket sort, not just "use a heap."
+- **Bucket sort by frequency is the fully optimal answer:** Since frequency is bounded by array length, indexing buckets by count gives O(n) with no log factor at all.
+
+**Alternative Approaches Analyzed:**
+1. **Max-Heap over all unique elements (implemented)** — O(n + u log u), worst case O(n log n) time, O(n) space — simple, but doesn't satisfy the follow-up.
+2. **Bounded Min-Heap of size k** — O(n + u log k) time, O(u + k) space — satisfies the follow-up when k << n.
+3. **Bucket Sort by frequency** — O(n) time, O(n) space — fully optimal, no log factor.
+4. **Quickselect on (value, freq) pairs** — O(n) average, O(n²) worst case, O(n) space.
 
 **AI Assistance:**
-- TBD - Solution not yet implemented
+- ❌ No - Solution implemented independently by user
+- ℹ️ Note: AI provided analysis after implementation, identified that the all-elements max-heap doesn't meet the O(better than n log n) follow-up, and explained the bounded min-heap and bucket sort alternatives
 
-**Status:** 🔄 In Progress  
+**Status:** ✅ Completed  
 **Implementation File:** `arraysAndHashing/TopKFrequentElements.java`
 
 ---
@@ -701,7 +713,7 @@ Added 3 TODOs to revisit this problem with alternative approaches once patterns 
 - [x] Valid Anagram (Easy) - #242
 - [x] Two Sum (Easy) - #1
 - [x] Group Anagrams (Medium) - #49
-- [ ] Top K Frequent Elements (Medium) - #347
+- [x] Top K Frequent Elements (Medium) - #347
 - [x] Maximum Subarray (Medium) - #53
 - [x] Best Time to Buy and Sell Stock (Easy) - #121
 - [x] Maximum Product Subarray (Medium) - #152
@@ -799,6 +811,8 @@ Added 3 TODOs to revisit this problem with alternative approaches once patterns 
 - **Integer.compare() for safety:** Never use subtraction (a-b) in comparators - can overflow. Always use Integer.compare(a, b)
 - **Full sort is acceptable:** O(n log n) sorting is perfectly fine when k ≈ n or simplicity is priority - don't over-optimize prematurely
 - **Know when heap beats sort:** When k << n (e.g., k=10, n=10,000), Max Heap O(n log k) is 4x faster than full sort O(n log n)
+- **Heap size drives complexity, not heap presence:** Building a max-heap from ALL unique elements is O(u log u) — no better than sorting. Only bounding the heap to size k yields the O(n log k) improvement
+- **Bucket sort beats heaps for frequency problems:** When frequency is bounded by array length, indexing buckets by count gives O(n) time with no log factor at all
 
 ### Patterns Identified
 - **Duplicate Detection Pattern:** Use HashSet for O(n) time complexity vs O(n²) brute force
@@ -828,6 +842,7 @@ Added 3 TODOs to revisit this problem with alternative approaches once patterns 
 - **Count until boundary pattern:** Track current streak counter, reset on boundary element (0, delimiter), maintain global maximum - applies to consecutive element counting problems
 - **Distance comparison pattern:** For problems involving Euclidean distance, avoid sqrt by comparing squared distances (√a < √b ⟺ a < b for non-negative)
 - **K-selection pattern:** Three approaches based on requirements: Full sort O(n log n) for simplicity, Max Heap O(n log k) when k << n, Quickselect O(n) for optimal average
+- **Bounded heap pattern:** For "top k" problems, cap the heap at size k and evict the smallest on overflow — turns an O(u log u) heap build into O(u log k)
 
 ---
 
@@ -839,4 +854,4 @@ Added 3 TODOs to revisit this problem with alternative approaches once patterns 
 
 ---
 
-*This tracker is automatically maintained. Last entry added: Monday, March 2, 2026 (K Closest Points to Origin #973)*
+*This tracker is automatically maintained. Last entry added: Sunday, July 5, 2026 (Top K Frequent Elements #347)*

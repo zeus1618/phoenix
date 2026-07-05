@@ -31,16 +31,26 @@ import java.util.*;
  * Output: [1]
  *
  * <p>Approach:
- * [To be documented after implementation]
+ * Build a frequency map with a HashMap, then push every (value, frequency) pair
+ * into a max-heap (PriorityQueue ordered by frequency descending), and poll the
+ * top k entries.
  *
- * <p>Time Complexity: [To be analyzed]
- * <p>Space Complexity: [To be analyzed]
+ * <p>Time Complexity: O(n + u log u), worst case O(n log n) where u = number of
+ * unique elements (u can be up to n). Does not meet the problem's follow-up
+ * requirement of "better than O(n log n)" — a bounded min-heap of size k
+ * (O(n + u log k)) or bucket sort by frequency (O(n)) would satisfy it.
+ * <p>Space Complexity: O(n) — HashMap plus a heap holding all unique elements.
  *
  * <p>Key Learnings:
- * [To be documented after implementation]
+ * A max-heap built from ALL unique elements costs O(u log u) to construct, so it
+ * doesn't beat O(n log n) in the worst case (all-unique input). Keeping the heap
+ * bounded to size k (evicting the smallest when it grows past k) turns the same
+ * PriorityQueue idea into O(n log k), which does satisfy the follow-up when k << n.
  *
  * <p>Alternative Approaches:
- * [To be documented after analysis]
+ * 1. Bounded min-heap of size k — O(n + u log k) time, O(u + k) space.
+ * 2. Bucket sort by frequency (index = count) — O(n) time, O(n) space (optimal).
+ * 3. Quickselect on (value, freq) pairs — O(n) average, O(n²) worst case.
  */
 public class TopKFrequentElements {
 
@@ -51,37 +61,35 @@ public class TopKFrequentElements {
      * @param k the number of most frequent elements to return
      * @return an array containing the k most frequent elements
      */
-    public int[] topKFrequent(int[] nums, int k) {
 
-        return new int[]{};
+    public class Pair{
+        int k,v;
+        Pair(int k, int v){
+            this.k = k;
+            this.v = v;
+        }
     }
-    // public int[] topKFrequentFromLeetCode(int[] nums, int k) {
-    //     Map<Integer, Integer> mp = new HashMap<>();
-    //     for(int num : nums) {
-    //         mp.put(num, mp.getOrDefault(num, 0)+1);
-    //     } 
 
-    //     PriorityQueue<Pair> pq = new PriorityQueue<>((x, y) -> y.v - x.v);
+    public int[] topKFrequent(int[] nums, int k) {
+        Map<Integer, Integer> hs = new HashMap<Integer, Integer>();
+        for (int n : nums) {
+            if(hs.containsKey(n)){
+                hs.put(n, hs.get(n)+1);
+            } else {
+                hs.put(n, 1);
+            }
+        }
+        PriorityQueue<Pair> q = new PriorityQueue<>((o1,o2) -> o2.v - o1.v);
+        hs.forEach((key, val) -> q.offer(new Pair(key, val)));
 
-    //     for(Map.Entry<Integer, Integer> ent : mp.entrySet()) {
-    //         pq.add(new Pair(ent.getKey(), ent.getValue()));
-    //     }
+        int[] result = new int[k];
+        for(int i=0; i<k; i++){
+            result[i] = q.poll().k;
+        }
 
-    //     int[] ans = new int[k];
-    //     for(int i = 0; i < k; i++) {
-    //         ans[i] = pq.poll().k;
-    //     }
-    //     return ans;
-    // }
-
-    // class Pair {
-    //     int k;
-    //     int v;
-    //     Pair(int k, int v) {
-    //         this.k = k;
-    //         this.v = v;
-    //     }
-    // }
+        return result;
+    }
+    
 
     // ======================== Test Helper Methods ========================
 

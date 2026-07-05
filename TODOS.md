@@ -1,15 +1,15 @@
 # DSA Learning TODOs
 
-> **Last Updated:** Tuesday, March 3, 2026
+> **Last Updated:** Sunday, July 5, 2026
 
 ---
 
 ## 📋 Quick Stats
 
 - **Total TODOs:** 4
-- **Pending:** 4
-- **Ready to Approach:** 0
-- **Completed:** 0
+- **Pending:** 1
+- **Ready to Approach:** 2
+- **Completed:** 1
 
 ---
 
@@ -21,10 +21,7 @@ These TODOs require learning specific concepts/patterns before you can attempt t
 
 | # | Problem | Approach to Learn | Status | Prerequisites | Date Added |
 |---|---------|------------------|--------|---------------|------------|
-| 1 | [K Closest Points to Origin (#973)](https://leetcode.com/problems/k-closest-points-to-origin/) | Max Heap | 🔄 Pending | Need to learn: Heap/Priority Queue pattern | 2026-03-02 |
 | 2 | [K Closest Points to Origin (#973)](https://leetcode.com/problems/k-closest-points-to-origin/) | Quickselect | 🔄 Pending | Need to learn: Quickselect algorithm | 2026-03-02 |
-| 3 | [K Closest Points to Origin (#973)](https://leetcode.com/problems/k-closest-points-to-origin/) | Min Heap Extract | 🔄 Pending | Need to learn: Heap/Priority Queue pattern | 2026-03-02 |
-| 4 | [Top K Frequent Elements (#347)](https://leetcode.com/problems/top-k-frequent-elements/) | Priority Queue (Max Heap) | 🔄 Pending | Need to learn: Heap/Priority Queue pattern | 2026-03-03 |
 
 ---
 
@@ -34,9 +31,8 @@ These TODOs are ready - you've learned the required patterns from other problems
 
 | # | Problem | Approach to Apply | Status | Learned From | Date Ready |
 |---|---------|-------------------|--------|--------------|------------|
-| - | - | - | - | - | - |
-
-*No TODOs ready yet. Keep solving problems to unlock these!*
+| 1 | [K Closest Points to Origin (#973)](https://leetcode.com/problems/k-closest-points-to-origin/) | Max Heap | ✅ Ready | Top K Frequent Elements (#347) | 2026-02-15 |
+| 3 | [K Closest Points to Origin (#973)](https://leetcode.com/problems/k-closest-points-to-origin/) | Min Heap Extract | ✅ Ready | Top K Frequent Elements (#347) | 2026-02-15 |
 
 ---
 
@@ -44,9 +40,7 @@ These TODOs are ready - you've learned the required patterns from other problems
 
 | # | Problem | Approach | Completed Date | Notes |
 |---|---------|----------|----------------|-------|
-| - | - | - | - | - |
-
-*No completed TODOs yet.*
+| 4 | [Top K Frequent Elements (#347)](https://leetcode.com/problems/top-k-frequent-elements/) | Priority Queue (Max Heap) | 2026-02-15 | Implemented as the primary solution. Heap built from all unique elements (O(n + u log u), worst case O(n log n)) rather than bounded to size k, so it doesn't meet the problem's "better than O(n log n)" follow-up — bounding the heap to k or bucket sort would. |
 
 ---
 
@@ -55,9 +49,9 @@ These TODOs are ready - you've learned the required patterns from other problems
 This section tracks which patterns you've learned and which TODOs they unlock.
 
 ### Heap / Priority Queue
-- **Status:** ❌ Not learned yet
-- **Unlocks TODOs:** #1, #3, #4
-- **Learn from:** Top K Frequent Elements (#347), Kth Largest Element
+- **Status:** ✅ Learned
+- **Unlocked TODOs:** #1, #3 (Ready), #4 (Completed)
+- **Learned from:** Top K Frequent Elements (#347)
 
 ### Quickselect Algorithm
 - **Status:** ❌ Not learned yet
@@ -68,12 +62,9 @@ This section tracks which patterns you've learned and which TODOs they unlock.
 
 ## 🎯 Next Steps
 
-1. Continue solving problems in your current category
-2. When you solve a problem using **Heap/Priority Queue**, TODOs #1, #3, and #4 will become ready
-3. When you solve a problem using **Quickselect**, TODO #2 will become ready
-4. Check `/todos ready` command to see which TODOs you can now approach
-
-**Note:** Top K Frequent Elements (#347) has commented-out Priority Queue code - uncomment and implement it to learn the Heap pattern!
+1. Implement TODOs #1 (Max Heap) and #3 (Min Heap Extract) for K Closest Points to Origin (#973) — Heap/Priority Queue is now learned
+2. When you solve a problem using **Quickselect**, TODO #2 will become ready
+3. Check `/todos ready` command to see which TODOs you can now approach
 
 ---
 

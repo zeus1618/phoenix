@@ -28,18 +28,21 @@ phoenix/
 ├── PROGRESS.md                        # Detailed progress tracker
 ├── SKILLS.md                          # Skills & concepts mastery tracker
 ├── TODOS.md                           # Alternative approaches to learn
-├── .cursor/
-│   ├── rules/
-│   │   └── dsa-workflow.mdc          # Automated workflow rules
-│   └── commands/                      # Workflow command definitions
-│       ├── start.md                   # Start new problem
-│       ├── analyse.md                 # Analyze solution
-│       ├── compare.md                 # Compare solutions
-│       ├── summarise.md               # Summarize learnings
-│       ├── current.md                 # View current status
-│       ├── update.md                  # Update documentation
-│       ├── todos.md                   # Manage learning TODOs
-│       └── gitpush.md                 # Commit and push
+├── CLAUDE.md                          # Always-loaded rules (Rule 0 + project context)
+├── docs/
+│   ├── SKILLS_TRACKER_GUIDE.md         # Skills tracker deep-dive guide
+│   └── TODO-SYSTEM-GUIDE.md            # TODO system deep-dive guide
+├── .claude/
+│   └── commands/                       # Slash command definitions
+│       ├── start.md                    # Start new problem
+│       ├── analyse.md                  # Analyze solution
+│       ├── compare.md                  # Compare solutions
+│       ├── summarise.md                # Summarize learnings
+│       ├── current.md                  # View current status
+│       ├── update.md                   # Update documentation
+│       ├── todos.md                    # Manage learning TODOs
+│       └── gitpush.md                  # Commit and push
+├── .cursor/                            # Legacy Cursor config (kept for reference only)
 ├── arraysAndHashing/
 │   ├── ContainsDuplicate.java        # Problem solutions
 │   ├── ValidAnagram.java
@@ -71,7 +74,7 @@ phoenix/
 ## 🛠️ Tech Stack
 
 - **Language:** Java
-- **IDE:** Cursor with AI-assisted workflow
+- **IDE:** VS Code with Claude (Claude Code slash commands)
 - **Problem Sources:** LeetCode, HackerRank, others
 - **Documentation:** Markdown
 
@@ -81,7 +84,7 @@ phoenix/
 
 | Category | Problems Solved | Status |
 |----------|----------------|--------|
-| Arrays & Hashing | 13 | 🔄 In Progress |
+| Arrays & Hashing | 14 | 🔄 In Progress |
 | Two Pointers | 0 | ⏳ Not Started |
 | Sliding Window | 0 | ⏳ Not Started |
 | Stack | 0 | ⏳ Not Started |
@@ -183,7 +186,7 @@ Progress is tracked across multiple files:
 
 ## 🤖 Automated Workflow
 
-This project uses Cursor AI rules (`.cursor/rules/dsa-workflow.mdc`) for automated workflows with command-based execution:
+This project uses Claude Code for automated workflows with command-based execution. Rule 0 (never modify solution code) and project context live in the always-loaded `CLAUDE.md`; each command below is defined in `.claude/commands/` and works the same way it did in Cursor — just type the same slash command in Claude Code:
 
 ### Available Commands
 
@@ -314,15 +317,15 @@ Or open [SKILLS.md](SKILLS.md) for full details with complete usage history.
 
 ## 📈 Statistics
 
-- **Total Problems Solved:** 13
-- **Concepts Mastered:** 9
+- **Total Problems Solved:** 14
+- **Concepts Mastered:** 10
 - **Most Used Skill:** HashMap (5 times)
 - **Current Streak:** 5 days
 - **Categories Covered:** 1
 - **Difficulty Breakdown:**
   - Easy: 5 problems
-  - Medium: 8 problems
-- **Last Updated:** Monday, March 2, 2026
+  - Medium: 9 problems
+- **Last Updated:** Sunday, July 5, 2026
 
 ---
 
@@ -363,7 +366,7 @@ This is a personal learning repository. The focus is on consistent practice and 
 
 ---
 
-**Last Updated:** March 2, 2026  
+**Last Updated:** July 5, 2026  
 **Status:** 🔥 Active - Daily Practice
 
 ---

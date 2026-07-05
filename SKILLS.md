@@ -1,15 +1,15 @@
 # 🎯 DSA Skills & Concepts Tracker
 
-> **Last Updated:** Tuesday, March 3, 2026
+> **Last Updated:** Sunday, July 5, 2026
 
 ---
 
 ## 📊 Quick Stats
 
-- **Total Concepts Mastered:** 9
+- **Total Concepts Mastered:** 10
 - **Most Used Concept:** HashMap (5 times)
-- **Recently Learned:** Array Reversal (2026-02-26)
-- **Average Reuse Rate:** 1.8 times per concept
+- **Recently Learned:** Priority Queue (Heap) (2026-02-15)
+- **Average Reuse Rate:** 1.9 times per concept
 
 ---
 
@@ -26,6 +26,7 @@
 | In-place Operation | Optimization | 2026-02-18 | Product of Array Except Self (#238) | 2 | Product of Array Except Self (#238) (2026-02-18), Rotate Array (#189) (2026-02-26) |
 | Constant Space | Optimization | 2026-02-18 | Product of Array Except Self (#238) | 2 | Product of Array Except Self (#238) (2026-02-18), Rotate Array (#189) (2026-02-26) |
 | Array Reversal | Pattern | 2026-02-26 | Rotate Array (#189) | 1 | Rotate Array (#189) (2026-02-26) |
+| Priority Queue (Heap) | Data Structure | 2026-02-15 | Top K Frequent Elements (#347) | 1 | Top K Frequent Elements (#347) (2026-02-15) |
 
 ---
 
@@ -38,6 +39,7 @@
 |---------|------------|------------|------------|
 | HashMap | 2026-02-13 | 5 | Encode and Decode Strings (#271) (2026-03-02) |
 | HashSet | 2026-02-13 | 2 | Valid Sudoku (#36) (2026-02-27) |
+| Priority Queue (Heap) | 2026-02-15 | 1 | Top K Frequent Elements (#347) (2026-02-15) |
 
 ### Algorithms
 *Track: Sorting, Searching, Recursion, Backtracking, DFS, BFS, etc.*
@@ -79,7 +81,7 @@
 | 🏆 Master (11+) | *None yet* | 0 |
 | 🌳 Proficient (6-10) | *None yet* | 0 |
 | 🌿 Intermediate (3-5) | HashMap | 1 |
-| 🌱 Beginner (1-2) | HashSet, Frequency Array, Sorting, Kadane's Algorithm, Prefix Product, In-place Operation, Constant Space, Array Reversal | 8 |
+| 🌱 Beginner (1-2) | HashSet, Frequency Array, Sorting, Kadane's Algorithm, Prefix Product, In-place Operation, Constant Space, Array Reversal, Priority Queue (Heap) | 9 |
 
 ---
 
@@ -93,11 +95,11 @@
 5. **In-place Operation** - 2 times (🌱 Beginner)
 
 ### Recently Learned (Last 5)
-1. **Array Reversal** (2026-02-26) - Rotate Array
-2. **Constant Space** (2026-02-18) - Product of Array Except Self
-3. **In-place Operation** (2026-02-18) - Product of Array Except Self
-4. **Prefix Product** (2026-02-18) - Product of Array Except Self
-5. **Kadane's Algorithm** (2026-02-15) - Maximum Subarray
+1. **Priority Queue (Heap)** (2026-02-15) - Top K Frequent Elements
+2. **Array Reversal** (2026-02-26) - Rotate Array
+3. **Constant Space** (2026-02-18) - Product of Array Except Self
+4. **In-place Operation** (2026-02-18) - Product of Array Except Self
+5. **Prefix Product** (2026-02-18) - Product of Array Except Self
 
 ---
 
@@ -153,4 +155,4 @@ Use `/current` command to see:
 
 ---
 
-*Last tracking update: Tuesday, March 3, 2026 - Backfilled 9 concepts from 12 completed problems*
+*Last tracking update: Sunday, July 5, 2026 - Added Priority Queue (Heap) from Top K Frequent Elements (#347)*
