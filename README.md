@@ -57,12 +57,14 @@ phoenix/
 │   ├── EncodeAndDecodeStrings.java
 │   ├── MaxConsecutiveOnes.java
 │   ├── KClosestPointsToOrigin.java
+│   ├── KthLargestElementInArray.java
 │   └── learnings/                     # Deep dive learnings for complex problems
 │       ├── GroupAnagrams-Learning.md
 │       ├── MaximumProductSubarray-Learning.md
 │       ├── ProductOfArrayExceptSelf-Learning.md
 │       ├── ValidSudoku-Learning.md
-│       └── EncodeAndDecodeStrings-Learning.md
+│       ├── EncodeAndDecodeStrings-Learning.md
+│       └── KthLargestElementInArray-Learning.md
 ├── twoPointers/                       # (Future problems)
 ├── slidingWindow/                     # (Future problems)
 ├── stack/                             # (Future problems)
@@ -84,7 +86,7 @@ phoenix/
 
 | Category | Problems Solved | Status |
 |----------|----------------|--------|
-| Arrays & Hashing | 14 | 🔄 In Progress |
+| Arrays & Hashing | 15 | 🔄 In Progress |
 | Two Pointers | 0 | ⏳ Not Started |
 | Sliding Window | 0 | ⏳ Not Started |
 | Stack | 0 | ⏳ Not Started |
@@ -317,15 +319,15 @@ Or open [SKILLS.md](SKILLS.md) for full details with complete usage history.
 
 ## 📈 Statistics
 
-- **Total Problems Solved:** 14
-- **Concepts Mastered:** 10
+- **Total Problems Solved:** 15
+- **Concepts Mastered:** 11
 - **Most Used Skill:** HashMap (5 times)
-- **Current Streak:** 5 days
+- **Current Streak:** 7 days
 - **Categories Covered:** 1
 - **Difficulty Breakdown:**
   - Easy: 5 problems
-  - Medium: 9 problems
-- **Last Updated:** Sunday, July 5, 2026
+  - Medium: 10 problems
+- **Last Updated:** Tuesday, July 7, 2026
 
 ---
 
@@ -366,7 +368,7 @@ This is a personal learning repository. The focus is on consistent practice and 
 
 ---
 
-**Last Updated:** July 5, 2026  
+**Last Updated:** July 7, 2026  
 **Status:** 🔥 Active - Daily Practice
 
 ---

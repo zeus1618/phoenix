@@ -1,6 +1,6 @@
 # DSA Learning Progress Tracker
 
-> **Last Updated:** Sunday, July 5, 2026
+> **Last Updated:** Tuesday, July 7, 2026
 
 ---
 
@@ -17,10 +17,10 @@
 
 ## 📊 Summary Statistics
 
-- **Total Problems Solved:** 14
-- **Problems In Progress:** 0
+- **Total Problems Solved:** 15
+- **Problems In Progress:** 1
 - **Categories Covered:** Arrays & Hashing
-- **Current Streak:** 5 days
+- **Current Streak:** 7 days
 
 ---
 
@@ -42,6 +42,8 @@
 | 12 | 2026-03-02 | [Encode and Decode Strings (#271)](https://neetcode.io/problems/string-encode-and-decode) | Medium | Arrays & Hashing | O(m) | O(m) | ❌ No | ✅ Done |
 | 13 | 2026-03-02 | [Max Consecutive Ones (#485)](https://leetcode.com/problems/max-consecutive-ones/) | Easy | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
 | 14 | 2026-03-02 | [K Closest Points to Origin (#973)](https://leetcode.com/problems/k-closest-points-to-origin/) | Medium | Arrays & Hashing | O(n log n) | O(n) | ❌ No | ✅ Done |
+| 15 | 2026-07-05 | [Longest Consecutive Sequence (#128)](https://leetcode.com/problems/longest-consecutive-sequence/) | Medium | Arrays & Hashing | TBD | TBD | TBD | 🔄 In Progress |
+| 16 | 2026-07-06 | [Kth Largest Element in an Array (#215)](https://leetcode.com/problems/kth-largest-element-in-an-array/) | Medium | Arrays & Hashing | O(n) avg / O(n²) worst | O(1) | ❌ No | ✅ Done |
 
 ---
 
@@ -706,6 +708,85 @@ Added 3 TODOs to revisit this problem with alternative approaches once patterns 
 
 ---
 
+#### 🔄 Problem 15: Longest Consecutive Sequence (In Progress)
+- **Platform:** LeetCode
+- **Problem Number:** #128
+- **Difficulty:** Medium
+- **Link:** https://leetcode.com/problems/longest-consecutive-sequence/
+- **Category:** Arrays & Hashing
+
+**Problem:**
+Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence. Must run in O(n) time.
+
+**Constraints:**
+- 0 <= nums.length <= 10^5
+- -10^9 <= nums[i] <= 10^9
+
+**Approach:**
+[To be documented after implementation]
+
+**Complexity Analysis:**
+- **Time Complexity:** [To be analyzed]
+- **Space Complexity:** [To be analyzed]
+
+**AI Assistance:**
+- TBD - Solution not yet implemented
+
+**Status:** 🔄 In Progress  
+**Implementation File:** `arraysAndHashing/LongestConsecutiveSequence.java`
+
+---
+
+#### ✅ Problem 16: Kth Largest Element in an Array (Completed)
+- **Platform:** LeetCode
+- **Problem Number:** #215
+- **Difficulty:** Medium
+- **Link:** https://leetcode.com/problems/kth-largest-element-in-an-array/
+- **Category:** Arrays & Hashing
+
+**Problem:**
+Given an integer array nums and an integer k, return the kth largest element in the array (kth largest in sorted order, not the kth distinct element).
+
+**Constraints:**
+- 1 <= k <= nums.length <= 10^5
+- -10^4 <= nums[i] <= 10^4
+
+**Follow-up:**
+Can you solve it without sorting?
+
+**Approach:**
+Iterative Quickselect. Converts "kth largest" into "index (n-k) in ascending sorted order," then repeatedly partitions the array (Hoare-style, pivot = `nums[low]`) and narrows the `[low, high]` search range based on where the partition index lands relative to the target — no recursion, so no stack-depth risk regardless of array size.
+
+**Complexity Analysis:**
+- **Time Complexity:** O(n) average case; O(n²) worst case — pivot is always the first element of the range, so already-sorted/reverse-sorted input (see Test 7/8) causes maximally unbalanced partitions every step
+- **Space Complexity:** O(1) auxiliary — partitioning is in-place on the input array
+
+**Key Learnings:**
+- **Iterative quickselect avoids stack-depth risk:** Narrowing `low`/`high` in a `while` loop instead of recursing has the same average-case complexity as recursive quickselect but can't stack-overflow on large inputs.
+- **Fixed first-element pivot is quickselect's classic weak point:** Degrades to O(n²) on already-sorted/reverse-sorted arrays. A randomized pivot (swap `nums[low]` with a random index in range before reading it) fixes this without restructuring the algorithm.
+- **Counting sort in disguise:** Compared against an external LeetCode solution (HashMap frequency count + walk down from max value). Its O(n + R) time is only cheap because this problem bounds values to a small range (R ≤ 20,001) — it would degrade badly with wider value bounds, whereas quickselect's cost is independent of value magnitude.
+- **Cache locality beats "clean" Big-O:** In-place quickselect on a primitive array tends to beat HashMap-based counting in practice due to boxing, hashing, and pointer-chasing overhead in the HashMap approach — even when both are theoretically O(n).
+
+**Alternative Approaches Analyzed:**
+1. **Iterative Quickselect (implemented)** — O(n) average / O(n²) worst, O(1) space
+2. **Sort then index `nums[n-k]`** — O(n log n) time, O(log n) space — simplest
+3. **Min-heap bounded to size k** — O(n log k) time, O(k) space — best when k << n
+4. **Max-heap of all n elements** — O(n log n) time, O(n) space — rarely better than sorting
+5. **Counting sort via frequency map (external solution)** — O(n + R) time, O(min(n, R)) space — only cheap when the value range R is small and bounded
+
+**TODOs Unlocked:**
+Solving this with Quickselect satisfies the prerequisite for TODO #2 (K Closest Points to Origin, #973 — Quickselect approach). Not yet marked ready in `TODOS.md` pending confirmation (see `/todos`).
+
+**AI Assistance:**
+- ❌ No - Solution implemented independently by user
+- ℹ️ Note: User caught and reported an incorrect expected value in Test 10 (AI had generated the wrong expected output); AI corrected it. AI also verified all other test cases, provided analysis, traced/compared against an external counting-sort solution, and created a detailed learning guide — no solution logic written by AI
+
+**Status:** ✅ Completed  
+**Implementation File:** `arraysAndHashing/KthLargestElementInArray.java`  
+**Detailed Learning Guide:** `arraysAndHashing/learnings/KthLargestElementInArray-Learning.md`
+
+---
+
 ## 📈 Progress by Category
 
 ### Arrays & Hashing
@@ -723,6 +804,8 @@ Added 3 TODOs to revisit this problem with alternative approaches once patterns 
 - [x] Encode and Decode Strings (Medium) - #271
 - [x] Max Consecutive Ones (Easy) - #485
 - [x] K Closest Points to Origin (Medium) - #973
+- [ ] Longest Consecutive Sequence (Medium) - #128 (🔄 In Progress)
+- [x] Kth Largest Element in an Array (Medium) - #215
 
 ### Two Pointers
 - [ ] *No problems yet*
@@ -813,6 +896,10 @@ Added 3 TODOs to revisit this problem with alternative approaches once patterns 
 - **Know when heap beats sort:** When k << n (e.g., k=10, n=10,000), Max Heap O(n log k) is 4x faster than full sort O(n log n)
 - **Heap size drives complexity, not heap presence:** Building a max-heap from ALL unique elements is O(u log u) — no better than sorting. Only bounding the heap to size k yields the O(n log k) improvement
 - **Bucket sort beats heaps for frequency problems:** When frequency is bounded by array length, indexing buckets by count gives O(n) time with no log factor at all
+- **Iterative quickselect avoids recursion risk:** Narrowing low/high in a while loop has the same average complexity as recursive quickselect but eliminates stack-depth concerns on large arrays
+- **Fixed-pivot quickselect degrades on sorted input:** Always picking nums[low] as pivot causes O(n²) worst case on already-sorted/reverse-sorted arrays; randomizing the pivot fixes this without restructuring the algorithm
+- **"O(n)" claims can hide a bounded-range assumption:** A HashMap-based counting solution can look like O(n) but is really O(n + R) where R is the value range — only cheap because this problem bounds values to a small span
+- **Cache locality beats theoretical Big-O:** In-place array operations on primitives tend to outperform HashMap-based approaches in practice due to boxing, hashing, and pointer-chasing overhead, even at matching asymptotic complexity
 
 ### Patterns Identified
 - **Duplicate Detection Pattern:** Use HashSet for O(n) time complexity vs O(n²) brute force
@@ -843,6 +930,8 @@ Added 3 TODOs to revisit this problem with alternative approaches once patterns 
 - **Distance comparison pattern:** For problems involving Euclidean distance, avoid sqrt by comparing squared distances (√a < √b ⟺ a < b for non-negative)
 - **K-selection pattern:** Three approaches based on requirements: Full sort O(n log n) for simplicity, Max Heap O(n log k) when k << n, Quickselect O(n) for optimal average
 - **Bounded heap pattern:** For "top k" problems, cap the heap at size k and evict the smallest on overflow — turns an O(u log u) heap build into O(u log k)
+- **Quickselect pattern:** Convert "kth largest/smallest" into a target index in sorted order, then partition-and-narrow (Hoare/Lomuto style) instead of fully sorting — O(n) average
+- **Counting/bucket-by-value pattern:** When a problem bounds the value range tightly relative to n, indexing by value can beat comparison-based approaches — but only within that bound
 
 ---
 
@@ -854,4 +943,4 @@ Added 3 TODOs to revisit this problem with alternative approaches once patterns 
 
 ---
 
-*This tracker is automatically maintained. Last entry added: Sunday, July 5, 2026 (Top K Frequent Elements #347)*
+*This tracker is automatically maintained. Last entry added: Tuesday, July 7, 2026 (Kth Largest Element in an Array #215)*
