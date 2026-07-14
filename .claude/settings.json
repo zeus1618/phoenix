@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git commit -m ' *)",
+      "Skill(keybindings-help)",
+      "Skill(keybindings-help:*)",
+      "Bash(echo \"exit: $?\")",
+      "Bash(javac -d /tmp/*)",
+      "Bash(javac -d /private/tmp/*)",
+      "Bash(java -cp /tmp/*)",
+      "Bash(java -cp /private/tmp/*)",
+      "Bash(rm -rf /tmp/*)",
+      "Bash(rm -rf /private/tmp/*)",
+      "Bash(mkdir -p /tmp/*)",
+      "Bash(mkdir -p /private/tmp/*)",
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "Bash(code --install-extension fwcd.kotlin)",
+      "Bash(LOGDIR=\"/Users/A200378640/Library/Application Support/Code/logs/20260712T213615\" *)",
+      "Read(//Users/A200378640/Library/Application Support/Code/logs/20260712T213615/**)",
+      "Read(//Users/A200378640/.vscode/extensions/fwcd.kotlin-0.2.36/**)",
+      "Bash(python3 -c \"import json,sys; d=json.load\\(sys.stdin\\); print\\('activationEvents:', d.get\\('activationEvents'\\)\\); print\\('main:', d.get\\('main'\\)\\); print\\('engines:', d.get\\('engines'\\)\\)\")",
+      "Bash(python3 -c ' *)"
+    ],
+    "additionalDirectories": [
+      "/private/tmp/phoenix-build",
+      "/tmp"
+    ]
+  }
+}
