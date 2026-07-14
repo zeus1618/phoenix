@@ -2,6 +2,8 @@ package arraysAndHashing;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.stream.IntStream;
 import java.util.Arrays;
 
 /**
@@ -89,7 +91,7 @@ public class KClosestPointsToOrigin {
      * @param k number of closest points to return
      * @return array of k closest points to origin
      */
-    public int[][] kClosest(int[][] points, int k) {
+    public int[][] kClosestOld(int[][] points, int k) {
         List<Pair> coordinates = new ArrayList<>();
         for(int i=0; i<points.length; i++) {
             Pair p = new Pair(points[i][0], points[i][1]);
@@ -107,6 +109,34 @@ public class KClosestPointsToOrigin {
         return kClose;
     }
 
+    /**
+     * Returns the k closest points to the origin (0, 0).
+     * 
+     * Approach : Priority queue
+     * 
+     * @param points array of points where points[i] = [xi, yi]
+     * @param k number of closest points to return
+     * @return array of k closest points to origin
+     */
+    public int[][] kClosest(int[][] points, int k) {
+        int[][] kClose = new int[k][2];
+        
+        PriorityQueue<Pair> pq = new PriorityQueue<>((p1,p2) -> p1.distance()-p2.distance());
+
+        for(int i=0; i<points.length; i++) {
+            Pair p = new Pair(points[i][0], points[i][1]);
+            pq.offer(p);
+        }
+
+        IntStream.range(0, k).forEach(i -> {
+            Pair p = pq.poll();
+            kClose[i][0] = p.x;
+            kClose[i][1] = p.y;
+        });
+
+        return kClose;
+    }
+
     public class Pair {
         public int x,y;
         public Pair(int x, int y) {
@@ -121,6 +151,28 @@ public class KClosestPointsToOrigin {
             return x + ":" + y;
         }
     }
+
+    // public void heapify(int[][] points){
+    //     int pointsLength = points.length;
+    //     for(int i=pointsLength/2 -1; i>=0; i--){
+    //         int[] node = points[i];
+
+    //     }
+    // }
+
+    // public void tryToMoveNodeDown(int[][] points, int pos){
+    //     if(pos > points.length/2 -1){
+    //         return;
+    //     }
+    //     int[] lChild, rChild;
+
+    //     lChild = points[2*pos];
+    //     rChild = points[2*pos+1];
+    // }
+
+    // public int distance(int[] point){
+    //     return point[0]*point[0] + point[1]*point[1];
+    // }
 
     /**
      * Helper method to run a single test case and display results.
@@ -157,6 +209,47 @@ public class KClosestPointsToOrigin {
             .toArray(String[]::new);
         
         return Arrays.equals(sorted1, sorted2);
+    }
+
+    /**
+     * Validates a k-closest result when the input contains distance ties, where multiple
+     * different sets of k points are equally correct. A point is valid if it actually exists
+     * in the input (no duplicates/invented points) and its distance does not exceed the
+     * k-th smallest distance among all points.
+     */
+    private static boolean isValidKClosest(int[][] points, int k, int[][] actual) {
+        if (actual.length != k) return false;
+
+        int[] sortedDistances = new int[points.length];
+        for (int i = 0; i < points.length; i++) {
+            sortedDistances[i] = points[i][0] * points[i][0] + points[i][1] * points[i][1];
+        }
+        Arrays.sort(sortedDistances);
+        int thresholdDistance = sortedDistances[k - 1];
+
+        List<String> remainingPoints = new ArrayList<>();
+        for (int[] p : points) remainingPoints.add(Arrays.toString(p));
+
+        for (int[] p : actual) {
+            int dist = p[0] * p[0] + p[1] * p[1];
+            if (dist > thresholdDistance) return false;
+            if (!remainingPoints.remove(Arrays.toString(p))) return false;
+        }
+        return true;
+    }
+
+    /**
+     * Helper method to run a test case where multiple outputs are correct due to distance
+     * ties, so validation uses isValidKClosest instead of an exact expected match.
+     */
+    private static void runTieTest(int testNumber, int[][] points, int k, int[][] actual) {
+        boolean passed = isValidKClosest(points, k, actual);
+
+        System.out.println("Test " + testNumber + ": " + (passed ? "PASS ✓" : "FAIL ✗"));
+        System.out.println("  Input: points = " + Arrays.deepToString(points) + ", k = " + k);
+        System.out.println("  Actual:   " + Arrays.deepToString(actual));
+        System.out.println("  Note: Distance ties allow multiple correct answers; validated against k-th smallest distance threshold.");
+        System.out.println();
     }
 
     /**
@@ -203,9 +296,8 @@ public class KClosestPointsToOrigin {
         int k3 = 2;
         // Any 2 points are acceptable since all have same distance = 1
         int[][] actual3 = solution.kClosest(points3, k3);
-        runTest(++totalTests, points3, k3, new int[][]{{1, 0}, {0, 1}}, actual3);
-        // For this test, just check we got k points
-        if (actual3.length == k3) passedTests++;
+        runTieTest(++totalTests, points3, k3, actual3);
+        if (isValidKClosest(points3, k3, actual3)) passedTests++;
 
         // Test 4: k equals array length (return all points)
         int[][] points4 = {{0, 1}, {1, 0}};
@@ -255,13 +347,12 @@ public class KClosestPointsToOrigin {
         runTest(++totalTests, points9, k9, expected9, actual9);
         if (areArraysEquivalent(expected9, actual9)) passedTests++;
 
-        // Test 10: Mixed quadrants
+        // Test 10: Mixed quadrants (distance tie among the 4 non-origin points)
         int[][] points10 = {{1, 2}, {-1, 2}, {1, -2}, {-1, -2}, {0, 0}};
         int k10 = 3;
-        int[][] expected10 = {{0, 0}, {1, 2}, {-1, 2}};
         int[][] actual10 = solution.kClosest(points10, k10);
-        runTest(++totalTests, points10, k10, expected10, actual10);
-        if (areArraysEquivalent(expected10, actual10)) passedTests++;
+        runTieTest(++totalTests, points10, k10, actual10);
+        if (isValidKClosest(points10, k10, actual10)) passedTests++;
 
         // Print final summary
         printSummary(passedTests, totalTests);
