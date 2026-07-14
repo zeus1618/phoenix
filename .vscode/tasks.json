@@ -1,0 +1,27 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "kotlin: gradle build (debug)",
+      "type": "shell",
+      "command": "./gradlew build",
+      "options": {
+        "cwd": "${workspaceFolder}/kotlin"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "kotlin: run current file",
+      "type": "shell",
+      "command": "mkdir -p /tmp/phoenix-out/${relativeFileDirname} && kotlinc ${fileName} -include-runtime -d /tmp/phoenix-out/${relativeFileDirname}/${fileBasenameNoExtension}.jar && java -jar /tmp/phoenix-out/${relativeFileDirname}/${fileBasenameNoExtension}.jar",
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      }
+    }
+  ]
+}

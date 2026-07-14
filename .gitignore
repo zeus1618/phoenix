@@ -1,0 +1,7 @@
+# Build artifacts (safety net — Code Runner now builds Kotlin into /tmp/phoenix-out, outside the repo)
+*.jar
+!kotlin/gradle/wrapper/gradle-wrapper.jar
+
+# Gradle (kotlin/ project — gradlew, gradlew.bat and gradle/wrapper/* ARE committed)
+kotlin/.gradle/
+kotlin/build/

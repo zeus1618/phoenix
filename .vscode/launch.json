@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "kotlin",
+      "request": "launch",
+      "name": "Kotlin: Debug (Gradle project)",
+      "projectRoot": "${workspaceFolder}/Kotlin",
+      "mainClass": "${input:kotlinMainClass}",
+      "preLaunchTask": "kotlin: gradle build (debug)"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "kotlinMainClass",
+      "type": "promptString",
+      "description": "Fully qualified main class (filename in PascalCase + 'Kt', prefixed with package if any, e.g. TestKt or arraysAndHashing.FooKt)",
+      "default": "TestKt"
+    }
+  ]
+}

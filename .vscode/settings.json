@@ -1,0 +1,5 @@
+{
+  "code-runner.executorMap": {
+    "kotlin": "cd $dir && mkdir -p /tmp/phoenix-out/$relativeFileDirname && kotlinc $fileName -include-runtime -d /tmp/phoenix-out/$relativeFileDirname/$fileNameWithoutExt.jar && java -jar /tmp/phoenix-out/$relativeFileDirname/$fileNameWithoutExt.jar"
+  }
+}
