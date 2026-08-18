@@ -1,6 +1,6 @@
 # DSA Learning Progress Tracker
 
-> **Last Updated:** Thursday, July 16, 2026
+> **Last Updated:** Tuesday, August 18, 2026
 
 ---
 
@@ -17,9 +17,9 @@
 
 ## 📊 Summary Statistics
 
-- **Total Problems Solved:** 15
+- **Total Problems Solved:** 16
 - **Problems In Progress:** 2
-- **Categories Covered:** Arrays & Hashing
+- **Categories Covered:** Arrays & Hashing, Two Pointers
 - **Current Streak:** 7 days
 
 ---
@@ -45,6 +45,7 @@
 | 15 | 2026-07-05 | [Longest Consecutive Sequence (#128)](https://leetcode.com/problems/longest-consecutive-sequence/) | Medium | Arrays & Hashing | TBD | TBD | TBD | 🔄 In Progress |
 | 16 | 2026-07-06 | [Kth Largest Element in an Array (#215)](https://leetcode.com/problems/kth-largest-element-in-an-array/) | Medium | Arrays & Hashing | O(n) avg / O(n²) worst | O(1) | ❌ No | ✅ Done |
 | 17 | 2026-07-16 | Sort the Tuples (pasted description, no link/platform given) | Easy | Arrays & Hashing | TBD | TBD | TBD | 🔄 In Progress |
+| 18 | 2026-08-18 | [Merge Strings Alternately (#1768)](https://leetcode.com/problems/merge-strings-alternately/) | Easy | Two Pointers | O(n+m) | O(n+m) | ❌ No | ✅ Done |
 
 ---
 
@@ -818,6 +819,46 @@ Output: [(1, 1), (8, 2), (5, 3)]
 
 ---
 
+#### ✅ Problem 18: Merge Strings Alternately (Completed)
+- **Platform:** LeetCode
+- **Problem Number:** #1768
+- **Difficulty:** Easy
+- **Link:** https://leetcode.com/problems/merge-strings-alternately/description/
+- **Category:** Two Pointers
+
+**Problem:**
+Given two strings word1 and word2, merge them by adding letters in alternating order, starting with word1. If one string is longer than the other, append the remaining letters onto the end of the merged string.
+
+**Constraints:**
+- 1 <= word1.length, word2.length <= 100
+- word1 and word2 consist of lowercase English letters
+
+**Approach:**
+Two-pointer interleaving over char array copies. Both strings converted to char[] up front; a single output index i is advanced by two independent pointers (p1, p2), one per source array. Each loop iteration writes from word1 if p1 hasn't run out, then from word2 if p2 hasn't run out. Because the two writes are independent checks rather than a paired step, once one string is exhausted its check simply stops firing and the other keeps filling the output every iteration — the trailing tail of the longer string falls out of the same loop with no special-case branch.
+
+**Complexity Analysis:**
+- **Time Complexity:** O(n + m) — single pass, every character of both strings visited exactly once
+- **Space Complexity:** O(n + m) total (output is unavoidable). Auxiliary space (excluding output) is also O(n + m) due to the two toCharArray() copies; reading via charAt() directly instead would bring auxiliary space down to O(1)
+
+**Key Learnings:**
+- **Independent per-source checks avoid special-casing:** Two separate if-checks in one loop (rather than one combined step) is what makes "append the leftover tail" fall out automatically for unequal-length inputs
+- **toCharArray() trades space for indexed access:** Since String already supports O(1) charAt(), copying to char[] first isn't required here — it costs O(n+m) auxiliary space for no algorithmic benefit
+- **First application of the Two Pointers pattern** in this repo — two independently-advancing indices merging two sequences into one output
+
+**Alternative Approaches Analyzed:**
+1. **Char-array two-pointer (implemented)** — O(n+m) time, O(n+m) auxiliary space — correct and optimal time, but copies both inputs unnecessarily
+2. **charAt() two-pointer** — O(n+m) time, O(1) auxiliary space — same structure, reads chars in place instead of copying
+3. **StringBuilder + charAt()** — O(n+m) time, O(1) auxiliary space — most idiomatic Java version of this pattern
+
+**AI Assistance:**
+- ❌ No - Solution implemented independently by user
+- ℹ️ Note: AI provided analysis after implementation, identified the unnecessary toCharArray() auxiliary space, and suggested the charAt()/StringBuilder alternatives — no solution logic written by AI
+
+**Status:** ✅ Completed
+**Implementation File:** `twoPointers/MergeStringsAlternately.java`
+
+---
+
 ## 📈 Progress by Category
 
 ### Arrays & Hashing
@@ -840,7 +881,7 @@ Output: [(1, 1), (8, 2), (5, 3)]
 - [ ] Sort the Tuples (Easy) (🔄 In Progress)
 
 ### Two Pointers
-- [ ] *No problems yet*
+- [x] Merge Strings Alternately (Easy) - #1768
 
 ### Sliding Window
 - [ ] *No problems yet*
@@ -932,6 +973,8 @@ Output: [(1, 1), (8, 2), (5, 3)]
 - **Fixed-pivot quickselect degrades on sorted input:** Always picking nums[low] as pivot causes O(n²) worst case on already-sorted/reverse-sorted arrays; randomizing the pivot fixes this without restructuring the algorithm
 - **"O(n)" claims can hide a bounded-range assumption:** A HashMap-based counting solution can look like O(n) but is really O(n + R) where R is the value range — only cheap because this problem bounds values to a small span
 - **Cache locality beats theoretical Big-O:** In-place array operations on primitives tend to outperform HashMap-based approaches in practice due to boxing, hashing, and pointer-chasing overhead, even at matching asymptotic complexity
+- **Independent per-source checks avoid special-casing:** When merging two sequences, using two separate if-checks in one loop (rather than one paired step) makes "append the leftover tail" of the longer sequence fall out automatically, with no dedicated branch for unequal lengths
+- **toCharArray() isn't free:** Converting a String to char[] for indexed access costs O(n) auxiliary space; when only sequential/indexed reads are needed, String.charAt() gives the same access pattern at O(1) auxiliary space
 
 ### Patterns Identified
 - **Duplicate Detection Pattern:** Use HashSet for O(n) time complexity vs O(n²) brute force
@@ -964,6 +1007,7 @@ Output: [(1, 1), (8, 2), (5, 3)]
 - **Bounded heap pattern:** For "top k" problems, cap the heap at size k and evict the smallest on overflow — turns an O(u log u) heap build into O(u log k)
 - **Quickselect pattern:** Convert "kth largest/smallest" into a target index in sorted order, then partition-and-narrow (Hoare/Lomuto style) instead of fully sorting — O(n) average
 - **Counting/bucket-by-value pattern:** When a problem bounds the value range tightly relative to n, indexing by value can beat comparison-based approaches — but only within that bound
+- **Two-pointer merge/interleave pattern:** For combining two sequences element-by-element, advance one independent index per source alongside a shared output index; each source's check simply stops firing once exhausted, so the other source's remaining elements flow through unchanged
 
 ---
 
@@ -975,4 +1019,4 @@ Output: [(1, 1), (8, 2), (5, 3)]
 
 ---
 
-*This tracker is automatically maintained. Last entry added: Thursday, July 16, 2026 (Sort the Tuples)*
+*This tracker is automatically maintained. Last entry added: Tuesday, August 18, 2026 (Merge Strings Alternately - Completed)*

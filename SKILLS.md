@@ -1,14 +1,14 @@
 # 🎯 DSA Skills & Concepts Tracker
 
-> **Last Updated:** Tuesday, July 7, 2026
+> **Last Updated:** Tuesday, August 18, 2026
 
 ---
 
 ## 📊 Quick Stats
 
-- **Total Concepts Mastered:** 11
+- **Total Concepts Mastered:** 12
 - **Most Used Concept:** HashMap (5 times)
-- **Recently Learned:** Quickselect (2026-07-06)
+- **Recently Learned:** Two Pointers (2026-08-18)
 - **Average Reuse Rate:** 1.9 times per concept
 
 ---
@@ -28,6 +28,7 @@
 | Array Reversal | Pattern | 2026-02-26 | Rotate Array (#189) | 1 | Rotate Array (#189) (2026-02-26) |
 | Priority Queue (Heap) | Data Structure | 2026-02-15 | Top K Frequent Elements (#347) | 1 | Top K Frequent Elements (#347) (2026-02-15) |
 | Quickselect | Algorithm | 2026-07-06 | Kth Largest Element in an Array (#215) | 1 | Kth Largest Element in an Array (#215) (2026-07-06) |
+| Two Pointers | Pattern | 2026-08-18 | Merge Strings Alternately (#1768) | 1 | Merge Strings Alternately (#1768) (2026-08-18) |
 
 ---
 
@@ -59,6 +60,7 @@
 | Kadane's Algorithm | 2026-02-15 | 2 | Maximum Product Subarray (#152) (2026-02-18) |
 | Prefix Product | 2026-02-18 | 1 | Product of Array Except Self (#238) (2026-02-18) |
 | Array Reversal | 2026-02-26 | 1 | Rotate Array (#189) (2026-02-26) |
+| Two Pointers | 2026-08-18 | 1 | Merge Strings Alternately (#1768) (2026-08-18) |
 
 ### Time/Space Optimization
 *Track: In-place operations, Constant space, Memoization, etc.*
@@ -83,7 +85,7 @@
 | 🏆 Master (11+) | *None yet* | 0 |
 | 🌳 Proficient (6-10) | *None yet* | 0 |
 | 🌿 Intermediate (3-5) | HashMap, In-place Operation, Constant Space | 3 |
-| 🌱 Beginner (1-2) | HashSet, Frequency Array, Sorting, Kadane's Algorithm, Prefix Product, Array Reversal, Priority Queue (Heap), Quickselect | 8 |
+| 🌱 Beginner (1-2) | HashSet, Frequency Array, Sorting, Kadane's Algorithm, Prefix Product, Array Reversal, Priority Queue (Heap), Quickselect, Two Pointers | 9 |
 
 ---
 
@@ -97,11 +99,11 @@
 5. **HashSet** - 2 times (🌱 Beginner)
 
 ### Recently Learned (Last 5)
-1. **Quickselect** (2026-07-06) - Kth Largest Element in an Array
-2. **Priority Queue (Heap)** (2026-02-15) - Top K Frequent Elements
-3. **Array Reversal** (2026-02-26) - Rotate Array
-4. **Constant Space** (2026-02-18) - Product of Array Except Self
-5. **In-place Operation** (2026-02-18) - Product of Array Except Self
+1. **Two Pointers** (2026-08-18) - Merge Strings Alternately
+2. **Quickselect** (2026-07-06) - Kth Largest Element in an Array
+3. **Priority Queue (Heap)** (2026-02-15) - Top K Frequent Elements
+4. **Array Reversal** (2026-02-26) - Rotate Array
+5. **Constant Space** (2026-02-18) - Product of Array Except Self
 
 ---
 
@@ -157,4 +159,4 @@ Use `/current` command to see:
 
 ---
 
-*Last tracking update: Tuesday, July 7, 2026 - Added Quickselect from Kth Largest Element in an Array (#215); In-place Operation and Constant Space reached Intermediate (3 uses)*
+*Last tracking update: Tuesday, August 18, 2026 - Added Two Pointers from Merge Strings Alternately (#1768), first problem in the Two Pointers category*

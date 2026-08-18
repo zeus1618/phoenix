@@ -65,7 +65,8 @@ phoenix/
 │       ├── ValidSudoku-Learning.md
 │       ├── EncodeAndDecodeStrings-Learning.md
 │       └── KthLargestElementInArray-Learning.md
-├── twoPointers/                       # (Future problems)
+├── twoPointers/
+│   └── MergeStringsAlternately.java   # Problem solutions
 ├── slidingWindow/                     # (Future problems)
 ├── stack/                             # (Future problems)
 └── ...                                # More categories as we progress
@@ -87,7 +88,7 @@ phoenix/
 | Category | Problems Solved | Status |
 |----------|----------------|--------|
 | Arrays & Hashing | 15 | 🔄 In Progress |
-| Two Pointers | 0 | ⏳ Not Started |
+| Two Pointers | 1 | 🔄 In Progress |
 | Sliding Window | 0 | ⏳ Not Started |
 | Stack | 0 | ⏳ Not Started |
 | Binary Search | 0 | ⏳ Not Started |
@@ -319,15 +320,15 @@ Or open [SKILLS.md](SKILLS.md) for full details with complete usage history.
 
 ## 📈 Statistics
 
-- **Total Problems Solved:** 15
-- **Concepts Mastered:** 11
+- **Total Problems Solved:** 16
+- **Concepts Mastered:** 12
 - **Most Used Skill:** HashMap (5 times)
 - **Current Streak:** 7 days
-- **Categories Covered:** 1
+- **Categories Covered:** 2
 - **Difficulty Breakdown:**
-  - Easy: 5 problems
+  - Easy: 6 problems
   - Medium: 10 problems
-- **Last Updated:** Tuesday, July 7, 2026
+- **Last Updated:** Tuesday, August 18, 2026
 
 ---
 
@@ -368,7 +369,7 @@ This is a personal learning repository. The focus is on consistent practice and 
 
 ---
 
-**Last Updated:** July 7, 2026  
+**Last Updated:** August 18, 2026  
 **Status:** 🔥 Active - Daily Practice
 
 ---
