@@ -17,7 +17,7 @@
 
 ## 📊 Summary Statistics
 
-- **Total Problems Solved:** 16
+- **Total Problems Solved:** 17
 - **Problems In Progress:** 2
 - **Categories Covered:** Arrays & Hashing, Two Pointers
 - **Current Streak:** 7 days
@@ -46,6 +46,7 @@
 | 16 | 2026-07-06 | [Kth Largest Element in an Array (#215)](https://leetcode.com/problems/kth-largest-element-in-an-array/) | Medium | Arrays & Hashing | O(n) avg / O(n²) worst | O(1) | ❌ No | ✅ Done |
 | 17 | 2026-07-16 | Sort the Tuples (pasted description, no link/platform given) | Easy | Arrays & Hashing | TBD | TBD | TBD | 🔄 In Progress |
 | 18 | 2026-08-18 | [Merge Strings Alternately (#1768)](https://leetcode.com/problems/merge-strings-alternately/) | Easy | Two Pointers | O(n+m) | O(n+m) | ❌ No | ✅ Done |
+| 19 | 2026-08-18 | [Greatest Common Divisor of Strings (#1071)](https://leetcode.com/problems/greatest-common-divisor-of-strings/) | Easy | Arrays & Hashing | O(n+m) | O(n+m) | ❌ No | ✅ Done |
 
 ---
 
@@ -859,6 +860,53 @@ Two-pointer interleaving over char array copies. Both strings converted to char[
 
 ---
 
+#### ✅ Problem 19: Greatest Common Divisor of Strings (Completed)
+- **Platform:** LeetCode
+- **Problem Number:** #1071
+- **Difficulty:** Easy
+- **Link:** https://leetcode.com/problems/greatest-common-divisor-of-strings/description/
+- **Category:** Arrays & Hashing
+
+**Problem:**
+For two strings s and t, t "divides" s if s = t + t + ... + t (t concatenated with itself one or more times). Given str1 and str2, return the largest string x such that x divides both str1 and str2.
+
+**Constraints:**
+- 1 <= str1.length, str2.length <= 1000
+- str1 and str2 consist of English uppercase letters
+
+**Approach:**
+Concatenation-commutativity check + Euclidean GCD. A common divisor string x can only exist if str1 and str2 commute under concatenation, i.e. str1+str2 equals str2+str1 (a consequence of the string periodicity / Fine-Wilf theorem — this is both necessary and sufficient). When that holds, the length of the greatest such x is always exactly gcd(str1.length(), str2.length()), so the answer is simply str1.substring(0, gcd) — no candidate search required.
+
+**Evolution of Solution:**
+1. **First Attempt (`lcdOfStrings`):** Incremental single-character scan checking `String.split()` emptiness at each growing prefix length — returns the *first* length that divides both strings, not the *largest*. Bug caught by a test case with two all-'A' strings (multiple valid divisor lengths exist; it stopped at length 1 instead of finding length 500)
+2. **Second Attempt (`gcdOfStringOld`):** Binary-halving search over candidate lengths starting from the shorter string's length. Only checks lengths reachable by repeatedly halving, so it can miss the true GCD length when it isn't power-of-2-related to the starting length
+3. **Final Solution (`gcdOfStrings`):** Recognized the concatenation-commutativity theorem — eliminates candidate search entirely by proving the answer length is uniquely gcd(n, m)
+
+**Complexity Analysis:**
+- **Time Complexity:** O(n + m) — dominated by building and comparing the two concatenated strings; the recursive Euclidean `gcd()` call is only O(log(min(n, m)))
+- **Space Complexity:** O(n + m) — the two concatenated strings, plus O(log(min(n, m))) recursion stack for `gcd()`, plus O(gcd) for the output
+
+**Key Learnings:**
+- **Concatenation check is necessary AND sufficient:** Once `str1+str2 == str2+str1` passes, no per-candidate verification is needed — this single check replaces an entire search
+- **Uniqueness of the GCD length:** When a common divisor exists, its length is always exactly gcd(len1, len2) — there's never more than one valid answer length to consider
+- **Incremental/greedy search bugs hide behind weak test data:** The first attempt passed 9/10 handwritten tests and only failed on a case with multiple valid divisor lengths (repeated single character) — a reminder that "many divisor lengths exist" cases are the ones that expose greedy-stops-too-early bugs
+- **Halving search misses non-power-of-2 divisor lengths:** Reducing candidate length by repeated halving only explores a small subset of all divisors of the starting length, not all common divisor lengths between the two strings
+
+**Alternative Approaches Analyzed:**
+1. **Concatenation check + Euclidean GCD (implemented)** — O(n+m) time, O(n+m) space — optimal, no candidate search
+2. **Incremental single-character scan** — O(n·m) worst case, O(n+m) space — buggy: returns first valid length, not largest
+3. **Binary-halving candidate search** — O(n log n) time, O(n+m) space — buggy: misses valid lengths not reachable via halving
+
+**AI Assistance:**
+- ❌ No - Solution implemented independently by user
+- ℹ️ Note: AI wrote a test case (all-'A' strings with two valid divisor lengths) that exposed the first attempt's greedy-stops-early bug; AI then verified the final solution passes all cases and explained the concatenation-commutativity theorem after implementation — no solution logic written by AI
+
+**Status:** ✅ Completed
+**Implementation File:** `arraysAndHashing/GreatestCommonDivisorOfStrings.java`
+**Detailed Learning Guide:** `arraysAndHashing/learnings/GreatestCommonDivisorOfStrings-Learning.md`
+
+---
+
 ## 📈 Progress by Category
 
 ### Arrays & Hashing
@@ -879,6 +927,7 @@ Two-pointer interleaving over char array copies. Both strings converted to char[
 - [ ] Longest Consecutive Sequence (Medium) - #128 (🔄 In Progress)
 - [x] Kth Largest Element in an Array (Medium) - #215
 - [ ] Sort the Tuples (Easy) (🔄 In Progress)
+- [x] Greatest Common Divisor of Strings (Easy) - #1071
 
 ### Two Pointers
 - [x] Merge Strings Alternately (Easy) - #1768
@@ -975,6 +1024,9 @@ Two-pointer interleaving over char array copies. Both strings converted to char[
 - **Cache locality beats theoretical Big-O:** In-place array operations on primitives tend to outperform HashMap-based approaches in practice due to boxing, hashing, and pointer-chasing overhead, even at matching asymptotic complexity
 - **Independent per-source checks avoid special-casing:** When merging two sequences, using two separate if-checks in one loop (rather than one paired step) makes "append the leftover tail" of the longer sequence fall out automatically, with no dedicated branch for unequal lengths
 - **toCharArray() isn't free:** Converting a String to char[] for indexed access costs O(n) auxiliary space; when only sequential/indexed reads are needed, String.charAt() gives the same access pattern at O(1) auxiliary space
+- **Concatenation commutativity replaces candidate search:** For "does string x divide both str1 and str2" problems, checking str1+str2 == str2+str1 is necessary and sufficient — it collapses an entire search for valid divisor lengths into one O(n+m) check
+- **A unique answer length beats searching for one:** When a common divisor exists, its length is always exactly gcd(len1, len2) — recognizing this eliminates the need to test multiple candidate lengths entirely
+- **Greedy-stops-early bugs hide behind weak test data:** An incremental scan that returns on the first valid candidate (rather than the best) will pass tests where only one valid candidate exists and only fail on inputs with multiple valid lengths (e.g. repeated-character strings)
 
 ### Patterns Identified
 - **Duplicate Detection Pattern:** Use HashSet for O(n) time complexity vs O(n²) brute force
@@ -1008,6 +1060,7 @@ Two-pointer interleaving over char array copies. Both strings converted to char[
 - **Quickselect pattern:** Convert "kth largest/smallest" into a target index in sorted order, then partition-and-narrow (Hoare/Lomuto style) instead of fully sorting — O(n) average
 - **Counting/bucket-by-value pattern:** When a problem bounds the value range tightly relative to n, indexing by value can beat comparison-based approaches — but only within that bound
 - **Two-pointer merge/interleave pattern:** For combining two sequences element-by-element, advance one independent index per source alongside a shared output index; each source's check simply stops firing once exhausted, so the other source's remaining elements flow through unchanged
+- **String periodicity / concatenation-check pattern:** For "does x divide/tile both strings" problems, test str1+str2 == str2+str1 instead of searching for a valid x directly; when it holds, the answer length is gcd(len1, len2)
 
 ---
 
@@ -1019,4 +1072,4 @@ Two-pointer interleaving over char array copies. Both strings converted to char[
 
 ---
 
-*This tracker is automatically maintained. Last entry added: Tuesday, August 18, 2026 (Merge Strings Alternately - Completed)*
+*This tracker is automatically maintained. Last entry added: Tuesday, August 18, 2026 (Greatest Common Divisor of Strings - Completed)*

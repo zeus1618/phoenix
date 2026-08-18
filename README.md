@@ -58,13 +58,16 @@ phoenix/
 │   ├── MaxConsecutiveOnes.java
 │   ├── KClosestPointsToOrigin.java
 │   ├── KthLargestElementInArray.java
+│   ├── SortTheTuples.java
+│   ├── GreatestCommonDivisorOfStrings.java
 │   └── learnings/                     # Deep dive learnings for complex problems
 │       ├── GroupAnagrams-Learning.md
 │       ├── MaximumProductSubarray-Learning.md
 │       ├── ProductOfArrayExceptSelf-Learning.md
 │       ├── ValidSudoku-Learning.md
 │       ├── EncodeAndDecodeStrings-Learning.md
-│       └── KthLargestElementInArray-Learning.md
+│       ├── KthLargestElementInArray-Learning.md
+│       └── GreatestCommonDivisorOfStrings-Learning.md
 ├── twoPointers/
 │   └── MergeStringsAlternately.java   # Problem solutions
 ├── slidingWindow/                     # (Future problems)
@@ -87,7 +90,7 @@ phoenix/
 
 | Category | Problems Solved | Status |
 |----------|----------------|--------|
-| Arrays & Hashing | 15 | 🔄 In Progress |
+| Arrays & Hashing | 16 | 🔄 In Progress |
 | Two Pointers | 1 | 🔄 In Progress |
 | Sliding Window | 0 | ⏳ Not Started |
 | Stack | 0 | ⏳ Not Started |
@@ -320,13 +323,13 @@ Or open [SKILLS.md](SKILLS.md) for full details with complete usage history.
 
 ## 📈 Statistics
 
-- **Total Problems Solved:** 16
-- **Concepts Mastered:** 12
+- **Total Problems Solved:** 17
+- **Concepts Mastered:** 15
 - **Most Used Skill:** HashMap (5 times)
 - **Current Streak:** 7 days
 - **Categories Covered:** 2
 - **Difficulty Breakdown:**
-  - Easy: 6 problems
+  - Easy: 7 problems
   - Medium: 10 problems
 - **Last Updated:** Tuesday, August 18, 2026
 
