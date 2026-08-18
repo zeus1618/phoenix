@@ -18,7 +18,7 @@
 ## 📊 Summary Statistics
 
 - **Total Problems Solved:** 17
-- **Problems In Progress:** 2
+- **Problems In Progress:** 3
 - **Categories Covered:** Arrays & Hashing, Two Pointers
 - **Current Streak:** 7 days
 
@@ -47,6 +47,7 @@
 | 17 | 2026-07-16 | Sort the Tuples (pasted description, no link/platform given) | Easy | Arrays & Hashing | TBD | TBD | TBD | 🔄 In Progress |
 | 18 | 2026-08-18 | [Merge Strings Alternately (#1768)](https://leetcode.com/problems/merge-strings-alternately/) | Easy | Two Pointers | O(n+m) | O(n+m) | ❌ No | ✅ Done |
 | 19 | 2026-08-18 | [Greatest Common Divisor of Strings (#1071)](https://leetcode.com/problems/greatest-common-divisor-of-strings/) | Easy | Arrays & Hashing | O(n+m) | O(n+m) | ❌ No | ✅ Done |
+| 20 | 2026-08-18 | [Reverse Words in a String (#151)](https://leetcode.com/problems/reverse-words-in-a-string/) | Medium | Arrays & Hashing | TBD | TBD | TBD | 🔄 In Progress |
 
 ---
 
@@ -907,6 +908,39 @@ Concatenation-commutativity check + Euclidean GCD. A common divisor string x can
 
 ---
 
+#### 🔄 Problem 20: Reverse Words in a String (In Progress)
+- **Platform:** LeetCode
+- **Problem Number:** #151
+- **Difficulty:** Medium
+- **Link:** https://leetcode.com/problems/reverse-words-in-a-string/description/
+- **Category:** Arrays & Hashing
+
+**Problem:**
+Given an input string s, reverse the order of the words. A word is a sequence of non-space characters, separated by at least one space. Return a string of the words in reverse order, joined by a single space, with no leading/trailing spaces and no internal runs of multiple spaces.
+
+**Constraints:**
+- 1 <= s.length <= 10^4
+- s contains English letters (upper-case and lower-case), digits, and spaces ' '
+- There is at least one word in s
+
+**Follow-up:**
+If the string data type is mutable in your language, can you solve it in-place with O(1) extra space?
+
+**Approach:**
+[To be documented after implementation]
+
+**Complexity Analysis:**
+- **Time Complexity:** [To be analyzed]
+- **Space Complexity:** [To be analyzed]
+
+**AI Assistance:**
+- TBD - Solution not yet implemented
+
+**Status:** 🔄 In Progress
+**Implementation File:** `arraysAndHashing/ReverseWordsInAString.java`
+
+---
+
 ## 📈 Progress by Category
 
 ### Arrays & Hashing
@@ -928,6 +962,7 @@ Concatenation-commutativity check + Euclidean GCD. A common divisor string x can
 - [x] Kth Largest Element in an Array (Medium) - #215
 - [ ] Sort the Tuples (Easy) (🔄 In Progress)
 - [x] Greatest Common Divisor of Strings (Easy) - #1071
+- [ ] Reverse Words in a String (Medium) - #151 (🔄 In Progress)
 
 ### Two Pointers
 - [x] Merge Strings Alternately (Easy) - #1768
@@ -1072,4 +1107,4 @@ Concatenation-commutativity check + Euclidean GCD. A common divisor string x can
 
 ---
 
-*This tracker is automatically maintained. Last entry added: Tuesday, August 18, 2026 (Greatest Common Divisor of Strings - Completed)*
+*This tracker is automatically maintained. Last entry added: Tuesday, August 18, 2026 (Reverse Words in a String - In Progress)*
