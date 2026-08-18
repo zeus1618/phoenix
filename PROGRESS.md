@@ -1,6 +1,6 @@
 # DSA Learning Progress Tracker
 
-> **Last Updated:** Tuesday, July 7, 2026
+> **Last Updated:** Thursday, July 16, 2026
 
 ---
 
@@ -18,7 +18,7 @@
 ## 📊 Summary Statistics
 
 - **Total Problems Solved:** 15
-- **Problems In Progress:** 1
+- **Problems In Progress:** 2
 - **Categories Covered:** Arrays & Hashing
 - **Current Streak:** 7 days
 
@@ -44,6 +44,7 @@
 | 14 | 2026-03-02 | [K Closest Points to Origin (#973)](https://leetcode.com/problems/k-closest-points-to-origin/) | Medium | Arrays & Hashing | O(n log n) | O(n) | ❌ No | ✅ Done |
 | 15 | 2026-07-05 | [Longest Consecutive Sequence (#128)](https://leetcode.com/problems/longest-consecutive-sequence/) | Medium | Arrays & Hashing | TBD | TBD | TBD | 🔄 In Progress |
 | 16 | 2026-07-06 | [Kth Largest Element in an Array (#215)](https://leetcode.com/problems/kth-largest-element-in-an-array/) | Medium | Arrays & Hashing | O(n) avg / O(n²) worst | O(1) | ❌ No | ✅ Done |
+| 17 | 2026-07-16 | Sort the Tuples (pasted description, no link/platform given) | Easy | Arrays & Hashing | TBD | TBD | TBD | 🔄 In Progress |
 
 ---
 
@@ -787,6 +788,36 @@ Solving this with Quickselect satisfies the prerequisite for TODO #2 (K Closest 
 
 ---
 
+#### 🔄 Problem 17: Sort the Tuples (In Progress)
+- **Platform:** Not specified (pasted problem description, no link provided)
+- **Difficulty:** Easy
+- **Category:** Arrays & Hashing
+
+**Problem:**
+Given an array `ARR` of `N` tuples, each of length `L`, sort the tuples in non-decreasing order by their last element. If two tuples have the same last element, the tuple with the smaller original index should come first.
+
+**Constraints:**
+- Not specified in the given problem statement.
+
+**Example:**
+Input: N = 3, L = 2, ARR = [(1, 1), (5, 3), (8, 2)]
+Output: [(1, 1), (8, 2), (5, 3)]
+
+**Approach:**
+[To be documented after implementation]
+
+**Complexity Analysis:**
+- **Time Complexity:** [To be analyzed]
+- **Space Complexity:** [To be analyzed]
+
+**AI Assistance:**
+- TBD - Solution not yet implemented
+
+**Status:** 🔄 In Progress
+**Implementation File:** `arraysAndHashing/SortTheTuples.java`
+
+---
+
 ## 📈 Progress by Category
 
 ### Arrays & Hashing
@@ -806,6 +837,7 @@ Solving this with Quickselect satisfies the prerequisite for TODO #2 (K Closest 
 - [x] K Closest Points to Origin (Medium) - #973
 - [ ] Longest Consecutive Sequence (Medium) - #128 (🔄 In Progress)
 - [x] Kth Largest Element in an Array (Medium) - #215
+- [ ] Sort the Tuples (Easy) (🔄 In Progress)
 
 ### Two Pointers
 - [ ] *No problems yet*
@@ -943,4 +975,4 @@ Solving this with Quickselect satisfies the prerequisite for TODO #2 (K Closest 
 
 ---
 
-*This tracker is automatically maintained. Last entry added: Tuesday, July 7, 2026 (Kth Largest Element in an Array #215)*
+*This tracker is automatically maintained. Last entry added: Thursday, July 16, 2026 (Sort the Tuples)*
