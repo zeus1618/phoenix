@@ -70,7 +70,8 @@ phoenix/
 │       ├── KthLargestElementInArray-Learning.md
 │       └── GreatestCommonDivisorOfStrings-Learning.md
 ├── twoPointers/
-│   └── MergeStringsAlternately.java   # Problem solutions
+│   ├── MergeStringsAlternately.java   # Problem solutions
+│   └── StringCompression.java
 ├── slidingWindow/                     # (Future problems)
 ├── stack/                             # (Future problems)
 └── ...                                # More categories as we progress
@@ -92,7 +93,7 @@ phoenix/
 | Category | Problems Solved | Status |
 |----------|----------------|--------|
 | Arrays & Hashing | 16 | 🔄 In Progress |
-| Two Pointers | 1 | 🔄 In Progress |
+| Two Pointers | 2 | 🔄 In Progress |
 | Sliding Window | 0 | ⏳ Not Started |
 | Stack | 0 | ⏳ Not Started |
 | Binary Search | 0 | ⏳ Not Started |
@@ -324,14 +325,14 @@ Or open [SKILLS.md](SKILLS.md) for full details with complete usage history.
 
 ## 📈 Statistics
 
-- **Total Problems Solved:** 17
+- **Total Problems Solved:** 18
 - **Concepts Mastered:** 15
 - **Most Used Skill:** HashMap (5 times)
 - **Current Streak:** 7 days
 - **Categories Covered:** 2
 - **Difficulty Breakdown:**
   - Easy: 7 problems
-  - Medium: 10 problems
+  - Medium: 11 problems
 - **Last Updated:** Tuesday, August 18, 2026
 
 ---

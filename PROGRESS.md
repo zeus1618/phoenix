@@ -17,7 +17,7 @@
 
 ## 📊 Summary Statistics
 
-- **Total Problems Solved:** 17
+- **Total Problems Solved:** 18
 - **Problems In Progress:** 3
 - **Categories Covered:** Arrays & Hashing, Two Pointers
 - **Current Streak:** 7 days
@@ -48,6 +48,7 @@
 | 18 | 2026-08-18 | [Merge Strings Alternately (#1768)](https://leetcode.com/problems/merge-strings-alternately/) | Easy | Two Pointers | O(n+m) | O(n+m) | ❌ No | ✅ Done |
 | 19 | 2026-08-18 | [Greatest Common Divisor of Strings (#1071)](https://leetcode.com/problems/greatest-common-divisor-of-strings/) | Easy | Arrays & Hashing | O(n+m) | O(n+m) | ❌ No | ✅ Done |
 | 20 | 2026-08-18 | [Reverse Words in a String (#151)](https://leetcode.com/problems/reverse-words-in-a-string/) | Medium | Arrays & Hashing | TBD | TBD | TBD | 🔄 In Progress |
+| 21 | 2026-08-18 | [String Compression (#443)](https://leetcode.com/problems/string-compression/) | Medium | Two Pointers | O(n) | O(1) | ❌ No | ✅ Done |
 
 ---
 
@@ -941,6 +942,53 @@ If the string data type is mutable in your language, can you solve it in-place w
 
 ---
 
+#### ✅ Problem 21: String Compression (Completed)
+- **Platform:** LeetCode
+- **Problem Number:** #443
+- **Difficulty:** Medium
+- **Link:** https://leetcode.com/problems/string-compression/description/
+- **Category:** Two Pointers
+
+**Problem:**
+Given an array of characters chars, compress it in place using run-length encoding: for each group of consecutive repeating characters, append the character, followed by the group's length (omitted if the length is 1). Group lengths of 10 or more split into multiple digit characters. Return the new length of the array after compression.
+
+**Constraints:**
+- 1 <= chars.length <= 2000
+- chars[i] is a lowercase English letter, uppercase English letter, digit, or symbol
+
+**Follow-up:**
+Must use only constant extra space (O(1)).
+
+**Approach:**
+In-place read/write two-pointer. `i` tracks the compacted write position, `j` scans ahead counting the length of the current run. When a run's length is 1, its character is copied forward from `j` to the compacted position at `i`. When a run's length is greater than 1, the run's character stays at `i` and the digit characters of its length are written immediately after; the first character of the next run is then copied back from `j` to the new `i`, healing the gap created by compaction so the next iteration's comparison starts aligned.
+
+**Evolution of Solution:**
+1. **First Attempt:** Same two-pointer structure, but the `l==1` (singleton run) branch used `continue` to skip the write-back copy that the `l>1` branch performed as a shared trailing step. This left stale, pre-compaction data at `i` whenever a singleton run immediately followed an already-compacted run
+2. **Final Solution:** Added the write-back copy directly inside the `l==1` branch (`chars[i] = chars[j]` before advancing), so every run — singleton or multi-length — correctly heals the gap between the compacted write position and the original scan position
+
+**Complexity Analysis:**
+- **Time Complexity:** O(n) — `i` and `j` each advance strictly forward and never revisit a position, so total work across the scan is linear despite the nested while loop
+- **Space Complexity:** O(1) auxiliary — a few int/String locals only; the digit string per run is bounded (at most 4 characters, since chars.length <= 2000), and all writes happen in the input array itself
+
+**Key Learnings:**
+- **The write-back copy must happen for every run, not just multi-length ones:** the bug came from treating the `l==1` and `l>1` branches asymmetrically — only one of them performed the "pull the next run's leading character back to the compacted position" step
+- **A bug can leave the returned length correct while the array contents are wrong:** the buggy version returned the right length (6) for a stress case (`"aaaaaaaaaaaa"+"bcd"`, 12 a's then three singletons) while producing `[a,1,2,b,a,a]` instead of `[a,1,2,b,c,d]` — a test asserting on length alone would have passed
+- **The triggering condition is a specific combination, not a single category of edge case:** the bug only surfaces when a run of length ≥2 (which causes `i` to fall behind the original scan position) is immediately followed by a run of length 1 — none of the individually-reasonable-looking handwritten tests happened to combine both conditions
+
+**Alternative Approaches Analyzed:**
+1. **Read/write two-pointer with lookahead `while` (implemented)** — O(n) time, O(1) space — correct once both branches perform the write-back
+2. **Canonical read=write two-pointer** (every run, including singletons, always executes the same `chars[write++] = chars[read]` step with no special-cased branch) — O(n) time, O(1) space — simpler control flow, no asymmetry between branches to get wrong
+3. **StringBuilder + copy back into chars** — O(n) time, O(n) space — simple to get right, but violates the O(1) extra space follow-up
+
+**AI Assistance:**
+- ❌ No - Solution implemented independently by user
+- ℹ️ Note: AI's test suite included a stress case (singleton run immediately after a compacted multi-length run) that exposed a real bug — the returned length was correct but the array contents were wrong; AI explained the root cause (asymmetric write-back between branches) and verified the user's independent fix — no solution logic written by AI
+
+**Status:** ✅ Completed
+**Implementation File:** `twoPointers/StringCompression.java`
+
+---
+
 ## 📈 Progress by Category
 
 ### Arrays & Hashing
@@ -966,6 +1014,7 @@ If the string data type is mutable in your language, can you solve it in-place w
 
 ### Two Pointers
 - [x] Merge Strings Alternately (Easy) - #1768
+- [x] String Compression (Medium) - #443
 
 ### Sliding Window
 - [ ] *No problems yet*
@@ -1062,6 +1111,8 @@ If the string data type is mutable in your language, can you solve it in-place w
 - **Concatenation commutativity replaces candidate search:** For "does string x divide both str1 and str2" problems, checking str1+str2 == str2+str1 is necessary and sufficient — it collapses an entire search for valid divisor lengths into one O(n+m) check
 - **A unique answer length beats searching for one:** When a common divisor exists, its length is always exactly gcd(len1, len2) — recognizing this eliminates the need to test multiple candidate lengths entirely
 - **Greedy-stops-early bugs hide behind weak test data:** An incremental scan that returns on the first valid candidate (rather than the best) will pass tests where only one valid candidate exists and only fail on inputs with multiple valid lengths (e.g. repeated-character strings)
+- **A correct return value can mask corrupted output:** In in-place array problems that return a length alongside mutated array contents, a bug can leave the returned length correct while the array itself holds stale/wrong data — tests must assert on contents, not just the length, and specifically on inputs where a compaction has already occurred before the buggy branch triggers
+- **Asymmetric branches are a common source of two-pointer bugs:** When a read/write two-pointer algorithm has separate code paths for different run lengths, any step performed in one branch (like copying data forward to a compacted write position) must be verified as present in every branch — not just the one that happened to be written first
 
 ### Patterns Identified
 - **Duplicate Detection Pattern:** Use HashSet for O(n) time complexity vs O(n²) brute force
@@ -1096,6 +1147,7 @@ If the string data type is mutable in your language, can you solve it in-place w
 - **Counting/bucket-by-value pattern:** When a problem bounds the value range tightly relative to n, indexing by value can beat comparison-based approaches — but only within that bound
 - **Two-pointer merge/interleave pattern:** For combining two sequences element-by-element, advance one independent index per source alongside a shared output index; each source's check simply stops firing once exhausted, so the other source's remaining elements flow through unchanged
 - **String periodicity / concatenation-check pattern:** For "does x divide/tile both strings" problems, test str1+str2 == str2+str1 instead of searching for a valid x directly; when it holds, the answer length is gcd(len1, len2)
+- **In-place read/write two-pointer pattern:** For compacting an array in place (deduplication, compression, filtering), maintain a write pointer that trails a read/scan pointer; every category of element the scan encounters — including the "trivial" single-element case — must perform the same write-back step, or compacted positions are left holding stale data
 
 ---
 
@@ -1107,4 +1159,4 @@ If the string data type is mutable in your language, can you solve it in-place w
 
 ---
 
-*This tracker is automatically maintained. Last entry added: Tuesday, August 18, 2026 (Reverse Words in a String - In Progress)*
+*This tracker is automatically maintained. Last entry added: Tuesday, August 18, 2026 (String Compression - Completed)*
