@@ -18,7 +18,7 @@
 ## 📊 Summary Statistics
 
 - **Total Problems Solved:** 19
-- **Problems In Progress:** 3
+- **Problems In Progress:** 5
 - **Categories Covered:** Arrays & Hashing, Two Pointers
 - **Current Streak:** 7 days
 
@@ -51,6 +51,7 @@
 | 21 | 2026-08-18 | [String Compression (#443)](https://leetcode.com/problems/string-compression/) | Medium | Two Pointers | O(n) | O(1) | ❌ No | ✅ Done |
 | 22 | 2026-08-19 | [Kids With the Greatest Number of Candies (#1431)](https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/) | Easy | Arrays & Hashing | TBD | TBD | TBD | 🔄 In Progress |
 | 23 | 2026-08-19 | [Reverse Vowels of a String (#345)](https://leetcode.com/problems/reverse-vowels-of-a-string/) | Easy | Two Pointers | O(n) | O(n) | ❌ No | ✅ Done |
+| 24 | 2026-08-20 | [Can Place Flowers (#605)](https://leetcode.com/problems/can-place-flowers/) | Easy | Arrays & Hashing | TBD | TBD | TBD | 🔄 In Progress |
 
 ---
 
@@ -1061,6 +1062,37 @@ Two-pointer convergence on a char[] copy (required since String is immutable). `
 
 ---
 
+#### 🔄 Problem 24: Can Place Flowers (In Progress)
+- **Platform:** LeetCode
+- **Problem Number:** #605
+- **Difficulty:** Easy
+- **Link:** https://leetcode.com/problems/can-place-flowers/description/
+- **Category:** Arrays & Hashing
+
+**Problem:**
+Given a flowerbed array of 0's (empty) and 1's (planted) where no two 1's are adjacent, and an integer n, determine whether n new flowers can be planted without any two flowers ending up adjacent.
+
+**Constraints:**
+- 1 <= flowerbed.length <= 2 * 10^4
+- flowerbed[i] is 0 or 1
+- There are no two adjacent flowers in flowerbed
+- 0 <= n <= flowerbed.length
+
+**Approach:**
+[To be documented after implementation]
+
+**Complexity Analysis:**
+- **Time Complexity:** [To be analyzed]
+- **Space Complexity:** [To be analyzed]
+
+**AI Assistance:**
+- TBD - Solution not yet implemented
+
+**Status:** 🔄 In Progress
+**Implementation File:** `arraysAndHashing/CanPlaceFlowers.java`
+
+---
+
 ## 📈 Progress by Category
 
 ### Arrays & Hashing
@@ -1084,6 +1116,7 @@ Two-pointer convergence on a char[] copy (required since String is immutable). `
 - [x] Greatest Common Divisor of Strings (Easy) - #1071
 - [ ] Reverse Words in a String (Medium) - #151 (🔄 In Progress)
 - [ ] Kids With the Greatest Number of Candies (Easy) - #1431 (🔄 In Progress)
+- [ ] Can Place Flowers (Easy) - #605 (🔄 In Progress)
 
 ### Two Pointers
 - [x] Merge Strings Alternately (Easy) - #1768
@@ -1236,4 +1269,4 @@ Two-pointer convergence on a char[] copy (required since String is immutable). `
 
 ---
 
-*This tracker is automatically maintained. Last entry added: Wednesday, August 19, 2026 (Reverse Vowels of a String - Completed)*
+*This tracker is automatically maintained. Last entry added: Thursday, August 20, 2026 (Can Place Flowers - In Progress)*
