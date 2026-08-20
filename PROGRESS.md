@@ -18,7 +18,7 @@
 ## 📊 Summary Statistics
 
 - **Total Problems Solved:** 18
-- **Problems In Progress:** 3
+- **Problems In Progress:** 4
 - **Categories Covered:** Arrays & Hashing, Two Pointers
 - **Current Streak:** 7 days
 
@@ -49,6 +49,7 @@
 | 19 | 2026-08-18 | [Greatest Common Divisor of Strings (#1071)](https://leetcode.com/problems/greatest-common-divisor-of-strings/) | Easy | Arrays & Hashing | O(n+m) | O(n+m) | ❌ No | ✅ Done |
 | 20 | 2026-08-18 | [Reverse Words in a String (#151)](https://leetcode.com/problems/reverse-words-in-a-string/) | Medium | Arrays & Hashing | TBD | TBD | TBD | 🔄 In Progress |
 | 21 | 2026-08-18 | [String Compression (#443)](https://leetcode.com/problems/string-compression/) | Medium | Two Pointers | O(n) | O(1) | ❌ No | ✅ Done |
+| 22 | 2026-08-19 | [Kids With the Greatest Number of Candies (#1431)](https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/) | Easy | Arrays & Hashing | TBD | TBD | TBD | 🔄 In Progress |
 
 ---
 
@@ -989,6 +990,36 @@ In-place read/write two-pointer. `i` tracks the compacted write position, `j` sc
 
 ---
 
+#### 🔄 Problem 22: Kids With the Greatest Number of Candies (In Progress)
+- **Platform:** LeetCode
+- **Problem Number:** #1431
+- **Difficulty:** Easy
+- **Link:** https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/description/
+- **Category:** Arrays & Hashing
+
+**Problem:**
+Given an array candies where candies[i] is the number of candies kid i has, and an integer extraCandies, return a boolean array where result[i] is true if giving kid i all the extraCandies would make their total the greatest (or tied for greatest) among all kids.
+
+**Constraints:**
+- 2 <= candies.length <= 100
+- 1 <= candies[i] <= 100
+- 1 <= extraCandies <= 50
+
+**Approach:**
+[To be documented after implementation]
+
+**Complexity Analysis:**
+- **Time Complexity:** [To be analyzed]
+- **Space Complexity:** [To be analyzed]
+
+**AI Assistance:**
+- TBD - Solution not yet implemented
+
+**Status:** 🔄 In Progress
+**Implementation File:** `arraysAndHashing/KidsWithTheGreatestNumberOfCandies.java`
+
+---
+
 ## 📈 Progress by Category
 
 ### Arrays & Hashing
@@ -1011,6 +1042,7 @@ In-place read/write two-pointer. `i` tracks the compacted write position, `j` sc
 - [ ] Sort the Tuples (Easy) (🔄 In Progress)
 - [x] Greatest Common Divisor of Strings (Easy) - #1071
 - [ ] Reverse Words in a String (Medium) - #151 (🔄 In Progress)
+- [ ] Kids With the Greatest Number of Candies (Easy) - #1431 (🔄 In Progress)
 
 ### Two Pointers
 - [x] Merge Strings Alternately (Easy) - #1768
@@ -1159,4 +1191,4 @@ In-place read/write two-pointer. `i` tracks the compacted write position, `j` sc
 
 ---
 
-*This tracker is automatically maintained. Last entry added: Tuesday, August 18, 2026 (String Compression - Completed)*
+*This tracker is automatically maintained. Last entry added: Wednesday, August 19, 2026 (Kids With the Greatest Number of Candies - In Progress)*
