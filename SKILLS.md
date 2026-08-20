@@ -1,6 +1,6 @@
 # 🎯 DSA Skills & Concepts Tracker
 
-> **Last Updated:** Tuesday, August 18, 2026
+> **Last Updated:** Wednesday, August 19, 2026
 
 ---
 
@@ -9,7 +9,7 @@
 - **Total Concepts Mastered:** 15
 - **Most Used Concept:** HashMap (5 times)
 - **Recently Learned:** Euclidean Algorithm (GCD) (2026-08-18)
-- **Average Reuse Rate:** 1.9 times per concept
+- **Average Reuse Rate:** 2.0 times per concept
 
 ---
 
@@ -28,7 +28,7 @@
 | Array Reversal | Pattern | 2026-02-26 | Rotate Array (#189) | 1 | Rotate Array (#189) (2026-02-26) |
 | Priority Queue (Heap) | Data Structure | 2026-02-15 | Top K Frequent Elements (#347) | 1 | Top K Frequent Elements (#347) (2026-02-15) |
 | Quickselect | Algorithm | 2026-07-06 | Kth Largest Element in an Array (#215) | 1 | Kth Largest Element in an Array (#215) (2026-07-06) |
-| Two Pointers | Pattern | 2026-08-18 | Merge Strings Alternately (#1768) | 2 | Merge Strings Alternately (#1768) (2026-08-18), String Compression (#443) (2026-08-18) |
+| Two Pointers | Pattern | 2026-08-18 | Merge Strings Alternately (#1768) | 3 | Merge Strings Alternately (#1768) (2026-08-18), String Compression (#443) (2026-08-18), Reverse Vowels of a String (#345) (2026-08-19) |
 | Euclidean Algorithm (GCD) | Algorithm | 2026-08-18 | Greatest Common Divisor of Strings (#1071) | 1 | Greatest Common Divisor of Strings (#1071) (2026-08-18) |
 | Recursion | Algorithm | 2026-08-18 | Greatest Common Divisor of Strings (#1071) | 1 | Greatest Common Divisor of Strings (#1071) (2026-08-18) |
 | Concatenation Commutativity Check | Pattern | 2026-08-18 | Greatest Common Divisor of Strings (#1071) | 1 | Greatest Common Divisor of Strings (#1071) (2026-08-18) |
@@ -65,7 +65,7 @@
 | Kadane's Algorithm | 2026-02-15 | 2 | Maximum Product Subarray (#152) (2026-02-18) |
 | Prefix Product | 2026-02-18 | 1 | Product of Array Except Self (#238) (2026-02-18) |
 | Array Reversal | 2026-02-26 | 1 | Rotate Array (#189) (2026-02-26) |
-| Two Pointers | 2026-08-18 | 2 | String Compression (#443) (2026-08-18) |
+| Two Pointers | 2026-08-18 | 3 | Reverse Vowels of a String (#345) (2026-08-19) |
 | Concatenation Commutativity Check | 2026-08-18 | 1 | Greatest Common Divisor of Strings (#1071) (2026-08-18) |
 
 ### Time/Space Optimization
@@ -90,8 +90,8 @@
 |---------------|----------|-------|
 | 🏆 Master (11+) | *None yet* | 0 |
 | 🌳 Proficient (6-10) | *None yet* | 0 |
-| 🌿 Intermediate (3-5) | HashMap, In-place Operation, Constant Space | 3 |
-| 🌱 Beginner (1-2) | HashSet, Frequency Array, Sorting, Kadane's Algorithm, Prefix Product, Array Reversal, Priority Queue (Heap), Quickselect, Two Pointers, Euclidean Algorithm (GCD), Recursion, Concatenation Commutativity Check | 12 |
+| 🌿 Intermediate (3-5) | HashMap, In-place Operation, Constant Space, Two Pointers | 4 |
+| 🌱 Beginner (1-2) | HashSet, Frequency Array, Sorting, Kadane's Algorithm, Prefix Product, Array Reversal, Priority Queue (Heap), Quickselect, Euclidean Algorithm (GCD), Recursion, Concatenation Commutativity Check | 11 |
 
 ---
 
@@ -101,8 +101,8 @@
 1. **HashMap** - 5 times (🌿 Intermediate)
 2. **In-place Operation** - 4 times (🌿 Intermediate)
 3. **Constant Space** - 4 times (🌿 Intermediate)
-4. **Kadane's Algorithm** - 2 times (🌱 Beginner)
-5. **HashSet** - 2 times (🌱 Beginner)
+4. **Two Pointers** - 3 times (🌿 Intermediate)
+5. **Kadane's Algorithm** - 2 times (🌱 Beginner)
 
 ### Recently Learned (Last 5)
 1. **Euclidean Algorithm (GCD)** (2026-08-18) - Greatest Common Divisor of Strings
@@ -165,4 +165,4 @@ Use `/current` command to see:
 
 ---
 
-*Last tracking update: Tuesday, August 18, 2026 - String Compression (#443) reused Two Pointers (now 2 uses), In-place Operation and Constant Space (now 4 uses each) — no new concepts introduced*
+*Last tracking update: Wednesday, August 19, 2026 - Reverse Vowels of a String (#345) reused Two Pointers, now 3 uses and crossed into 🌿 Intermediate — no new concepts introduced*

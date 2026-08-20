@@ -17,8 +17,8 @@
 
 ## 📊 Summary Statistics
 
-- **Total Problems Solved:** 18
-- **Problems In Progress:** 4
+- **Total Problems Solved:** 19
+- **Problems In Progress:** 3
 - **Categories Covered:** Arrays & Hashing, Two Pointers
 - **Current Streak:** 7 days
 
@@ -50,6 +50,7 @@
 | 20 | 2026-08-18 | [Reverse Words in a String (#151)](https://leetcode.com/problems/reverse-words-in-a-string/) | Medium | Arrays & Hashing | TBD | TBD | TBD | 🔄 In Progress |
 | 21 | 2026-08-18 | [String Compression (#443)](https://leetcode.com/problems/string-compression/) | Medium | Two Pointers | O(n) | O(1) | ❌ No | ✅ Done |
 | 22 | 2026-08-19 | [Kids With the Greatest Number of Candies (#1431)](https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/) | Easy | Arrays & Hashing | TBD | TBD | TBD | 🔄 In Progress |
+| 23 | 2026-08-19 | [Reverse Vowels of a String (#345)](https://leetcode.com/problems/reverse-vowels-of-a-string/) | Easy | Two Pointers | O(n) | O(n) | ❌ No | ✅ Done |
 
 ---
 
@@ -1020,6 +1021,46 @@ Given an array candies where candies[i] is the number of candies kid i has, and 
 
 ---
 
+#### ✅ Problem 23: Reverse Vowels of a String (Completed)
+- **Platform:** LeetCode
+- **Problem Number:** #345
+- **Difficulty:** Easy
+- **Link:** https://leetcode.com/problems/reverse-vowels-of-a-string/description/
+- **Category:** Two Pointers
+
+**Problem:**
+Given a string s, reverse only the vowels in the string and return it. Vowels are 'a', 'e', 'i', 'o', 'u' in both lower and upper case; consonants and all other characters stay in their original positions.
+
+**Constraints:**
+- 1 <= s.length <= 3 * 10^5
+- s consist of printable ASCII characters
+
+**Approach:**
+Two-pointer convergence on a char[] copy (required since String is immutable). `i` advances from the left, `j` from the right. When both `chArr[i]` and `chArr[j]` are vowels, they're swapped and both pointers step inward in the same statement block; a pair of trailing single-step checks then skips either pointer past a freshly-landed-on consonant before the next iteration re-tests for a swap.
+
+**Complexity Analysis:**
+- **Time Complexity:** O(n) — `i` and `j` together traverse the string once
+- **Space Complexity:** O(n) total (the `toCharArray()` copy is required for mutation, since String is immutable), O(1) truly auxiliary beyond that copy
+
+**Key Learnings:**
+- **String immutability makes `toCharArray()` the correct (not wasteful) choice here** — unlike problems that only need to *read* characters (e.g. Merge Strings Alternately), this problem requires mutation, so a char[] copy is genuinely necessary
+- **Non-obvious-but-correct control flow needs empirical verification, not just inspection:** the trailing single-step "skip if not a vowel" checks after a swap looked suspicious on first read (risk of an infinite loop or skipped character), but were confirmed correct via 20,000 randomized differential tests against a brute-force reference plus targeted stress tests (max-length all-vowel/all-consonant strings, a single vowel buried in a 300,000+ character block) — zero mismatches
+- **A more conventional two-skip-loop structure would express the same algorithm more legibly** (advance `i` past non-vowels, advance `j` past non-vowels, then swap if `i < j`) at identical complexity — a readability note, not a correctness issue
+
+**Alternative Approaches Analyzed:**
+1. **Two-pointer on char[] (implemented)** — O(n) time, O(n) space (necessary copy) — correct, idiomatic given String immutability
+2. **Collect vowels in pass 1, substitute in pass 2** — O(n) time, O(n) space (copy + extra list) — same complexity, extra auxiliary structure with no benefit
+3. **StringBuilder rebuild** — O(n) time, O(n) space — also valid, no advantage over the char[] approach
+
+**AI Assistance:**
+- ❌ No - Solution implemented independently by user
+- ℹ️ Note: AI ran 20,000 randomized differential tests and targeted stress tests (after implementation) to verify a control-flow pattern that looked risky on inspection but proved correct — no solution logic written by AI
+
+**Status:** ✅ Completed
+**Implementation File:** `twoPointers/ReverseVowelsOfAString.java`
+
+---
+
 ## 📈 Progress by Category
 
 ### Arrays & Hashing
@@ -1047,6 +1088,7 @@ Given an array candies where candies[i] is the number of candies kid i has, and 
 ### Two Pointers
 - [x] Merge Strings Alternately (Easy) - #1768
 - [x] String Compression (Medium) - #443
+- [x] Reverse Vowels of a String (Easy) - #345
 
 ### Sliding Window
 - [ ] *No problems yet*
@@ -1145,6 +1187,8 @@ Given an array candies where candies[i] is the number of candies kid i has, and 
 - **Greedy-stops-early bugs hide behind weak test data:** An incremental scan that returns on the first valid candidate (rather than the best) will pass tests where only one valid candidate exists and only fail on inputs with multiple valid lengths (e.g. repeated-character strings)
 - **A correct return value can mask corrupted output:** In in-place array problems that return a length alongside mutated array contents, a bug can leave the returned length correct while the array itself holds stale/wrong data — tests must assert on contents, not just the length, and specifically on inputs where a compaction has already occurred before the buggy branch triggers
 - **Asymmetric branches are a common source of two-pointer bugs:** When a read/write two-pointer algorithm has separate code paths for different run lengths, any step performed in one branch (like copying data forward to a compacted write position) must be verified as present in every branch — not just the one that happened to be written first
+- **Necessary vs. wasteful copying depends on whether mutation is required:** toCharArray() is the right tool when a problem needs in-place-style mutation (String is immutable in Java), but is wasteful overhead when only reading characters is needed
+- **Non-obvious control flow warrants empirical verification beyond inspection:** control flow that's hard to verify correct by reading alone (e.g. single-step pointer advances interleaved with a swap) benefits from randomized differential testing against a brute-force reference, not just a handful of handwritten cases
 
 ### Patterns Identified
 - **Duplicate Detection Pattern:** Use HashSet for O(n) time complexity vs O(n²) brute force
@@ -1180,6 +1224,7 @@ Given an array candies where candies[i] is the number of candies kid i has, and 
 - **Two-pointer merge/interleave pattern:** For combining two sequences element-by-element, advance one independent index per source alongside a shared output index; each source's check simply stops firing once exhausted, so the other source's remaining elements flow through unchanged
 - **String periodicity / concatenation-check pattern:** For "does x divide/tile both strings" problems, test str1+str2 == str2+str1 instead of searching for a valid x directly; when it holds, the answer length is gcd(len1, len2)
 - **In-place read/write two-pointer pattern:** For compacting an array in place (deduplication, compression, filtering), maintain a write pointer that trails a read/scan pointer; every category of element the scan encounters — including the "trivial" single-element case — must perform the same write-back step, or compacted positions are left holding stale data
+- **Converging two-pointer swap pattern:** For "reverse only elements matching a predicate" problems, advance two pointers from opposite ends, skipping elements that don't match the predicate, and swap when both land on matching elements — leaves non-matching elements untouched in place
 
 ---
 
@@ -1191,4 +1236,4 @@ Given an array candies where candies[i] is the number of candies kid i has, and 
 
 ---
 
-*This tracker is automatically maintained. Last entry added: Wednesday, August 19, 2026 (Kids With the Greatest Number of Candies - In Progress)*
+*This tracker is automatically maintained. Last entry added: Wednesday, August 19, 2026 (Reverse Vowels of a String - Completed)*
