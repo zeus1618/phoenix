@@ -46,16 +46,19 @@ public class CanPlaceFlowers {
      * @return true if all n flowers can be planted validly, false otherwise
      */
     public boolean canPlaceFlowers(int[] flowerbed, int n) {
-        for(int i=0; i<flowerbed.length; i++) {
+        for(int i=0; i<flowerbed.length && n>0; i++) {
             int candidate = i;
             if(flowerbed[candidate] == 1 
-                || candidate>=
+                || (candidate>0 && flowerbed[candidate-1]==1)
+                || (candidate<flowerbed.length-1 && flowerbed[candidate+1]==1)
             ){
-                i++;
                 continue;
+            } else {
+                flowerbed[candidate] = 1;
+                n--;
             }
         }
-        return false;
+        return n<=0;
     }
 
     /**
