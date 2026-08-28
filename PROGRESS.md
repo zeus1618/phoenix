@@ -1,6 +1,6 @@
 # DSA Learning Progress Tracker
 
-> **Last Updated:** Tuesday, August 18, 2026
+> **Last Updated:** Friday, August 28, 2026
 
 ---
 
@@ -17,7 +17,7 @@
 
 ## 📊 Summary Statistics
 
-- **Total Problems Solved:** 19
+- **Total Problems Solved:** 23
 - **Problems In Progress:** 5
 - **Categories Covered:** Arrays & Hashing, Two Pointers
 - **Current Streak:** 7 days
@@ -52,6 +52,10 @@
 | 22 | 2026-08-19 | [Kids With the Greatest Number of Candies (#1431)](https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/) | Easy | Arrays & Hashing | TBD | TBD | TBD | 🔄 In Progress |
 | 23 | 2026-08-19 | [Reverse Vowels of a String (#345)](https://leetcode.com/problems/reverse-vowels-of-a-string/) | Easy | Two Pointers | O(n) | O(n) | ❌ No | ✅ Done |
 | 24 | 2026-08-20 | [Can Place Flowers (#605)](https://leetcode.com/problems/can-place-flowers/) | Easy | Arrays & Hashing | TBD | TBD | TBD | 🔄 In Progress |
+| 25 | 2026-08-20 | [Increasing Triplet Subsequence (#334)](https://leetcode.com/problems/increasing-triplet-subsequence/) | Medium | Arrays & Hashing | O(n) | O(1) | ❌ No | ✅ Done |
+| 26 | 2026-08-28 | [Move Zeroes (#283)](https://leetcode.com/problems/move-zeroes/) | Easy | Two Pointers | O(n) | O(1) | ❌ No | ✅ Done |
+| 27 | 2026-08-28 | [Is Subsequence (#392)](https://leetcode.com/problems/is-subsequence/) | Easy | Two Pointers | O(n+m) | O(n+m) | ❌ No | ✅ Done |
+| 28 | 2026-08-28 | [Container With Most Water (#11)](https://leetcode.com/problems/container-with-most-water/) | Medium | Two Pointers | O(n) | O(1) | ❌ No | ✅ Done |
 
 ---
 
@@ -1093,6 +1097,158 @@ Given a flowerbed array of 0's (empty) and 1's (planted) where no two 1's are ad
 
 ---
 
+#### ✅ Problem 25: Increasing Triplet Subsequence (Completed)
+- **Platform:** LeetCode
+- **Problem Number:** #334
+- **Difficulty:** Medium
+- **Link:** https://leetcode.com/problems/increasing-triplet-subsequence/description/
+- **Category:** Arrays & Hashing
+
+**Problem:**
+Given an integer array nums, return true if there exist indices i < j < k such that nums[i] < nums[j] < nums[k].
+
+**Constraints:**
+- 1 <= nums.length <= 5 * 10^5
+- -2^31 <= nums[i] <= 2^31 - 1
+
+**Follow-up:**
+Could you implement a solution that runs in O(n) time complexity and O(1) space complexity?
+
+**Approach:**
+Greedy two-variable tracking — maintains `first` (smallest value seen so far) and `second` (smallest value seen so far that's strictly greater than some earlier `first`) while scanning once left to right. Any later value greater than `second` completes a valid triplet, so the algorithm never needs to fix indices for the three elements — only the best-so-far low and low-mid candidates matter.
+
+An earlier attempt (`increasingTripletOld`) searched ahead for the third element with a nested lookahead per candidate mid-value instead of tracking running minimums; kept in the file for comparison but no longer exercised by the tests.
+
+**Complexity Analysis:**
+- **Time Complexity:** O(n) — single pass over nums
+- **Space Complexity:** O(1) — two int variables regardless of input size
+
+**AI Assistance:**
+- ❌ No - Solution implemented independently by user
+- ℹ️ Note: AI documented the approach/complexity after implementation and ran the existing test suite to verify correctness — no algorithm logic written by AI
+
+**Status:** ✅ Completed
+**Implementation File:** `arraysAndHashing/IncreasingTripletSubsequence.java`
+
+---
+
+### Friday, August 28, 2026
+
+#### ✅ Problem 26: Move Zeroes (Completed)
+- **Platform:** LeetCode
+- **Problem Number:** #283
+- **Difficulty:** Easy
+- **Link:** https://leetcode.com/problems/move-zeroes/description/
+- **Category:** Two Pointers
+
+**Problem:**
+Given an integer array nums, move all 0's to the end of it while maintaining the relative order of the non-zero elements. Must be done in-place without making a copy of the array.
+
+**Constraints:**
+- 1 <= nums.length <= 10^4
+- -2^31 <= nums[i] <= 2^31 - 1
+
+**Follow-up:**
+Could you minimize the total number of operations done?
+
+**Approach:**
+In-place read/write two-pointer swap — `noZeroIndex` trails the scan pointer `i` and marks the next slot to place a non-zero value. Whenever `nums[i]` is non-zero it's swapped into `nums[noZeroIndex]` (a no-op when the two indices coincide) and `noZeroIndex` advances; zeroes are never written explicitly, they end up trailing because every non-zero value gets pulled in front of them.
+
+**Complexity Analysis:**
+- **Time Complexity:** O(n) — single pass over nums
+- **Space Complexity:** O(1) — in-place, no auxiliary array
+
+**AI Assistance:**
+- ❌ No - Solution implemented independently by user
+- ℹ️ Note: AI documented the approach/complexity after implementation and ran the existing test suite to verify correctness — no algorithm logic written by AI
+
+**Status:** ✅ Completed
+**Implementation File:** `twoPointers/MoveZeroes.java`
+
+---
+
+#### ✅ Problem 27: Is Subsequence (Completed)
+- **Platform:** LeetCode
+- **Problem Number:** #392
+- **Difficulty:** Easy
+- **Link:** https://leetcode.com/problems/is-subsequence/description/
+- **Category:** Two Pointers
+
+**Problem:**
+Given two strings s and t, return true if s is a subsequence of t, or false otherwise.
+
+**Constraints:**
+- 0 <= s.length <= 100
+- 0 <= t.length <= 10^4
+- s and t consist only of lowercase English letters.
+
+**Follow-up:**
+Suppose there are lots of incoming s, say s1, s2, ..., sk where k >= 10^9, and you want to check one by one to see if t has its subsequence. In this scenario, how would you change your code?
+
+**Approach:**
+Primary solution (implemented): two-pointer scan — `subI`/`supI` advance forward through `s`/`t`; `supI` is monotonic across the whole run so it amortizes to a single pass over `t`, O(n+m) time despite the nested-loop shape.
+
+Follow-up stub added (not yet implemented): `buildCharacterIndex(t)` / `isSubsequenceWithIndex(s, charIndex)` — preprocess `t` once into per-character occurrence lists so many queries (k >= 10^9) can each run without re-scanning `t`.
+
+**Complexity Analysis:**
+- **Time Complexity:** O(n + m) for the primary two-pointer solution (n = s.length(), m = t.length())
+- **Space Complexity:** O(n + m) auxiliary (two `toCharArray()` copies); could be reduced to O(1) auxiliary via `charAt()`
+
+**AI Assistance:**
+- ❌ No - Primary solution implemented independently by user
+- ℹ️ Note: AI provided analysis after implementation (correctness trace, complexity, idiomatic single-loop alternative) and scaffolded follow-up method stubs (`buildCharacterIndex`, `isSubsequenceWithIndex`) with tests — no algorithm logic written by AI
+
+**Status:** ✅ Completed
+**Implementation File:** `twoPointers/IsSubsequence.java`
+
+---
+
+#### ✅ Problem 28: Container With Most Water (Completed)
+- **Platform:** LeetCode
+- **Problem Number:** #11
+- **Difficulty:** Medium
+- **Link:** https://leetcode.com/problems/container-with-most-water/description/
+- **Category:** Two Pointers
+
+**Problem:**
+Given an integer array height where the ith line runs from (i, 0) to (i, height[i]), find two lines that together with the x-axis form a container holding the most water. The container may not be slanted.
+
+**Constraints:**
+- n == height.length
+- 2 <= n <= 10^5
+- 0 <= height[i] <= 10^4
+
+**Approach:**
+Converging two pointers. `l` starts at the left end, `r` at the right end; on each iteration compute the area for the current pair, then advance past whichever wall(s) are `<= minHeight` (the shorter wall is always the bottleneck, so anything at or below it can never beat the area already recorded). A distinguishing feature of this implementation over the textbook version: it advances *all* walls `<= minHeight` in one iteration rather than stepping a single pointer once, including advancing both `l` and `r` together on a tie — verified correct rather than just assumed.
+
+**Evolution of Solution:**
+1. **First Attempt (`maxAreaOld`):** Brute force with a pruning heuristic — for each `i`, skip ahead to the first `j` where `(j-i) * height[i]` could exceed the running best, since anything closer can't beat it. The pruning bound itself is correct, but empirical measurement showed O(n^2) worst-case behavior on adversarial inputs (strictly decreasing heights: ~4x iteration growth per doubling of n), because `height[0]` being tallest means the first pass barely prunes.
+2. **Final Solution (`maxArea`):** Converging two-pointer — O(n) time, meets the implicit efficiency expectation for `n` up to 10^5.
+
+**Complexity Analysis:**
+- **Time Complexity:** O(n) — each pointer only ever advances toward the other; total movement across the run is bounded by n
+- **Space Complexity:** O(1) — two pointers and a running max, no auxiliary structures
+
+**Key Learnings:**
+- **Two proofs, two different guarantees:** the pruned-brute-force proof reasons locally ("can this `j` beat the current max"), which is correct but doesn't bound total work; the two-pointer proof reasons about elimination ("the shorter wall can never matter again once paired with something taller"), which is what actually bounds the algorithm to O(n)
+- **A correct pruning condition doesn't imply a better worst-case complexity** — `maxAreaOld`'s skip logic never skips a potentially-optimal `j`, but "never wrong" and "always fast" are different properties; decreasing-height arrays defeat the pruning because the first (tallest) wall provides almost no threshold to skip against
+- **Batched pointer advancement is safe under the same elimination proof** — advancing a pointer past *every* consecutive wall `<= minHeight` in one pass (not just one step) doesn't skip any potentially-optimal pair, because each skipped position is individually dominated by the area just recorded; this collapses plateau/all-equal-height inputs to a single outer iteration instead of n
+- **Ties need explicit reasoning, not just extension by analogy:** when `height[l] == height[r] == minHeight`, advancing both pointers in the same iteration looked like it might skip a valid intermediate pair (`l_old` paired with the new `r`, or vice versa) — confirmed safe by the same domination argument, then verified via 5,000 randomized differential trials against brute force using a narrow value range (0-8) specifically to force frequent ties
+
+**Alternative Approaches Analyzed:**
+1. **Brute force (all pairs)** — O(n²) time, O(1) space — correct baseline, too slow
+2. **Pruned brute force (`maxAreaOld`, implemented first)** — O(n²) worst case, ~O(n) on favorable inputs, O(1) space — correct but no worst-case guarantee
+3. **Converging two pointers (implemented, final)** — O(n) time, O(1) space — **optimal**, no further algorithmic improvement available
+
+**AI Assistance:**
+- ❌ No - Both solutions (pruned brute force and final two-pointer) implemented independently by user
+- ℹ️ Note: AI empirically measured `maxAreaOld`'s worst-case scaling (iteration counts across increasing/decreasing/uniform/random inputs at multiple sizes) and cross-validated both solutions against brute force (2,000 and 5,000 randomized trials respectively, the latter targeting tie-heavy inputs) after implementation — no solution logic written by AI
+
+**Status:** ✅ Completed
+**Implementation File:** `twoPointers/ContainerWithMostWater.java`
+
+---
+
 ## 📈 Progress by Category
 
 ### Arrays & Hashing
@@ -1117,11 +1273,15 @@ Given a flowerbed array of 0's (empty) and 1's (planted) where no two 1's are ad
 - [ ] Reverse Words in a String (Medium) - #151 (🔄 In Progress)
 - [ ] Kids With the Greatest Number of Candies (Easy) - #1431 (🔄 In Progress)
 - [ ] Can Place Flowers (Easy) - #605 (🔄 In Progress)
+- [x] Increasing Triplet Subsequence (Medium) - #334
 
 ### Two Pointers
 - [x] Merge Strings Alternately (Easy) - #1768
 - [x] String Compression (Medium) - #443
 - [x] Reverse Vowels of a String (Easy) - #345
+- [x] Move Zeroes (Easy) - #283
+- [x] Is Subsequence (Easy) - #392
+- [x] Container With Most Water (Medium) - #11
 
 ### Sliding Window
 - [ ] *No problems yet*
@@ -1222,6 +1382,11 @@ Given a flowerbed array of 0's (empty) and 1's (planted) where no two 1's are ad
 - **Asymmetric branches are a common source of two-pointer bugs:** When a read/write two-pointer algorithm has separate code paths for different run lengths, any step performed in one branch (like copying data forward to a compacted write position) must be verified as present in every branch — not just the one that happened to be written first
 - **Necessary vs. wasteful copying depends on whether mutation is required:** toCharArray() is the right tool when a problem needs in-place-style mutation (String is immutable in Java), but is wasteful overhead when only reading characters is needed
 - **Non-obvious control flow warrants empirical verification beyond inspection:** control flow that's hard to verify correct by reading alone (e.g. single-step pointer advances interleaved with a swap) benefits from randomized differential testing against a brute-force reference, not just a handful of handwritten cases
+- **A correct pruning bound doesn't guarantee a better worst case:** a heuristic that never skips a potentially-optimal candidate can still be O(n²) overall if the pruning threshold itself grows too slowly on certain input shapes (e.g. decreasing sequences starting from the tallest element)
+- **Elimination proofs bound total work; local "could this beat the max" proofs don't:** two-pointer convergence is O(n) because each side is proven to never matter again once eliminated, not because each individual check is cheap — that's the difference between "correct pruning" and "asymptotically better"
+- **Batched pointer advancement generalizes an elimination proof safely:** if skipping one element past a threshold is provably safe, skipping every consecutive element past that threshold in the same pass is equally safe (each is independently dominated) — useful for collapsing plateaus/duplicate-heavy inputs to near-O(1) iterations without changing the correctness argument
+- **A two-pointer scan can amortize to linear even when one pointer never resets between outer-loop iterations:** in `isSubsequence`, `supI` is declared outside the inner loop and simply continues from where it left off, so despite the nested-loop shape it visits each position of `t` at most once across the whole run — O(n+m), not O(n*m)
+- **Greedy running-extrema tracking replaces a candidate search with two scalars:** for "does an increasing/decreasing run of length k exist" problems, tracking the best-so-far value at each rank (smallest, second-smallest, ...) in a single pass can replace an O(n^2) nested search for a qualifying later element, since a later value only needs to beat the best candidate at its rank so far
 
 ### Patterns Identified
 - **Duplicate Detection Pattern:** Use HashSet for O(n) time complexity vs O(n²) brute force
@@ -1258,6 +1423,8 @@ Given a flowerbed array of 0's (empty) and 1's (planted) where no two 1's are ad
 - **String periodicity / concatenation-check pattern:** For "does x divide/tile both strings" problems, test str1+str2 == str2+str1 instead of searching for a valid x directly; when it holds, the answer length is gcd(len1, len2)
 - **In-place read/write two-pointer pattern:** For compacting an array in place (deduplication, compression, filtering), maintain a write pointer that trails a read/scan pointer; every category of element the scan encounters — including the "trivial" single-element case — must perform the same write-back step, or compacted positions are left holding stale data
 - **Converging two-pointer swap pattern:** For "reverse only elements matching a predicate" problems, advance two pointers from opposite ends, skipping elements that don't match the predicate, and swap when both land on matching elements — leaves non-matching elements untouched in place
+- **Bottleneck-elimination two-pointer pattern:** For "maximize an area/value bounded by the smaller of two ends" problems, the shorter of the two current ends is always the limiting factor — it's safe to permanently advance past it (and past every subsequent position at or below its value) because no wider pairing involving it can ever exceed the area already recorded
+- **Greedy best-so-far-per-rank pattern:** For "does an increasing/decreasing subsequence of length k exist" problems, track the smallest value seen so far at each rank (1st smallest, 2nd smallest, ...) in a single left-to-right pass; a value that beats the highest tracked rank completes the sequence, no fixed indices or backtracking required
 
 ---
 
@@ -1269,4 +1436,4 @@ Given a flowerbed array of 0's (empty) and 1's (planted) where no two 1's are ad
 
 ---
 
-*This tracker is automatically maintained. Last entry added: Thursday, August 20, 2026 (Can Place Flowers - In Progress)*
+*This tracker is automatically maintained. Last entry added: Friday, August 28, 2026 (Increasing Triplet Subsequence, Move Zeroes, Is Subsequence, Container With Most Water - all Completed)*

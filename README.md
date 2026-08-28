@@ -62,6 +62,7 @@ phoenix/
 │   ├── GreatestCommonDivisorOfStrings.java
 │   ├── ReverseWordsInAString.java
 │   ├── KidsWithTheGreatestNumberOfCandies.java
+│   ├── IncreasingTripletSubsequence.java
 │   └── learnings/                     # Deep dive learnings for complex problems
 │       ├── GroupAnagrams-Learning.md
 │       ├── MaximumProductSubarray-Learning.md
@@ -73,7 +74,10 @@ phoenix/
 ├── twoPointers/
 │   ├── MergeStringsAlternately.java   # Problem solutions
 │   ├── StringCompression.java
-│   └── ReverseVowelsOfAString.java
+│   ├── ReverseVowelsOfAString.java
+│   ├── ContainerWithMostWater.java
+│   ├── MoveZeroes.java
+│   └── IsSubsequence.java
 ├── slidingWindow/                     # (Future problems)
 ├── stack/                             # (Future problems)
 └── ...                                # More categories as we progress
@@ -94,8 +98,8 @@ phoenix/
 
 | Category | Problems Solved | Status |
 |----------|----------------|--------|
-| Arrays & Hashing | 16 | 🔄 In Progress |
-| Two Pointers | 3 | 🔄 In Progress |
+| Arrays & Hashing | 17 | 🔄 In Progress |
+| Two Pointers | 6 | 🔄 In Progress |
 | Sliding Window | 0 | ⏳ Not Started |
 | Stack | 0 | ⏳ Not Started |
 | Binary Search | 0 | ⏳ Not Started |
@@ -327,15 +331,15 @@ Or open [SKILLS.md](SKILLS.md) for full details with complete usage history.
 
 ## 📈 Statistics
 
-- **Total Problems Solved:** 19
-- **Concepts Mastered:** 15
-- **Most Used Skill:** HashMap (5 times)
+- **Total Problems Solved:** 23
+- **Concepts Mastered:** 16
+- **Most Used Skill:** Constant Space (7 times)
 - **Current Streak:** 7 days
 - **Categories Covered:** 2
 - **Difficulty Breakdown:**
-  - Easy: 8 problems
-  - Medium: 11 problems
-- **Last Updated:** Wednesday, August 19, 2026
+  - Easy: 10 problems
+  - Medium: 13 problems
+- **Last Updated:** Friday, August 28, 2026
 
 ---
 
@@ -376,7 +380,7 @@ This is a personal learning repository. The focus is on consistent practice and 
 
 ---
 
-**Last Updated:** August 19, 2026  
+**Last Updated:** August 28, 2026  
 **Status:** 🔥 Active - Daily Practice
 
 ---

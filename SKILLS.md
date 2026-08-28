@@ -1,15 +1,15 @@
 # 🎯 DSA Skills & Concepts Tracker
 
-> **Last Updated:** Wednesday, August 19, 2026
+> **Last Updated:** Friday, August 28, 2026
 
 ---
 
 ## 📊 Quick Stats
 
-- **Total Concepts Mastered:** 15
-- **Most Used Concept:** HashMap (5 times)
-- **Recently Learned:** Euclidean Algorithm (GCD) (2026-08-18)
-- **Average Reuse Rate:** 2.0 times per concept
+- **Total Concepts Mastered:** 16
+- **Most Used Concept:** Constant Space (7 times)
+- **Recently Learned:** Greedy Algorithm (2026-08-20)
+- **Average Reuse Rate:** 2.38 times per concept
 
 ---
 
@@ -23,15 +23,16 @@
 | Sorting (Arrays.sort) | Algorithm | 2026-02-13 | Group Anagrams (#49) | 1 | Group Anagrams (#49) (2026-02-13) |
 | Kadane's Algorithm | Pattern | 2026-02-15 | Maximum Subarray (#53) | 2 | Maximum Subarray (#53) (2026-02-15), Maximum Product Subarray (#152) (2026-02-18) |
 | Prefix Product | Pattern | 2026-02-18 | Product of Array Except Self (#238) | 1 | Product of Array Except Self (#238) (2026-02-18) |
-| In-place Operation | Optimization | 2026-02-18 | Product of Array Except Self (#238) | 4 | Product of Array Except Self (#238) (2026-02-18), Rotate Array (#189) (2026-02-26), Kth Largest Element in an Array (#215) (2026-07-06), String Compression (#443) (2026-08-18) |
-| Constant Space | Optimization | 2026-02-18 | Product of Array Except Self (#238) | 4 | Product of Array Except Self (#238) (2026-02-18), Rotate Array (#189) (2026-02-26), Kth Largest Element in an Array (#215) (2026-07-06), String Compression (#443) (2026-08-18) |
+| In-place Operation | Optimization | 2026-02-18 | Product of Array Except Self (#238) | 5 | Product of Array Except Self (#238) (2026-02-18), Rotate Array (#189) (2026-02-26), Kth Largest Element in an Array (#215) (2026-07-06), String Compression (#443) (2026-08-18), Move Zeroes (#283) (2026-08-28) |
+| Constant Space | Optimization | 2026-02-18 | Product of Array Except Self (#238) | 7 | Product of Array Except Self (#238) (2026-02-18), Rotate Array (#189) (2026-02-26), Kth Largest Element in an Array (#215) (2026-07-06), String Compression (#443) (2026-08-18), Increasing Triplet Subsequence (#334) (2026-08-20), Move Zeroes (#283) (2026-08-28), Container With Most Water (#11) (2026-08-28) |
 | Array Reversal | Pattern | 2026-02-26 | Rotate Array (#189) | 1 | Rotate Array (#189) (2026-02-26) |
 | Priority Queue (Heap) | Data Structure | 2026-02-15 | Top K Frequent Elements (#347) | 1 | Top K Frequent Elements (#347) (2026-02-15) |
 | Quickselect | Algorithm | 2026-07-06 | Kth Largest Element in an Array (#215) | 1 | Kth Largest Element in an Array (#215) (2026-07-06) |
-| Two Pointers | Pattern | 2026-08-18 | Merge Strings Alternately (#1768) | 3 | Merge Strings Alternately (#1768) (2026-08-18), String Compression (#443) (2026-08-18), Reverse Vowels of a String (#345) (2026-08-19) |
+| Two Pointers | Pattern | 2026-08-18 | Merge Strings Alternately (#1768) | 6 | Merge Strings Alternately (#1768) (2026-08-18), String Compression (#443) (2026-08-18), Reverse Vowels of a String (#345) (2026-08-19), Move Zeroes (#283) (2026-08-28), Is Subsequence (#392) (2026-08-28), Container With Most Water (#11) (2026-08-28) |
 | Euclidean Algorithm (GCD) | Algorithm | 2026-08-18 | Greatest Common Divisor of Strings (#1071) | 1 | Greatest Common Divisor of Strings (#1071) (2026-08-18) |
 | Recursion | Algorithm | 2026-08-18 | Greatest Common Divisor of Strings (#1071) | 1 | Greatest Common Divisor of Strings (#1071) (2026-08-18) |
 | Concatenation Commutativity Check | Pattern | 2026-08-18 | Greatest Common Divisor of Strings (#1071) | 1 | Greatest Common Divisor of Strings (#1071) (2026-08-18) |
+| Greedy Algorithm | Algorithm | 2026-08-20 | Increasing Triplet Subsequence (#334) | 1 | Increasing Triplet Subsequence (#334) (2026-08-20) |
 
 ---
 
@@ -55,6 +56,7 @@
 | Quickselect | 2026-07-06 | 1 | Kth Largest Element in an Array (#215) (2026-07-06) |
 | Euclidean Algorithm (GCD) | 2026-08-18 | 1 | Greatest Common Divisor of Strings (#1071) (2026-08-18) |
 | Recursion | 2026-08-18 | 1 | Greatest Common Divisor of Strings (#1071) (2026-08-18) |
+| Greedy Algorithm | 2026-08-20 | 1 | Increasing Triplet Subsequence (#334) (2026-08-20) |
 
 ### Patterns & Techniques
 *Track: Two Pointers, Sliding Window, Prefix Sum, Kadane's, Fast-Slow Pointers, etc.*
@@ -65,7 +67,7 @@
 | Kadane's Algorithm | 2026-02-15 | 2 | Maximum Product Subarray (#152) (2026-02-18) |
 | Prefix Product | 2026-02-18 | 1 | Product of Array Except Self (#238) (2026-02-18) |
 | Array Reversal | 2026-02-26 | 1 | Rotate Array (#189) (2026-02-26) |
-| Two Pointers | 2026-08-18 | 3 | Reverse Vowels of a String (#345) (2026-08-19) |
+| Two Pointers | 2026-08-18 | 6 | Container With Most Water (#11) (2026-08-28) |
 | Concatenation Commutativity Check | 2026-08-18 | 1 | Greatest Common Divisor of Strings (#1071) (2026-08-18) |
 
 ### Time/Space Optimization
@@ -73,8 +75,8 @@
 
 | Concept | First Used | Times Used | Latest Use |
 |---------|------------|------------|------------|
-| In-place Operation | 2026-02-18 | 4 | String Compression (#443) (2026-08-18) |
-| Constant Space | 2026-02-18 | 4 | String Compression (#443) (2026-08-18) |
+| In-place Operation | 2026-02-18 | 5 | Move Zeroes (#283) (2026-08-28) |
+| Constant Space | 2026-02-18 | 7 | Container With Most Water (#11) (2026-08-28) |
 
 ---
 
@@ -89,27 +91,27 @@
 | Mastery Level | Concepts | Count |
 |---------------|----------|-------|
 | 🏆 Master (11+) | *None yet* | 0 |
-| 🌳 Proficient (6-10) | *None yet* | 0 |
-| 🌿 Intermediate (3-5) | HashMap, In-place Operation, Constant Space, Two Pointers | 4 |
-| 🌱 Beginner (1-2) | HashSet, Frequency Array, Sorting, Kadane's Algorithm, Prefix Product, Array Reversal, Priority Queue (Heap), Quickselect, Euclidean Algorithm (GCD), Recursion, Concatenation Commutativity Check | 11 |
+| 🌳 Proficient (6-10) | Constant Space, Two Pointers | 2 |
+| 🌿 Intermediate (3-5) | HashMap, In-place Operation | 2 |
+| 🌱 Beginner (1-2) | HashSet, Frequency Array, Sorting, Kadane's Algorithm, Prefix Product, Array Reversal, Priority Queue (Heap), Quickselect, Euclidean Algorithm (GCD), Recursion, Concatenation Commutativity Check, Greedy Algorithm | 12 |
 
 ---
 
 ## 📈 Concept Usage Trends
 
 ### Top 5 Most Used Concepts
-1. **HashMap** - 5 times (🌿 Intermediate)
-2. **In-place Operation** - 4 times (🌿 Intermediate)
-3. **Constant Space** - 4 times (🌿 Intermediate)
-4. **Two Pointers** - 3 times (🌿 Intermediate)
+1. **Constant Space** - 7 times (🌳 Proficient)
+2. **Two Pointers** - 6 times (🌳 Proficient)
+3. **HashMap** - 5 times (🌿 Intermediate)
+4. **In-place Operation** - 5 times (🌿 Intermediate)
 5. **Kadane's Algorithm** - 2 times (🌱 Beginner)
 
 ### Recently Learned (Last 5)
-1. **Euclidean Algorithm (GCD)** (2026-08-18) - Greatest Common Divisor of Strings
-2. **Recursion** (2026-08-18) - Greatest Common Divisor of Strings
-3. **Concatenation Commutativity Check** (2026-08-18) - Greatest Common Divisor of Strings
-4. **Two Pointers** (2026-08-18) - Merge Strings Alternately
-5. **Quickselect** (2026-07-06) - Kth Largest Element in an Array
+1. **Greedy Algorithm** (2026-08-20) - Increasing Triplet Subsequence
+2. **Euclidean Algorithm (GCD)** (2026-08-18) - Greatest Common Divisor of Strings
+3. **Recursion** (2026-08-18) - Greatest Common Divisor of Strings
+4. **Concatenation Commutativity Check** (2026-08-18) - Greatest Common Divisor of Strings
+5. **Two Pointers** (2026-08-18) - Merge Strings Alternately
 
 ---
 
@@ -165,4 +167,4 @@ Use `/current` command to see:
 
 ---
 
-*Last tracking update: Wednesday, August 19, 2026 - Reverse Vowels of a String (#345) reused Two Pointers, now 3 uses and crossed into 🌿 Intermediate — no new concepts introduced*
+*Last tracking update: Friday, August 28, 2026 - Increasing Triplet Subsequence (#334) introduced Greedy Algorithm and reused Constant Space (now 7 uses); Move Zeroes (#283) reused Two Pointers, In-place Operation, and Constant Space; Is Subsequence (#392) reused Two Pointers; Container With Most Water (#11) reused Two Pointers (now 6 uses) and Constant Space — Constant Space and Two Pointers both crossed into 🌳 Proficient*
