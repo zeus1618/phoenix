@@ -2,6 +2,90 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "java",
+      "name": "ContainerWithMostWater",
+      "request": "launch",
+      "mainClass": "twoPointers.ContainerWithMostWater",
+      "projectName": "phoenix_b074a66b"
+    },
+    {
+      "type": "java",
+      "name": "IsSubsequence",
+      "request": "launch",
+      "mainClass": "twoPointers.IsSubsequence",
+      "projectName": "phoenix_b074a66b"
+    },
+    {
+      "type": "java",
+      "name": "MoveZeroes",
+      "request": "launch",
+      "mainClass": "twoPointers.MoveZeroes",
+      "projectName": "phoenix_b074a66b"
+    },
+    {
+      "type": "java",
+      "name": "IncreasingTripletSubsequence",
+      "request": "launch",
+      "mainClass": "arraysAndHashing.IncreasingTripletSubsequence",
+      "projectName": "phoenix_b074a66b"
+    },
+    {
+      "type": "java",
+      "name": "CanPlaceFlowers",
+      "request": "launch",
+      "mainClass": "arraysAndHashing.CanPlaceFlowers",
+      "projectName": "phoenix_b074a66b"
+    },
+    {
+      "type": "java",
+      "name": "ReverseVowelsOfAString",
+      "request": "launch",
+      "mainClass": "twoPointers.ReverseVowelsOfAString",
+      "projectName": "phoenix_b074a66b"
+    },
+    {
+      "type": "java",
+      "name": "KidsWithTheGreatestNumberOfCandies",
+      "request": "launch",
+      "mainClass": "arraysAndHashing.KidsWithTheGreatestNumberOfCandies",
+      "projectName": "phoenix_b074a66b"
+    },
+    {
+      "type": "java",
+      "name": "StringCompression",
+      "request": "launch",
+      "mainClass": "twoPointers.StringCompression",
+      "projectName": "phoenix_b074a66b"
+    },
+    {
+      "type": "java",
+      "name": "ReverseWordsInAString",
+      "request": "launch",
+      "mainClass": "arraysAndHashing.ReverseWordsInAString",
+      "projectName": "phoenix_b074a66b"
+    },
+    {
+      "type": "java",
+      "name": "GreatestCommonDivisorOfStrings",
+      "request": "launch",
+      "mainClass": "arraysAndHashing.GreatestCommonDivisorOfStrings",
+      "projectName": "phoenix_b074a66b"
+    },
+    {
+      "type": "java",
+      "name": "MergeStringsAlternately",
+      "request": "launch",
+      "mainClass": "twoPointers.MergeStringsAlternately",
+      "projectName": "phoenix_b074a66b"
+    },
+    {
+      "type": "java",
+      "name": "SortTheTuples",
+      "request": "launch",
+      "mainClass": "arraysAndHashing.SortTheTuples",
+      "projectName": "phoenix_b074a66b"
+    },
+    {
       "type": "kotlin",
       "request": "launch",
       "name": "Kotlin: Debug (Gradle project)",
